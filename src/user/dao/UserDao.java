@@ -35,6 +35,29 @@ public class UserDao {
 		}
 	}
 	
+	public User selectByNickname(Connection conn, String nickname) throws SQLException{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try{
+			pstmt = conn.prepareStatement(
+					"select * from user where nickname = ?");
+			pstmt.setString(1,  nickname);
+			rs = pstmt.executeQuery();
+			User user = null;
+			if(rs.next()){
+				user=new User(
+						rs.getString("email"),
+						rs.getString("nickname"),
+						rs.getString("password"),
+						toDate(rs.getTimestamp("regdate")));
+			}
+			return user;
+		} finally{
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+	
 	private Date toDate(Timestamp date){
 		return date == null ? null : new Date(date.getTime());
 	}

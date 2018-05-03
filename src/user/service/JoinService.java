@@ -18,13 +18,15 @@ public class JoinService {
 		try{
 			conn=ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);
-			
-			User user = userDao.selectByEmail(conn, joinReq.getEmail());
-			if(user!=null){
+
+			if(userDao.selectByEmail(conn, joinReq.getEmail())!=null){
 				JdbcUtil.rollback(conn);
-				throw new DuplicateIdException();
+				throw new DuplicateEmailException();
 			}
-			
+			if(userDao.selectByNickname(conn, joinReq.getNickname())!=null){
+				JdbcUtil.rollback(conn);
+				throw new DuplicateNicknameException();
+			}
 			userDao.insert(conn,
 					new User(
 							joinReq.getEmail(),

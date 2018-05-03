@@ -6,7 +6,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import user.service.DuplicateIdException;
+import user.service.DuplicateEmailException;
+import user.service.DuplicateNicknameException;
 import user.service.JoinRequest;
 import user.service.JoinService;
 import mvc.command.CommandHandler;
@@ -50,8 +51,11 @@ public class JoinHandler implements CommandHandler{
 		try{
 			joinService.join(joinReq);
 			return "WEB-INF/view/joinSuccess.jsp";
-		}catch(DuplicateIdException e){
+		}catch(DuplicateEmailException e){
 			errors.put("duplicateId", Boolean.TRUE);
+			return FORM_VIEW;
+		}catch(DuplicateNicknameException e) {
+			errors.put("duplicateEmail", Boolean.TRUE);
 			return FORM_VIEW;
 		}
 	}
