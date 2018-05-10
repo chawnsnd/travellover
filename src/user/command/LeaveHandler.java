@@ -7,23 +7,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import auth.service.AuthUser;
-import user.service.ChangePasswordService;
-import user.service.InvalidPasswordException;
-import user.service.UserNotFoundException;
 import mvc.command.CommandHandler;
+import user.service.InvalidPasswordException;
+import user.service.LeaveService;
+import user.service.UserNotFoundException;
 
-public class ChangePasswordHandler implements CommandHandler{
-	private static final String FORM_VIEW = "/WEB-INF/view/changePwdForm.jsp";
-	private ChangePasswordService changePwdSvc = new ChangePasswordService();
+public class LeaveHandler implements CommandHandler {
+
+	private static final String FORM_VIEW = "WEB-INF/view/leaveForm.jsp";
+	private LeaveService leaveService = new LeaveService();
 	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception{
 		if(req.getMethod().equalsIgnoreCase("GET")){
 			return processForm(req, res);
-		}else if(req.getMethod().equalsIgnoreCase("POST")){
+		} else if(req.getMethod().equalsIgnoreCase("POST")){
 			return processSubmit(req, res);
-		}else{
-			res.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
+		} else{
+			res.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
 			return null;
 		}
 	}
@@ -31,35 +32,31 @@ public class ChangePasswordHandler implements CommandHandler{
 	private String processForm(HttpServletRequest req, HttpServletResponse res){
 		return FORM_VIEW;
 	}
-	
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception{
 		AuthUser user = (AuthUser)req.getSession().getAttribute("authUser");
+		String email = user.getEmail();
+		String reqPassword = req.getParameter("password");
 		
-		Map<String, Boolean>errors = new HashMap<>();
+		Map<String,Boolean> errors = new HashMap<>();
 		req.setAttribute("errors", errors);
 		
-		String curPwd = req.getParameter("curPwd");
-		String newPwd = req.getParameter("newPwd");
+		if(reqPassword == null || reqPassword.isEmpty()){
+			errors.put("password", Boolean.TRUE);
+		}
 		
-		if(curPwd == null || curPwd.isEmpty()){
-			errors.put("curPwd", Boolean.TRUE);
-		}
-		if(newPwd == null || newPwd.isEmpty()){
-			errors.put("newPwd", Boolean.TRUE);
-		}
 		if(!errors.isEmpty()){
 			return FORM_VIEW;
 		}
 		
 		try{
-			changePwdSvc.changePassword(user.getEmail(), curPwd, newPwd);
-			return "/WEB-INF/view/changePwdSuccess.jsp";
-		} catch(InvalidPasswordException e){
-			errors.put("badCurPwd", Boolean.TRUE);
-			return FORM_VIEW;
-		} catch(UserNotFoundException e){
+			leaveService.leave(email, reqPassword);
+			return "WEB-INF/view/leaveSuccess.jsp";
+		}catch(UserNotFoundException e){
 			res.sendError(HttpServletResponse.SC_BAD_REQUEST);
 			return null;
+		}catch(InvalidPasswordException e) {
+			errors.put("badPwd", Boolean.TRUE);
+			return FORM_VIEW;
 		}
 	}
 

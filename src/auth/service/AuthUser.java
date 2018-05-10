@@ -10,7 +10,7 @@ public class AuthUser {
 		this.nickname=nickname;
 	}
 	
-	public String getId(){
+	public String getEmail(){
 		return email;
 	}
 	
