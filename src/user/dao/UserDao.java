@@ -5,10 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.Date;
 
 import jdbc.JdbcUtil;
 import user.model.User;
+import util.DateParser;
 
 public class UserDao {
 	
@@ -26,7 +26,7 @@ public class UserDao {
 						rs.getString("email"),
 						rs.getString("nickname"),
 						rs.getString("password"),
-						toDate(rs.getTimestamp("regdate")));
+						DateParser.toDate(rs.getTimestamp("regdate")));
 			}
 			return user;
 		} finally{
@@ -49,17 +49,13 @@ public class UserDao {
 						rs.getString("email"),
 						rs.getString("nickname"),
 						rs.getString("password"),
-						toDate(rs.getTimestamp("regdate")));
+						DateParser.toDate(rs.getTimestamp("regdate")));
 			}
 			return user;
 		} finally{
 			JdbcUtil.close(rs);
 			JdbcUtil.close(pstmt);
 		}
-	}
-	
-	private Date toDate(Timestamp date){
-		return date == null ? null : new Date(date.getTime());
 	}
 	
 	public void insert(Connection conn, User user) throws SQLException{
@@ -79,6 +75,14 @@ public class UserDao {
 			pstmt.setString(1, user.getNickname());
 			pstmt.setString(2, user.getPassword());
 			pstmt.setString(3, user.getEmail());
+			pstmt.executeUpdate();
+		}
+	}
+	
+	public void delete(Connection conn, User user) throws SQLException{
+		try(PreparedStatement pstmt=
+				conn.prepareStatement("delete from user where email = ?")){
+			pstmt.setString(1, user.getEmail());
 			pstmt.executeUpdate();
 		}
 	}
