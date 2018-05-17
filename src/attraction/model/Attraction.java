@@ -26,6 +26,8 @@ public class Attraction {
 		this.scopeCount = scopeCount;
 		this.regDate = regDate;
 	}
+	public Attraction() {
+	}
 	public int getAttractionId() {
 		return attractionId;
 	}

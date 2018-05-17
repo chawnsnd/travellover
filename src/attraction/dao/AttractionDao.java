@@ -57,14 +57,12 @@ public class AttractionDao {
 
 	public void update(Connection conn, Attraction attraction) throws SQLException{
 		try(PreparedStatement pstmt=
-				conn.prepareStatement("update attraction set name = ?, address = ?, phone = ?, content = ?, category = ?, scope = ?, scope_count = ?")){
+				conn.prepareStatement("update attraction set name = ?, address = ?, phone = ?, content = ?, category = ?")){
 			pstmt.setString(1, attraction.getName());
 			pstmt.setString(2, attraction.getAddress());
 			pstmt.setString(3, attraction.getPhone());
 			pstmt.setString(4, attraction.getContent());
 			pstmt.setString(5, attraction.getCategory());
-			pstmt.setFloat(6, attraction.getScope());
-			pstmt.setInt(7, attraction.getScopeCount());
 			pstmt.executeUpdate();
 		}
 	}

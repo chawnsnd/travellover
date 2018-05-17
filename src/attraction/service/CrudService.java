@@ -2,6 +2,7 @@ package attraction.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Date;
 
 import attraction.dao.AttractionDao;
 import attraction.model.Attraction;
@@ -13,6 +14,9 @@ public class CrudService {
 	private AttractionDao attractionDao = new AttractionDao();
 	
 	public void post(Attraction attraction){
+		attraction.setRegDate(new Date());
+		attraction.setScope(0);
+		attraction.setScopeCount(0);
 		Connection conn = null;
 		try{
 			conn=ConnectionProvider.getConnection();
