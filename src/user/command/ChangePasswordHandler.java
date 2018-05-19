@@ -13,7 +13,7 @@ import user.service.UserNotFoundException;
 import mvc.command.CommandHandler;
 
 public class ChangePasswordHandler implements CommandHandler{
-	private static final String FORM_VIEW = "/WEB-INF/view/changePwdForm.jsp";
+	private static final String FORM_VIEW = "/WEB-INF/view/user/changePwdForm.jsp";
 	private ChangePasswordService changePwdSvc = new ChangePasswordService();
 	
 	@Override
@@ -53,7 +53,7 @@ public class ChangePasswordHandler implements CommandHandler{
 		
 		try{
 			changePwdSvc.changePassword(user.getEmail(), curPwd, newPwd);
-			return "/WEB-INF/view/changePwdSuccess.jsp";
+			return "/WEB-INF/view/user/changePwdSuccess.jsp";
 		} catch(InvalidPasswordException e){
 			errors.put("badCurPwd", Boolean.TRUE);
 			return FORM_VIEW;
