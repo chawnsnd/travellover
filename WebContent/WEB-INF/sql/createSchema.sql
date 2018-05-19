@@ -1,0 +1,1 @@
+CREATE DATABASE travellover default CHARACTER SET UTF8;
