@@ -28,9 +28,9 @@ public class RemoveHandler implements CommandHandler{
 		try {
 			Attraction attraction = crudService.read(Integer.parseInt(req.getParameter("attraction_id")));
 			req.setAttribute("attraction", attraction);
-			return "WEB-INF/view/attraction/detail.jsp";
+			return "/WEB-INF/view/attraction/detail.jsp";
 		}catch(Exception e) {
-			return "WEB-INF/view/attraction/list.jsp";
+			return "/WEB-INF/view/attraction/list.jsp";
 		}
 	}
 	private String processRemove(HttpServletRequest req, HttpServletResponse res){
@@ -38,9 +38,9 @@ public class RemoveHandler implements CommandHandler{
 		attraction.setAttractionId(Integer.parseInt(req.getParameter("attraction_id")));
 		try{
 			crudService.remove(attraction);
-			return "WEB-INF/view/attraction/removeSuccess.jsp";
+			return "/WEB-INF/view/attraction/removeSuccess.jsp";
 		}catch(Exception e){
-			return "WEB-INF/view/attraction/detail.jsp";
+			return "/WEB-INF/view/attraction/detail.jsp";
 		}
 	}
 
