@@ -1,5 +1,5 @@
 package attraction.command;
 
-public class ListHandler {
+public class LIstHandler {
 
 }
