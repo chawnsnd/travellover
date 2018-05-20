@@ -15,7 +15,7 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <!-- Custom styles for this template -->
-    <link href="resources/css/small-business.css" rel="stylesheet">
+    <link href="/resources/css/layout.css" rel="stylesheet">
 
   </head>
 
@@ -31,7 +31,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="attraction/list.do">여행지
+              <a class="nav-link" href="/attraction/list.do">여행지
                 <span class="sr-only">(current)</span>
               </a>
             </li>
@@ -91,7 +91,7 @@
 </ul>
 </div>
 <div style="text-align:right">
-<button type="submit" class="btn btn-default" style="text-align:center">여행지등록</button>
+<button type="submit" class="btn btn-default" style="text-align:center"><a href="/attraction/post.do">여행지등록</a></button>
 </div>
 </div>
      

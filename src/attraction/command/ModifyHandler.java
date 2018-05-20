@@ -10,7 +10,7 @@ import mvc.command.CommandHandler;
 
 public class ModifyHandler implements CommandHandler{
 	
-	private static final String FORM_VIEW = "WEB-INF/view/attraction/modifyForm.jsp";
+	private static final String FORM_VIEW = "/WEB-INF/view/attraction/modifyForm.jsp";
 	private CrudService crudService = new CrudService();
 	
 	@Override
@@ -45,7 +45,7 @@ public class ModifyHandler implements CommandHandler{
 		try{
 			crudService.modify(attraction);
 			req.setAttribute("attraction", attraction);
-			return "WEB-INF/view/attraction/detail.jsp";
+			return "/WEB-INF/view/attraction/detail.jsp";
 		}catch(Exception e){
 			return FORM_VIEW;
 		}

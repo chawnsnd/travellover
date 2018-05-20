@@ -15,7 +15,7 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <!-- Custom styles for this template -->
-    <link href="resources/css/small-business.css" rel="stylesheet">
+    <link href="/resources/css/layout.css" rel="stylesheet">
 
 
   </head>
@@ -32,7 +32,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="attraction/list.do">여행지
+              <a class="nav-link" href="/attraction/list.do">여행지
                 <span class="sr-only">(current)</span>
               </a>
             </li>
@@ -72,20 +72,10 @@
     height: 500px;
 }
 .section2 div{
-    display: inline-block;
-    border: 1px solid black;
-    width:50%;
-    margin:5rem 20rem;
-    padding:2rem;
-
+    width:30%;
+    margin:auto;
+    margin-top: 200px;
 }
-a.btn.btn-primary.btn-xs.active{
-	
-	margin-left: 37rem;
-	display: flex;
-
-}
-      
 </style>
     <!-- Footer -->
     <footer class="py-5 bg-dark">
