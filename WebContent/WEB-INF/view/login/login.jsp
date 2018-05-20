@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,19 +51,15 @@
     <!-- Page Content -->
     <div class="section2" id="login">
 			<div>
-                    <h2>회원가입</h2>
+                    <h2>LOGIN</h2>
                     <hr>
                         <form>
                             <h3>이메일</h3>
                             <input type="email">
                             <h3>비밀번호</h3>
-                            <input type="password">
-                            <h3>비밀번호확인</h3>
-                            <input type="passwordcheck">
-                            <br>
-                            <br>
-                            <input type="submit" value="가입" class="submit">
-                            <input type="submit" value="취소" class="submit">
+                            <input type="password"><br><br>
+                            <input type="submit" value="로그인" class="submit">
+                            <a href="signup.html" class="btn btn-primary btn-xs active" role="button" >회원가입</a>
                             
                             
                         </form>
@@ -72,7 +70,6 @@
         
 <style>
 .section2 { 
-    background:#f4e1d2;
     height: 500px;
 }
 .section2 div{
