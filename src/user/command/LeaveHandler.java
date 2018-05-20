@@ -14,7 +14,7 @@ import user.service.UserNotFoundException;
 
 public class LeaveHandler implements CommandHandler {
 
-	private static final String FORM_VIEW = "WEB-INF/view/leaveForm.jsp";
+	private static final String FORM_VIEW = "WEB-INF/view/user/leaveForm.jsp";
 	private LeaveService leaveService = new LeaveService();
 	
 	@Override
@@ -50,7 +50,7 @@ public class LeaveHandler implements CommandHandler {
 		
 		try{
 			leaveService.leave(email, reqPassword);
-			return "WEB-INF/view/leaveSuccess.jsp";
+			return "WEB-INF/view/user/leaveSuccess.jsp";
 		}catch(UserNotFoundException e){
 			res.sendError(HttpServletResponse.SC_BAD_REQUEST);
 			return null;

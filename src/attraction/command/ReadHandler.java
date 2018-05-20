@@ -17,9 +17,9 @@ public class ReadHandler implements CommandHandler{
 		try {
 			Attraction attraction = crudService.read(Integer.parseInt(req.getParameter("attraction_id")));
 			req.setAttribute("attraction", attraction);
-			return "WEB-INF/view/attractionDetail.jsp";
+			return "WEB-INF/view/attraction/detail.jsp";
 		}catch(Exception e) {
-			return "WEB-INF/view/attractionList.jsp";
+			return "WEB-INF/view/attraction/list.jsp";
 		}
 	}
 	
