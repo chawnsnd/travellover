@@ -28,6 +28,7 @@ public class AttractionDao {
 						rs.getString("phone"),
 						rs.getString("content"),
 						rs.getString("category"),
+						rs.getString("image"),
 						rs.getFloat("scope"),
 						rs.getInt("scope_count"),
 						DateParser.toDate(rs.getTimestamp("regdate")));

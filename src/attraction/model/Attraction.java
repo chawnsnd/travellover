@@ -9,12 +9,13 @@ public class Attraction {
 	private String phone;
 	private String content;
 	private String category;
+	private String image;
 	private float scope;
 	private int scopeCount;
 	private Date regDate;
 	
 	public Attraction(int attractionId, String name, String address, String phone, String content, String category,
-			float scope, int scopeCount, Date regDate) {
+			String image, float scope, int scopeCount, Date regDate) {
 		super();
 		this.attractionId = attractionId;
 		this.name = name;
@@ -24,8 +25,18 @@ public class Attraction {
 		this.category = category;
 		this.scope = scope;
 		this.scopeCount = scopeCount;
+		this.image = image;
 		this.regDate = regDate;
 	}
+	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	public Attraction() {
 	}
 	public int getAttractionId() {
@@ -82,13 +93,6 @@ public class Attraction {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
-	@Override
-	public String toString() {
-		return "Attraction [attractionId=" + attractionId + ", name=" + name + ", address=" + address + ", phone="
-				+ phone + ", content=" + content + ", category=" + category + ", scope=" + scope + ", scopeCount="
-				+ scopeCount + ", regDate=" + regDate + "]";
-	}
-	
 	
 	
 }
