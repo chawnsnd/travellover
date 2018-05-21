@@ -32,6 +32,7 @@ public class JoinService {
 							joinReq.getEmail(),
 							joinReq.getNickname(),
 							joinReq.getPassword(),
+							"general",
 							new Date())
 					);
 			conn.commit();

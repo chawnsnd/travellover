@@ -4,10 +4,12 @@ public class AuthUser {
 	
 	private String email;
 	private String nickname;
+	private String status;
 	
-	public AuthUser(String email, String nickname){
+	public AuthUser(String email, String nickname, String status){
 		this.email=email;
 		this.nickname=nickname;
+		this.status=status;
 	}
 	
 	public String getEmail(){
@@ -17,5 +19,11 @@ public class AuthUser {
 	public String getNickName(){
 		return nickname;
 	}
+
+	public String getStatus() {
+		return status;
+	}
+	
+	
 
 }

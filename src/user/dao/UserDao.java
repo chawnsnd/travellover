@@ -26,6 +26,7 @@ public class UserDao {
 						rs.getString("email"),
 						rs.getString("nickname"),
 						rs.getString("password"),
+						rs.getString("status"),
 						DateParser.toDate(rs.getTimestamp("regdate")));
 			}
 			return user;
@@ -49,6 +50,7 @@ public class UserDao {
 						rs.getString("email"),
 						rs.getString("nickname"),
 						rs.getString("password"),
+						rs.getString("status"),
 						DateParser.toDate(rs.getTimestamp("regdate")));
 			}
 			return user;
