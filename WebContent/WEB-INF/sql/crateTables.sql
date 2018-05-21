@@ -1,40 +1,39 @@
-use travellover
+use travellover;
 
 -- attraction
 create table `attraction`(
-	`attraction_id` int not null auto_increment comment 'ì—¬í–‰ì§€ ì•„ì´ë””',
-	`name` varchar(20) COLLATE utf8_bin not null comment 'ì—¬í–‰ì§€ ì´ë¦„',
-	`address` varchar(50) COLLATE utf8_bin comment 'ì—¬í–‰ì§€ ì£¼ì†Œ',
-	`phone` varchar(20) comment 'ì—¬í–‰ì§€ ì „í™”ë²ˆí˜¸',
-	`content` varchar(1000) COLLATE utf8_bin not null comment 'ì—¬í–‰ì§€ ì„¤ëª…',
-	`category` varchar(20) COLLATE utf8_bin comment 'ì—¬í–‰ì§€ ì¹´í…Œê³ ë¦¬',
-	`image` varchar(20) comment 'ì—¬í–‰ì§€ ì´ë¯¸ì§€ URL',
-	`scope` int not null default 0 comment 'ì—¬í–‰ì§€ ë³„ì ',
-	`scope_count` int not null default 0 comment 'ì—¬í–‰ì§€ ë³„ì  ìˆ˜',
-	`regdate` timestamp not null default current_timestamp comment 'ì—¬í–‰ì§€ ë“±ë¡ì¼',
+	`attraction_id` int not null auto_increment comment '¿©ÇàÁö ¾ÆÀÌµğ',
+	`name` varchar(20) COLLATE utf8_bin not null comment '¿©ÇàÁö ÀÌ¸§',
+	`address` varchar(50) COLLATE utf8_bin comment '¿©ÇàÁö ÁÖ¼Ò',
+	`phone` varchar(20) comment '¿©ÇàÁö ÀüÈ­¹øÈ£',
+	`content` varchar(1000) COLLATE utf8_bin not null comment '¿©ÇàÁö ¼³¸í',
+	`category` varchar(20) COLLATE utf8_bin comment '¿©ÇàÁö Ä«Å×°í¸®',
+	`image` varchar(20) comment '¿©ÇàÁö ÀÌ¹ÌÁö URL',
+	`scope` int not null default 0 comment '¿©ÇàÁö º°Á¡',
+	`scope_count` int not null default 0 comment '¿©ÇàÁö º°Á¡ ¼ö',
+	`regdate` timestamp not null default current_timestamp comment '¿©ÇàÁö µî·ÏÀÏ',
 	primary key(`attraction_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='ì—¬í–‰ê¸° ì •ë³´';
-
--- comment
-create table `comment`(
-	`comment_id` int not null auto_increment comment 'ëŒ“ê¸€ ì•„ì´ë””',
-	`attraction_id` int not null comment 'ì—¬í–‰ì§€ ì•„ì´ë””',
-	`user_email` varchar(50) not null comment 'ëŒ“ê¸€ ë“±ë¡ì',
-	`content` varchar(200) COLLATE utf8_bin comment 'ëŒ“ê¸€ ë‚´ìš©',
-	`moddate` timestamp not null default current_timestamp comment 'ëŒ“ê¸€ ìˆ˜ì •ì¼',
-	`state` varchar(20) not null default "general" comment 'ëŒ“ê¸€ ìƒíƒœ',
-	primary key(`comment_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='ëŒ“ê¸€ ì •ë³´';
-ALTER TABLE comment ADD FOREIGN KEY (attraction_id) REFERENCES attraction(attraction_id) on update cascade on delete cascade;
-ALTER TABLE comment ADD FOREIGN KEY (user_email) REFERENCES user(email) on update cascade on delete cascade;
-
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='¿©ÇàÁö Á¤º¸';
 
 -- user
 create table `user`(
-	`email` varchar(50) not null comment 'ìœ ì € ì´ë©”ì¼',
-	`nickname` varchar(20) COLLATE utf8_bin not null comment 'ìœ ì € ë‹‰ë„¤ì„',
-	`password` varchar(50) not null comment 'ìœ ì € ë¹„ë°€ë²ˆí˜¸',
-	`status` varchar(20) not null default "general" comment 'ìœ ì € ìƒíƒœ',
-	`regdate` timestamp not null default current_timestamp comment 'ìœ ì € ë“±ë¡ì¼',
+	`email` varchar(50) not null comment 'À¯Àú ÀÌ¸ŞÀÏ',
+	`nickname` varchar(20) COLLATE utf8_bin not null comment 'À¯Àú ´Ğ³×ÀÓ',
+	`password` varchar(50) COLLATE utf8_bin not null comment 'À¯Àú ºñ¹Ğ¹øÈ£',
+	`status` varchar(20) not null default "general" comment 'À¯Àú »óÅÂ',
+	`regdate` timestamp not null default current_timestamp comment 'À¯Àú µî·ÏÀÏ',
 	primary key(`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='ìœ ì € ì •ë³´';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='À¯Àú Á¤º¸';
+
+-- comment
+create table `comment`(
+	`comment_id` int not null auto_increment comment '´ñ±Û ¾ÆÀÌµğ',
+	`attraction_id` int not null comment '¿©ÇàÁö ¾ÆÀÌµğ',
+	`user_email` varchar(50) not null comment 'µî·ÏÀÚ ¾ÆÀÌµğ',
+	`content` varchar(200) COLLATE utf8_bin comment '´ñ±Û ³»¿ë',
+	`moddate` timestamp not null default current_timestamp comment '´ñ±Û ¼öÁ¤ÀÏ',
+	`state` varchar(20) not null default "general" comment '´ñ±Û »óÅÂ',
+	primary key(`comment_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='´ñ±Û Á¤º¸';
+ALTER TABLE comment ADD FOREIGN KEY (attraction_id) REFERENCES attraction(attraction_id) on update cascade on delete cascade;
+ALTER TABLE comment ADD FOREIGN KEY (user_email) REFERENCES user(email) on update cascade on delete cascade;

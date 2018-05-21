@@ -1,12 +1,12 @@
---ê³„ì • ë“±ë¡
+--°èÁ¤ »ı¼º
 create user travellover@localhost identified by 'travelloverpw';
 create user 'travellover'@'%' identified by 'travelloverpw';
 
---ê³„ì • í™•ì¸
+--°èÁ¤ Á¤º¸ È®ÀÎ
 use mysql;
 select * from user;
 
---ê¶Œí•œ ì„¤ì •(í…Œì´ë¸” ìƒì„± í›„ ì§„í–‰í•´ì•¼ í•¨)
+--°èÁ¤ ±ÇÇÑ ºÎ¿©
 grant all privileges on *.* to 'travellover'@localhost identified by 'travelloverpw' with grant option;
 grant all privileges on *.* to 'travellover'@'%' identified by 'travelloverpw' with grant option;
 
