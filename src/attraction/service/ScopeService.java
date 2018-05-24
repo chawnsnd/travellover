@@ -35,6 +35,22 @@ public class ScopeService {
 		}
 	}
 	
+	public float get(int attractionId) {
+		Connection conn = null;
+		try {
+			conn=ConnectionProvider.getConnection();
+			Attraction attraction = attractionDao.selectById(conn, attractionId);
+			float scope = attraction.getScope();
+			return scope;
+		}catch(SQLException e){
+			JdbcUtil.rollback(conn);
+			throw new RuntimeException(e);
+		} finally{
+			JdbcUtil.close(conn);
+		}
+		
+	}
+	
 	private float calculateScope(float oldScope, int oldScopeCount, float inputScope) {
 		float sum = oldScope * oldScopeCount;
 		sum = sum+inputScope;
