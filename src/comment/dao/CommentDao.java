@@ -40,4 +40,25 @@ public class CommentDao {
 			JdbcUtil.close(pstmt);
 		}
 	}
+	public void insert(Connection conn, Comment comment) throws SQLException{
+		try(PreparedStatement pstmt = conn.prepareStatement("insert into comment(attraction_id, user_email, content) value (?, ?, ?)")) {
+			pstmt.setInt(1,  comment.getAttraction().getAttractionId());
+			pstmt.setString(2, comment.getUser().getEmail());
+			pstmt.setString(3, comment.getContent());
+			pstmt.executeUpdate();
+		}
+	}
+	public void modify(Connection conn, Comment comment) throws SQLException{
+		try(PreparedStatement pstmt = conn.prepareStatement("update comment set content = ? where attraction_id = ?")) {
+			pstmt.setString(1,  comment.getContent());
+			pstmt.setInt(2, comment.getAttraction().getAttractionId());
+			pstmt.executeUpdate();
+		}
+	}
+	public void delete(Connection conn, Comment comment) throws SQLException{
+		try(PreparedStatement pstmt = conn.prepareStatement("delete from comment where attraction_id = ?")) {
+			pstmt.setInt(1, comment.getAttraction().getAttractionId());
+			pstmt.executeUpdate();
+		}
+	}
 }

@@ -23,6 +23,9 @@ public class Comment {
 		this.state = state;
 	}
 	
+	public Comment() {
+	}
+
 	public int getCommentId() {
 		return commentId;
 	}
