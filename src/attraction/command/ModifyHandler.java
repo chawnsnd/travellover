@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import attraction.model.Attraction;
 import attraction.service.CrudService;
 import mvc.command.CommandHandler;
+import util.ImageUploader;
 
 public class ModifyHandler implements CommandHandler{
 	
@@ -41,6 +42,7 @@ public class ModifyHandler implements CommandHandler{
 		attraction.setPhone(req.getParameter("phone"));
 		attraction.setContent(req.getParameter("content"));
 		attraction.setCategory(req.getParameter("category"));
+		attraction.setImage(ImageUploader.upload(req));
 
 		try{
 			crudService.modify(attraction);

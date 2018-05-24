@@ -49,21 +49,23 @@ public class AttractionDao {
 			pstmt.setString(4, attraction.getPhone());
 			pstmt.setString(5, attraction.getContent());
 			pstmt.setString(6, attraction.getCategory());
-			pstmt.setFloat(7, attraction.getScope());
-			pstmt.setInt(8, attraction.getScopeCount());
-			pstmt.setTimestamp(9, new Timestamp(attraction.getRegDate().getTime()));
+			pstmt.setString(7, attraction.getImage());
+			pstmt.setFloat(8, attraction.getScope());
+			pstmt.setInt(9, attraction.getScopeCount());
+			pstmt.setTimestamp(10, new Timestamp(attraction.getRegDate().getTime()));
 			pstmt.executeUpdate();
 		}
 	}
 
 	public void update(Connection conn, Attraction attraction) throws SQLException{
 		try(PreparedStatement pstmt=
-				conn.prepareStatement("update attraction set name = ?, address = ?, phone = ?, content = ?, category = ?")){
+				conn.prepareStatement("update attraction set name = ?, address = ?, phone = ?, content = ?, category = ?, image = ?")){
 			pstmt.setString(1, attraction.getName());
 			pstmt.setString(2, attraction.getAddress());
 			pstmt.setString(3, attraction.getPhone());
 			pstmt.setString(4, attraction.getContent());
 			pstmt.setString(5, attraction.getCategory());
+			pstmt.setString(6, attraction.getImage());
 			pstmt.executeUpdate();
 		}
 	}
