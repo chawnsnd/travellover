@@ -80,6 +80,23 @@
    			</div>
    			<div class="card-body">
    				<div class="comment">
+   				<p>이름<br>
+   				<textarea rows="1" cols="90" name="username">
+   				</textarea>
+   				</p>
+   				<p>이메일<br>
+   				<textarea rows="1" cols="90" name="email">
+   				</textarea>
+   				</p>
+   				<p>
+   				댓글입력<br>
+   				<textarea rows="5" cols="90" name="comments">
+   				</textarea>
+   				<br>
+   				<button class="btn btn-default" href="#">등록</button>
+   				
+   				</div>
+   				<div class="comment">
    					<span style="margin-right: 20px; font-weight: bold;">홍길동</span>
    					<span>좋아요!!</span>
    					<span>2018-05-20</span>
