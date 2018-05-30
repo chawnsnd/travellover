@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <script src="/lib/w3.js"></script>
   <head>
@@ -15,18 +17,17 @@
   <body>
 	<!-- <include target="/main/header.html" /> -->
     <!-- Navigation -->
-
+	<jsp:include page="/WEB-INF/view/main/header.jsp" />
     <!-- Page Content -->
-    <div class="container">
+    <div class="container-fluid">
 
       <div class="row">
 
-        
         <!-- /.col-lg-3 -->
 
-        <div class="col-lg-9">
+       
 
-          <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+          <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel" style="text-align: center; margin: auto;">
             <ol class="carousel-indicators">
               <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
               <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -34,13 +35,13 @@
             </ol>
             <div class="carousel-inner" role="listbox">
               <div class="carousel-item active">
-              <img class="d-block img-fluid" src="/img/danyang.jpg" alt="First slide">
+              <img class="img-fluid"  src="/img/danyang.jpg" alt="First slide"  >
               </div>
               <div class="carousel-item">
-                <img class="d-block img-fluid" src="/img/jeju.jpg" alt="Second slide">
+                <img class="img-fluid" src="/img/jeju.jpg" alt="Second slide" >
               </div>
               <div class="carousel-item">
-                <img class="d-block img-fluid" src="/img/pazu.jpg" alt="Third slide">
+                <img class="img-fluid" src="/img/pazu.jpg" alt="Third slide" >
               </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -53,68 +54,72 @@
             </a>
           </div>
           
-       <div class="col-lg-3">
-       <div class="list-group">
-       		<h5>카테고리</h5>                    
-          </div>
-        </div>
+     </div>
      
-   
-    
-
-          <div class="row">
-                        
-                      
+		<div class="col-lg" style="text-align: center;">
+ 	 		<h5>테마별여행지</h5><br>
+    	</div> 
+       <div class="row align-items-start" style="text-align: center; margin: auto;">
+               
             <div class="col-lg-4 col-md-6 mb-4">
+             
+                 
               <div class="card h-100">
                 
-                <div class="card-body">
+                <div class="card-body" >
                   <h4 class="card-title">
                    <button type="button" class="btn btn-link"><a href="/attraction/list.do">여행지</a></button>
                   </h4>                  
                   <p class="card-text">여행할 여행지를 찾는다면!</p>
                 </div>
-               
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 mb-4">
-              <div class="card h-100">
+                </div>
+                </div>
                 
-                <div class="card-body">
+                <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100">
+                  <div class="card-body">
                   <h4 class="card-title">
                     <button type="button" class="btn btn-link"><a href="/attraction/list.do">공연</a></button>
                   </h4>
                   
                   <p class="card-text">공연을 볼 공연을 찾는다면!</p>
                 </div>
+                 </div>
+                </div>
                 
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 mb-4">
-              <div class="card h-100">
-                
-                <div class="card-body">
+                <div class="col-lg-4 col-md-6 mb-4">                           
+                <div class="card h-100">
+                 <div class="card-body">
                   <h4 class="card-title">
                   <button type="button" class="btn btn-link"><a href="/attraction/list.do">맛집</a></button>
                   </h4>
                  
                   <p class="card-text">맛있는 음식을 먹으러 떠나고싶다면!</p>
                 </div>
+                 </div>
+                </div>
                 
               </div>
-            </div>
+            
+
+            
+               
+              </div>
+          
             
 
 		
-		<div class="col-lg-3">
-          	<h5>지역별여행지</h5>                     
-         </div>
+		
 
-        </div>
         
-        <div class="row">
+        
+        
+       	<div class="col-lg" style="text-align: center;" >
+         <h5>지역별여행지</h5><br>               
+         </div>
+         
+         <div class="row align-items-center" style="text-align: center; margin: auto;">
+          
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100">
                 
@@ -157,10 +162,10 @@
               </div>
             </div>
 
-          </div>
+        
           <!-- /.row -->
 
-        </div>
+        
         <!-- /.col-lg-9 -->
 
       </div>
@@ -170,15 +175,10 @@
     <!-- /.container -->
 
     <!-- Footer -->
+    <jsp:include page="/WEB-INF/view/main/footer.html" />
+ 
+    <!-- /.container -->
     
-   <!--  <include target="/main/footer.html" /> -->
-    <footer class="py-5 bg-dark">
-      <div class="container">
-        <p class="m-0 text-left text-white">Copyright &copy; Travellover</p>
-              <p class="m-0 text-right text-white">Tel:010-xxxx-xxxx / 대표 : 차준웅 김지수 진미령</p>
-      </div>
-      <!-- /.container -->
-    </footer>
 
     <!-- Bootstrap core JavaScript -->
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
