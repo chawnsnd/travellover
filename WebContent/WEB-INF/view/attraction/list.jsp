@@ -38,28 +38,83 @@
 	<ul class="nav nav-tabs" >
   
  
-    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false" style="margin-right: 1rem">
-      테마별<span class="caret"></span>
-   </a>
-    <ul class="dropdown-menu" role="menu">
-      	 <li><a href="@">가족과</a></li>
-  		 <li><a href="@">친구와</a></li>
-  		 <li><a href="@">맛집</a></li>
+    
+    <li>
+    <input type="radio" name="thema" value="all" id="all">
+    <label for="all">전체</label>
+    <input type="radio" name="thema" value="place" id="place">
+    <label for="place">가볼만한 곳</label>
+    <input type="radio" name="thema" value="dining" id="dining">
+    <label for="dining">맛집</label>
+    <input type="radio" name="thema" value="shopping" id="shopping">
+    <label for="shopping">쇼핑</label>
+    <input type="radio" name="thema" value="hotel" id="hotel">
+    <label for="hotel">숙박</label>
+    </li>
     </ul>
     
-  
-   <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
-      지역별<span class="caret"></span>
-      </a>
-        <ul class="dropdown-menu" role="menu">
-      	 <li><a href="@">서울</a></li>
-  		 <li><a href="@">경기</a></li>
-  		 <li><a href="@">부산</a></li>
-    	</ul>
- 	
-  
-  </ul>
-
+    <br>
+    
+ 	<ul class="nav nav-tabs" >
+    <li>
+   
+    <input type="radio" name="thema" value="all" id="all">
+    <label for="all">전체</label>
+    
+    <input type="radio" name="thema" value="seoul" id="seoul">
+    <label for="seoul">서울</label>
+    
+    <input type="radio" name="thema" value="busan" id="busan">
+    <label for="busan">부산</label>
+    
+    <input type="radio" name="thema" value="daegu" id="daegu">
+    <label for="daegu">대구</label>
+    
+    <input type="radio" name="thema" value="incheon" id="incheon">
+    <label for="incheon">인천</label>
+    
+    <input type="radio" name="thema" value="kwangju" id="kwamgju">
+    <label for="kwangju">광주</label>
+    
+    <input type="radio" name="thema" value="daejeon" id="daejeon">
+    <label for="daejeon">대전</label>
+    
+    <input type="radio" name="thema" value="region" id="region">
+    <label for="region">울산</label>
+    
+	<input type="radio" name="thema" value="region" id="region">
+    <label for="region">세종</label>
+    
+    <input type="radio" name="thema" value="region" id="region">
+    <label for="region">경기</label>
+    <br>
+    
+    <input type="radio" name="thema" value="region" id="region">
+    <label for="region">강원</label>
+    
+    <input type="radio" name="thema" value="region" id="region">
+    <label for="region">충북</label>
+    
+    <input type="radio" name="thema" value="region" id="region">
+    <label for="region">충남</label>
+    
+    <input type="radio" name="thema" value="region" id="region">
+    <label for="region">전북</label>
+    
+    <input type="radio" name="thema" value="region" id="region">
+    <label for="region">전남</label>
+    
+    <input type="radio" name="thema" value="region" id="region">
+    <label for="region">경북</label>
+    
+    <input type="radio" name="thema" value="region" id="region">
+    <label for="region">경남</label>
+    
+    <input type="radio" name="thema" value="region" id="region">
+    <label for="region">제주</label>
+    </li>
+  	</ul>
+   
 
   
 
