@@ -29,10 +29,12 @@ public class ImageUploader {
 				fileName = multi.getFilesystemName(file);
 			}
 			filePath = uploadPath+fileName;
-			
+			if(multi.getParameter("attraction_id")!=null && !multi.getParameter("attraction_id").isEmpty()) {
+				attraction.setAttractionId(Integer.parseInt(multi.getParameter("attraction_id")));
+			}
 			attraction.setName(multi.getParameter("name"));
 			attraction.setAddress(multi.getParameter("address"));
-			String phone = multi.getParameter("phone1")+"-"+multi.getParameter("phone1")+"-"+multi.getParameter("phone1");
+			String phone = multi.getParameter("phone1")+"-"+multi.getParameter("phone2")+"-"+multi.getParameter("phone3");
 			attraction.setPhone(phone);
 			attraction.setContent(multi.getParameter("content"));
 			attraction.setCategory(multi.getParameter("category"));

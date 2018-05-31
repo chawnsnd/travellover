@@ -12,6 +12,7 @@ import util.ImageUploader;
 public class ModifyHandler implements CommandHandler{
 	
 	private static final String FORM_VIEW = "/WEB-INF/view/attraction/modifyForm.jsp";
+	private static final String LIST_VIEW = "/WEB-INF/view/attraction/list.jsp";
 	private CrudService crudService = new CrudService();
 	
 	@Override
@@ -27,25 +28,26 @@ public class ModifyHandler implements CommandHandler{
 	}
 	
 	private String processForm(HttpServletRequest req, HttpServletResponse res){
+		int attractionId = Integer.parseInt(req.getParameter("attraction_id"));
 		try{
-			Attraction attraction = crudService.read(Integer.parseInt(req.getParameter("attraction_id")));
+			Attraction attraction = crudService.read(attractionId);
 			req.setAttribute("attraction", attraction);
+			String phone[] = attraction.getPhone().split("-");
+			req.setAttribute("phone", phone);
 			return FORM_VIEW;
 		}catch(Exception e){
-			return FORM_VIEW;
+			return LIST_VIEW;
 		}
 	}
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res){
-		//동일 어트랙션 찾는 과정 피요
-		
 		Attraction attraction = ImageUploader.upload(new Attraction(), req);
-
+		System.out.println(attraction.toString());
 		try{
 			crudService.modify(attraction);
 			req.setAttribute("attraction", attraction);
-			return "/WEB-INF/view/attraction/detail.jsp";
+			return LIST_VIEW;
 		}catch(Exception e){
-			return FORM_VIEW;
+			return LIST_VIEW;
 		}
 	}
 

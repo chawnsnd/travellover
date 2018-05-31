@@ -30,8 +30,14 @@
             <div class="sub_title">평균별점</div>
             <span>${attraction.scope}</span><span>(${attraction.scopeCount}명 평가)</span>
             <div class="btns">
-	            <a class="btn btn-primary" href="/attraction/modify.do">수정</a>
-	            <a class="btn btn-danger" href="/attraction/remove.do">삭제</a>
+            <form method="get" action="/attraction/modify.do">
+            	<input type="hidden" name="attraction_id" value="${attraction.attractionId}">
+	            <input type="submit" class="btn btn-primary" value="수정">
+            </form>
+            <form method="get" action="/attraction/modify.do">
+            	<input type="hidden" name="attraction_id" value="${attraction.attractionId}">
+	            <input type="submit" class="btn btn-danger" value="삭제">
+            </form>
             </div>
         </div>
         <div class="content">

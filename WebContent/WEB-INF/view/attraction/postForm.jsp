@@ -18,7 +18,7 @@
   <body>
     <jsp:include page="/WEB-INF/view/main/header.jsp" />
     <div class="main_container">
-      <h1 style="margin-bottom: 30px;">여행지 등록페이지</h1>
+      <h1 style="margin-bottom: 30px;">여행지 등록</h1>
       <form method="post" action="/attraction/post.do" enctype="multipart/form-data">
         <div class="left">
           <div class="img_container">
