@@ -17,7 +17,7 @@
 
   <body>
     <jsp:include page="/WEB-INF/view/main/header.jsp" />
-    <div class="container">
+    <div class="main_container">
       <h1 style="margin-bottom: 30px;">여행지 등록페이지</h1>
       <form method="post" action="/attraction/post.do" enctype="multipart/form-data">
         <div class="left">
@@ -94,8 +94,10 @@
     </script>
   </body>
   <style>
-    .container {
-      padding: 100px;
+    .main_container {
+    	padding: 50px 0 50px 0;
+    	width: 1000px;
+    	margin: auto;
     }
 
     .guideline {
@@ -135,7 +137,7 @@
 
     .btns {
       margin-top: 20px;
-      float: right;
+      text-align: right;
     }
 
     .input_title {

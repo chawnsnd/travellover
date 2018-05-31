@@ -37,10 +37,7 @@ public class CrudService {
 		Attraction attraction = null;
 		try{
 			conn=ConnectionProvider.getConnection();
-			conn.setAutoCommit(false);
-
 			attraction = attractionDao.selectById(conn, attractionId);
-			conn.commit();
 			if(attraction==null) {
 				throw new AttractionNotFoundException();
 			}

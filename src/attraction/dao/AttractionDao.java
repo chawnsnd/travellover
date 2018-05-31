@@ -16,7 +16,7 @@ public class AttractionDao {
 		ResultSet rs = null;
 		try{
 			pstmt = conn.prepareStatement(
-					"select * from user where attraction_id = ?");
+					"select * from attraction where attraction_id = ?");
 			pstmt.setInt(1,  attractionId);
 			rs = pstmt.executeQuery();
 			Attraction attraction = null;
