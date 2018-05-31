@@ -61,40 +61,54 @@
     	</div> 
        <div class="row align-items-start" style="text-align: center; margin: auto;">
                
-            <div class="col-lg-4 col-md-6 mb-4">
+            <div class=" col-md-3 mb-4">
              
                  
               <div class="card h-100">
                 
                 <div class="card-body" >
                   <h4 class="card-title">
-                   <button type="button" class="btn btn-link"><a href="/attraction/list.do">여행지</a></button>
+                   <button type="button" class="btn btn-link"><a href="/attraction/list.do">가볼만한곳</a></button>
                   </h4>                  
-                  <p class="card-text">여행할 여행지를 찾는다면!</p>
+                  <p class="card-text">맛집, 쇼핑 , 숙박을 제외한 여행지</p>
                 </div>
                 </div>
                 </div>
                 
-                <div class="col-lg-4 col-md-6 mb-4">
+                 <div class="col-md-3 mb-4">
+             
+                 
+              <div class="card h-100">
+                
+                <div class="card-body" >
+                  <h4 class="card-title">
+                   <button type="button" class="btn btn-link"><a href="/attraction/list.do">맛집</a></button>
+                  </h4>                  
+                  <p class="card-text">추천 맛집들 리스트</p>
+                </div>
+                </div>
+                </div>
+                
+                <div class=" col-md-3 mb-4">
                 <div class="card h-100">
                   <div class="card-body">
                   <h4 class="card-title">
-                    <button type="button" class="btn btn-link"><a href="/attraction/list.do">공연</a></button>
+                    <button type="button" class="btn btn-link"><a href="/attraction/list.do">쇼핑</a></button>
                   </h4>
                   
-                  <p class="card-text">공연을 볼 공연을 찾는다면!</p>
+                  <p class="card-text">추천 쇼핑지 리스트</p>
                 </div>
                  </div>
                 </div>
                 
-                <div class="col-lg-4 col-md-6 mb-4">                           
+                <div class=" col-md-3 mb-4">                           
                 <div class="card h-100">
                  <div class="card-body">
                   <h4 class="card-title">
-                  <button type="button" class="btn btn-link"><a href="/attraction/list.do">맛집</a></button>
+                  <button type="button" class="btn btn-link"><a href="/attraction/list.do">숙박</a></button>
                   </h4>
                  
-                  <p class="card-text">맛있는 음식을 먹으러 떠나고싶다면!</p>
+                  <p class="card-text">추천 숙박 리스트</p>
                 </div>
                  </div>
                 </div>
