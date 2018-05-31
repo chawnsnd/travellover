@@ -34,7 +34,7 @@
             	<input type="hidden" name="attraction_id" value="${attraction.attractionId}">
 	            <input type="submit" class="btn btn-primary" value="수정">
             </form>
-            <form method="get" action="/attraction/modify.do">
+            <form method="get" action="/attraction/remove.do">
             	<input type="hidden" name="attraction_id" value="${attraction.attractionId}">
 	            <input type="submit" class="btn btn-danger" value="삭제">
             </form>

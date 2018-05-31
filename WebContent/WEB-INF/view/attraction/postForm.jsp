@@ -74,12 +74,14 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
       crossorigin="anonymous"></script>
     <script type="text/javascript">
-      $(function () {
-        $("#imgInp").on('change', function () {
-          readURL(this);
+    $(document).ready(function(){
+   		$("#imgInp").on('change', function () {
+           readURL(this);
         });
-
-      });
+   		$("#cancel").on('click', function(){
+   			history.back(-1)
+   		})
+    })
       function readURL(input) {
         if (input.files && input.files[0]) {
           var reader = new FileReader();

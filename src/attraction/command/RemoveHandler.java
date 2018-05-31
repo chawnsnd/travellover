@@ -14,31 +14,11 @@ public class RemoveHandler implements CommandHandler{
 	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res){
-		if(req.getMethod().equalsIgnoreCase("GET")){
-			return processDetail(req, res);
-		} else if(req.getMethod().equalsIgnoreCase("POST")){
-			return processRemove(req, res);
-		} else{
-			res.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
-			return null;
-		}
-	}
-	
-	private String processDetail(HttpServletRequest req, HttpServletResponse res){
-		try {
-			Attraction attraction = crudService.read(Integer.parseInt(req.getParameter("attraction_id")));
-			req.setAttribute("attraction", attraction);
-			return "/WEB-INF/view/attraction/detail.jsp";
-		}catch(Exception e) {
-			return "/WEB-INF/view/attraction/list.jsp";
-		}
-	}
-	private String processRemove(HttpServletRequest req, HttpServletResponse res){
 		Attraction attraction = new Attraction();
 		attraction.setAttractionId(Integer.parseInt(req.getParameter("attraction_id")));
 		try{
 			crudService.remove(attraction);
-			return "/WEB-INF/view/attraction/removeSuccess.jsp";
+			return "/WEB-INF/view/attraction/list.jsp";
 		}catch(Exception e){
 			return "/WEB-INF/view/attraction/detail.jsp";
 		}

@@ -79,7 +79,9 @@
    		$("#imgInp").on('change', function () {
            readURL(this);
         });
-   		
+   		$("#cancel").on('click', function(){
+   			history.back(-1)
+   		})
     })
     function readURL(input) {
       if (input.files && input.files[0]) {
