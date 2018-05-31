@@ -30,19 +30,15 @@ public class PostHandler implements CommandHandler{
 		return FORM_VIEW;
 	}
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res){
-		Attraction attraction = new Attraction();
-		attraction.setName(req.getParameter("name"));
-		attraction.setAddress(req.getParameter("address"));
-		attraction.setPhone(req.getParameter("phone"));
-		attraction.setContent(req.getParameter("content"));
-		attraction.setCategory(req.getParameter("category"));
-		attraction.setImage(ImageUploader.upload(req));
+		Attraction attraction = ImageUploader.upload(req);
+		System.out.println(attraction.toString());
 		
 		try{
 			crudService.post(attraction);
 			req.setAttribute("attraction", attraction);
 			return "/WEB-INF/view/attraction/detail.jsp";
 		}catch(Exception e){
+			System.out.println(e);
 			return FORM_VIEW;
 		}
 	}

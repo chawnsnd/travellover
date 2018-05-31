@@ -42,17 +42,16 @@ public class AttractionDao {
 	
 	public void insert(Connection conn, Attraction attraction) throws SQLException{
 		try(PreparedStatement pstmt=
-				conn.prepareStatement("insert into attraction values(?,?,?,?,?,?,?,?,?)")){
-			pstmt.setInt(1, attraction.getAttractionId());
-			pstmt.setString(2, attraction.getName());
-			pstmt.setString(3, attraction.getAddress());
-			pstmt.setString(4, attraction.getPhone());
-			pstmt.setString(5, attraction.getContent());
-			pstmt.setString(6, attraction.getCategory());
-			pstmt.setString(7, attraction.getImage());
-			pstmt.setFloat(8, attraction.getScope());
-			pstmt.setInt(9, attraction.getScopeCount());
-			pstmt.setTimestamp(10, new Timestamp(attraction.getRegDate().getTime()));
+				conn.prepareStatement("insert into attraction(name, address, phone, content, category, image, scope, scope_count, regdate) values(?,?,?,?,?,?,?,?,?)")){
+			pstmt.setString(1, attraction.getName());
+			pstmt.setString(2, attraction.getAddress());
+			pstmt.setString(3, attraction.getPhone());
+			pstmt.setString(4, attraction.getContent());
+			pstmt.setString(5, attraction.getCategory());
+			pstmt.setString(6, attraction.getImage());
+			pstmt.setFloat(7, attraction.getScope());
+			pstmt.setInt(8, attraction.getScopeCount());
+			pstmt.setTimestamp(9, new Timestamp(attraction.getRegDate().getTime()));
 			pstmt.executeUpdate();
 		}
 	}

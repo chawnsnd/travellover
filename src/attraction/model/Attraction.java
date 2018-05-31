@@ -16,7 +16,6 @@ public class Attraction {
 	
 	public Attraction(int attractionId, String name, String address, String phone, String content, String category,
 			String image, float scope, int scopeCount, Date regDate) {
-		super();
 		this.attractionId = attractionId;
 		this.name = name;
 		this.address = address;
@@ -92,6 +91,13 @@ public class Attraction {
 	}
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
+	}
+
+	@Override
+	public String toString() {
+		return "Attraction [attractionId=" + attractionId + ", name=" + name + ", address=" + address + ", phone="
+				+ phone + ", content=" + content + ", category=" + category + ", image=" + image + ", scope=" + scope
+				+ ", scopeCount=" + scopeCount + ", regDate=" + regDate + "]";
 	}
 	
 	
