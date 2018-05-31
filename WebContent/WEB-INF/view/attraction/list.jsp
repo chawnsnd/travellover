@@ -85,9 +85,10 @@
 	<input type="radio" name="thema" value="region" id="region">
     <label for="region">세종</label>
     
+    <br>
+    
     <input type="radio" name="thema" value="region" id="region">
     <label for="region">경기</label>
-    <br>
     
     <input type="radio" name="thema" value="region" id="region">
     <label for="region">강원</label>
