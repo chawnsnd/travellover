@@ -22,83 +22,57 @@
   <body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="/index.html">Travellover</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="/attraction/list.do">여행지
-                <span class="sr-only">(current)</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/mypage.do">마이페이지</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/login.do">로그인</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
+<jsp:include page="/WEB-INF/view/main/header.jsp" />
     <!-- Page Content -->
     <div class="container">
 
-      <div class="row" style="margin-top:50px">
+      <div class="row" style="text-align: center; margin: auto;">
 
         
         <!-- /.col-lg-3 -->
 
-        <div class="col-lg-9">
+        <div class="col-lg-12" style="margin:auto;">
         <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
-          <div class="col-lg-3">
+          
 
-<div class="dropdown">
+	<ul class="nav nav-tabs" >
   
-  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-    
-  </ul>
-</div>
-
-<ul class="nav nav-tabs" >
-  
-  <li role="presentation" class="dropdown">
-    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
-      테마별 <span class="caret"></span>
-   
+ 
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false" style="margin-right: 1rem">
+      테마별<span class="caret"></span>
+   </a>
     <ul class="dropdown-menu" role="menu">
-      	 <li><a href="#">가족과</a></li>
-  		 <li><a href="#">친구와</a></li>
-  		 <li><a href="#">맛집</a></li>
+      	 <li><a href="@">가족과</a></li>
+  		 <li><a href="@">친구와</a></li>
+  		 <li><a href="@">맛집</a></li>
     </ul>
-    </a>
-  </li>
-  <li role="presentation" class="dropdown">
-  <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
-      지역별 <span class="caret"></span>
+    
+  
+   <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+      지역별<span class="caret"></span>
+      </a>
         <ul class="dropdown-menu" role="menu">
-      	 <li><a href="#">서울</a></li>
-  		 <li><a href="#">경기</a></li>
-  		 <li><a href="#">부산</a></li>
+      	 <li><a href="@">서울</a></li>
+  		 <li><a href="@">경기</a></li>
+  		 <li><a href="@">부산</a></li>
     	</ul>
- 	</a>
-</li>
-</ul>
+ 	
+  
+  </ul>
+
+
+  
+
 </div>
 <div style="text-align:right">
 <button type="submit" class="btn btn-default" style="text-align:center"><a href="/attraction/post.do">여행지등록</a></button>
 </div>
 </div>
-     
+    
    
     
 
-          <div class="row">
+          <div class="row" style="margin:auto">
                         
                       
             <div class="col-lg-4 col-md-6 mb-4">
@@ -107,7 +81,7 @@
                  <img class="card-img-top" alt="bukchon" src="/img/bukchon.jpg" style="width:220px; height:230px">
                  <hr>
                   <h4 class="card-title">
-                   <button type="button" class="btn btn-link"><a href="read.do">여행지1</a></button>
+                   <button type="button" class="btn btn-link"><a href="read.do">여행지1 :북촌한옥마을</a></button>
                   </h4>                  
                  
                 </div>
@@ -122,7 +96,7 @@
                 <img class="card-img-top" alt="namsan" src="/img/namsan.jpg" style="width:220px; height:230px">
                 <hr>
                   <h4 class="card-title">
-                    <button type="button" class="btn btn-link"><a href="read.do">여행지2</a></button>
+                    <button type="button" class="btn btn-link"><a href="read.do">여행지2 :남산타워</a></button>
                   </h4>
                   
                 
@@ -138,7 +112,7 @@
                 <img class="card-img-top" alt="busan" src="/img/busan.jpg" style="width:220px; height:230px">
                 <hr>
                   <h4 class="card-title">
-                  <button type="button" class="btn btn-link"><a href="read.do">여행지3</a></button>
+                  <button type="button" class="btn btn-link"><a href="read.do">여행지3 :부산 용궁사</a></button>
                   </h4>
                  
                  
@@ -152,7 +126,7 @@
 
         </div>
         
-        <div class="row">
+        <div class="row" style="margin: auto;">
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100">
                 
@@ -160,7 +134,7 @@
                 <img class="card-img-top" alt="busan2" src="/img/busan2.jpg" style="width:220px; height:230px">
                 <hr>
                   <h4 class="card-title">
-                    <button type="button" class="btn btn-link"><a href="read.do">여행지4</a></button>
+                    <button type="button" class="btn btn-link"><a href="read.do">여행지4 :부산 자갈치시장</a></button>
                   </h4>
                   
   
@@ -176,7 +150,7 @@
                 <img class="card-img-top" alt="nami" src="/img/nami.jpg" style="width:220px; height:230px">
                 <hr>
                   <h4 class="card-title">
-                    <button type="button" class="btn btn-link"><a href="read.do">여행지5</a></button>
+                    <button type="button" class="btn btn-link"><a href="read.do">여행지5 :남이섬</a></button>
                   </h4>
                  
                
@@ -192,7 +166,7 @@
                 <img class="card-img-top" alt="pocheon" src="/img/pocheon.jpg" style="width:220px; height:230px">
                 <hr>
                   <h4 class="card-title">
-                    <button type="button" class="btn btn-link"><a href="read.do">여행지6</a></button>
+                    <button type="button" class="btn btn-link"><a href="read.do">여행지6 :포천불빛축제</a></button>
                   </h4>
                 
                
@@ -203,30 +177,7 @@
                 <!-- /.row -->
  		</div>
  
-  <nav>
-<div id="container">
-<ul class="pagination" style=" margin-left:auto; margin-right:auto">
-    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-    </li>
-    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-     
-    <li class="active"><a href="#">2</a></li>
-    
-    <li class="active"><a href="#">3 </a></li>
-    
-    <li class="active"><a href="#">4 </a></li>
-     
-    <li class="active"><a href="#">5 </a></li>
-    
-   
-    <li>
-      <a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-    </li>
-  </ul>
-  
-  </div>
-  </nav>
-
+ 
 
          
        
