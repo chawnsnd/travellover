@@ -10,7 +10,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import attraction.model.Attraction;
 
 public class ImageUploader {
-	public static Attraction upload(HttpServletRequest req){
+	public static Attraction upload(Attraction attraction, HttpServletRequest req){
 		req.getParameterNames().toString();
 		//하드코딩 수정할것
 		String uploadPath = "C:\\dev\\travellover\\WebContent\\uploadImages";
@@ -19,8 +19,6 @@ public class ImageUploader {
 		String filePath = "";
 		int maxSize = 1024*1024;
 		String encoding = "UTF-8";
-		Attraction attraction = new Attraction();
-
 		
 		try {
 			MultipartRequest multi = new MultipartRequest(req, uploadPath, maxSize, encoding, new DefaultFileRenamePolicy());

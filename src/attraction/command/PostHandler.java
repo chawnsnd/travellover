@@ -30,8 +30,7 @@ public class PostHandler implements CommandHandler{
 		return FORM_VIEW;
 	}
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res){
-		Attraction attraction = ImageUploader.upload(req);
-		System.out.println(attraction.toString());
+		Attraction attraction = ImageUploader.upload(new Attraction(), req);
 		
 		try{
 			crudService.post(attraction);

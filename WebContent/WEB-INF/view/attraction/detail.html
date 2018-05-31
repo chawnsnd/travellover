@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>여행지 상세페이지</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin="anonymous">
+    <link href="/resources/css/layout.css" rel="stylesheet">
+</head>
+
+<body>
+    <jsp:include page="/WEB-INF/view/main/header.jsp" />
+    <div class="container">
+        <div class="row my-4">
+            <div class="col-lg-8">
+                <img class="img-fluid rounded" src="http://pds.joins.com/news/component/htmlphoto_mmdata/201612/23/htm_201612231840736186.jpg"
+                    alt="">
+            </div>
+            <div class="col-lg-4">
+                <h1>${article.name}</h1>
+                <span>${article.address}</span>
+                <div>TEL</div>
+                <div>${article.phone}</div>
+                <div>카테고리</div>
+                <div>${article.category}</div>
+                <div>평균별점</div>
+                <span>${article.scope}</span><span>${article.scopeCount}명 평가</span>
+                <a class="btn btn-primary btn-lg" href="/attraction/modify.do">수정</a>
+                <a class="btn btn-danger btn-lg remove_btn" href="/attraction/remove.do">삭제</a>
+            </div>
+        </div>
+        <div class="card text-white bg-secondary my-4 text-center">
+            <div class="card-body">
+                ${article.content}    
+            </div>
+        </div>
+        <div class="card my-4 text-center">
+            <div class="card-body" id="map">
+                ${article.address}    
+            </div>
+            <div class="card-footer">
+                <a href="#" class="btn btn-primary">크게보기</a>
+            </div>
+        </div>
+        <div class="card my-4">
+            <div class="card-header">
+                <h3>댓글</h3>
+            </div>
+            <div class="card-body">
+                <div class="comment">
+                    <div class="comment_nickname" style="margin-right: 20px; font-weight: bold;">홍길동</div>
+                    <div class="comment_content">좋아요!!</div>
+                    <div class="comment_moddate">2018-05-20</div>
+                    <div class="btns">
+                        <button class="btn btn-warning" href="#">답글</button>
+                        <button class="btn btn-primary" href="#">수정</button>
+                        <button class="btn btn-danger" href="#">삭제</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <jsp:include page="/WEB-INF/view/main/footer.html" />
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+</body>
+<style>
+
+</style>
+
+</html>

@@ -36,13 +36,9 @@ public class ModifyHandler implements CommandHandler{
 		}
 	}
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res){
-		Attraction attraction = new Attraction();
-		attraction.setName(req.getParameter("name"));
-		attraction.setAddress(req.getParameter("address"));
-		attraction.setPhone(req.getParameter("phone"));
-		attraction.setContent(req.getParameter("content"));
-		attraction.setCategory(req.getParameter("category"));
-		attraction.setImage(ImageUploader.upload(req));
+		//동일 어트랙션 찾는 과정 피요
+		
+		Attraction attraction = ImageUploader.upload(new Attraction(), req);
 
 		try{
 			crudService.modify(attraction);
