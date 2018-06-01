@@ -45,9 +45,10 @@ public class ModifyHandler implements CommandHandler{
 		try{
 			crudService.modify(attraction);
 			req.setAttribute("attraction", attraction);
-			return LIST_VIEW;
+			return "/WEB-INF/view/attraction/modifySuccess.jsp";
 		}catch(Exception e){
-			return LIST_VIEW;
+			req.setAttribute("exception", e);
+			return "/WEB-INF/view/error.jsp";
 		}
 	}
 

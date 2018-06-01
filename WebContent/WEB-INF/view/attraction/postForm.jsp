@@ -25,7 +25,7 @@
             <img id="blah" class="img" />
           </div>
           <div>
-            <input type='file' id="imgInp" />
+            <input type='file' id="imgInp" name="image"/>
           </div>
         </div>
         <div class="right">

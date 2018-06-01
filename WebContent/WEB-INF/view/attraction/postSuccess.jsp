@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-회원탈퇴에 성공하였습니다!
-<a href="/index.jsp">홈으로 가기</a>
+여행지가 수정되었습니다.
+<a href="/attraction/list.do">여행지목록보기</a>
 </body>
 </html>

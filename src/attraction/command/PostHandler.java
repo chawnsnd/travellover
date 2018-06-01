@@ -12,7 +12,6 @@ import util.ImageUploader;
 public class PostHandler implements CommandHandler{
 	
 	private static final String FORM_VIEW = "/WEB-INF/view/attraction/postForm.jsp";
-	private static final String LIST_VIEW = "/WEB-INF/view/attraction/list.jsp";
 	private CrudService crudService = new CrudService();
 	
 	@Override
@@ -31,14 +30,15 @@ public class PostHandler implements CommandHandler{
 		return FORM_VIEW;
 	}
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res){
-		Attraction attraction = ImageUploader.upload(new Attraction(), req);
+		Attraction newAttraction = new Attraction();
+		Attraction attraction = ImageUploader.upload(newAttraction, req);
 		try{
 			crudService.post(attraction);
 			req.setAttribute("attraction", attraction);
-			return LIST_VIEW;
+			return "/WEB-INF/view/attraction/postSuccess.jsp";
 		}catch(Exception e){
-			System.out.println(e);
-			return FORM_VIEW;
+			req.setAttribute("exception", e);
+			return "/WEB-INF/view/error.jsp";
 		}
 	}
 

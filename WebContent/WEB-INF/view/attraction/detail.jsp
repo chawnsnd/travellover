@@ -36,8 +36,13 @@
           <span>(${attraction.scopeCount}명 평가)</span>
           <u:isAdmin>
             <div class="btns">
-                <button id="modify" class="btn btn-primary">수정</button>
-                <button id="delete" class="btn btn-danger">삭제</button>
+              <form method="get" action="/attraction/modify.do">
+                <input type="hidden" name="attraction_id" value="${attraction.attractionId}">
+                <input type="submit" class="btn btn-primary" value="수정">
+              </form>
+              <form method="get" action="/attraction/remove.do">
+                <input type="hidden" name="attraction_id" value="${attraction.attractionId}">
+                <input type="submit" class="btn btn-danger" value="삭제">
               </form>
             </div>
           </u:isAdmin>
@@ -61,7 +66,6 @@
                   <button id="post_submit" class="btn" width="100%" height="100%">제출</button>
                   </th>
               </tr>
-
           </table>
           <table id="append_comment">
           </table>
@@ -77,13 +81,11 @@
       <script src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=?????"></script>
       <script>
         $(document).ready(function () {
-        	console.log("수정");
+        	console.log("수정dd");
         	var address = $("#address").text();
-        	
 			//map(address);
-
  			fetchComment($("#attraction_id").text());
-			
+        })
 			$("#post_submit").click(function(){
 				var content = $("#comment_content").val();
 				var post = {
@@ -92,9 +94,24 @@
 				};
 				postLand(post);
 			})
-			
-        })
-        
+  			$('#delete_comment').click(function(){
+				console.log("af");
+				alert("adsf");
+/* 				console.log($(this).attr("commentid")); */
+			})
+			$('#modify_comment').click(function(){
+				$(this).after(              
+					"<tr>"+
+		                "<th colspan='3'>"+
+		                "<textarea rows='3' id='modify_content' style='resize: none; width: 100%;' name='content'></textarea>"+
+		                "</th>"+
+		                "<th sytle='text-align: center;'>"+
+		                "<input type='hidden' value='"+$(this).attr("commentid")+"'>"+
+		                "<button id='modify_submit' class='btn' width='100%' height='100%'>제출</button>"+
+		                "</th>"+
+		            "</tr>"
+            	)
+			})
         var postLand = function(param){
         	$.ajax({
         		type: "post",
@@ -127,8 +144,8 @@
                             	"<td class='comment_content'>"+comment.content+"</td>"+
                             	"<td class='comment_moddate'>"+comment.modDate+"</div>"+
             	          		"<td class='comment_btns'>"+
-            	            		"<button class='btn btn-primary' href='#'>수정</button>"+
-            	            		"<button class='btn btn-danger' href='#'>삭제</button>"+
+            	            		"<button class='btn btn-primary' commentid='"+comment.commentId+"' id='modify_comment'>수정</button>"+
+            	            		"<button class='btn btn-danger' commentid='"+comment.commentId+"' id='delete_comment'>삭제</button>"+
             	          		"</td>"+
                       		"</tr>"
            				);
@@ -138,8 +155,21 @@
 		   	 		console.log(e);
 		   	 	}
        		});
-
         }
+         var deleteComment = function(attractionId){
+        	 var param= {'attraction_id': attractionId};
+         	$.ajax({
+        		type: "post",
+				url: "/ajax/commentDelete.jsp", 
+				data: param,
+        		success: function(result){
+         			fetchComment(param.attraction_id);
+		   	 	},
+		   	 	error: function(e){
+		   	 		console.log(e);
+		   	 	}
+       		});
+         }
         /* var map = function(address) {
           var mapDiv = document.getElementById('map');
           var map = new naver.maps.Map(mapDiv);

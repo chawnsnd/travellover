@@ -72,7 +72,7 @@
         <div class="attractions">
         <c:forEach var="attraction" items="${attractions }">
         <div class="attraction">
-           <img class="img" alt="${attraction.name }" src="${attraction.image }" style="width:220px; height:230px">
+           <img class="img" src="${attraction.image }" style="width:220px; height:230px;">
            <hr>
            <h4 class="summary">
              <button type="button" class="btn btn-link">

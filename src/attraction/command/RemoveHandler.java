@@ -18,9 +18,10 @@ public class RemoveHandler implements CommandHandler{
 		attraction.setAttractionId(Integer.parseInt(req.getParameter("attraction_id")));
 		try{
 			crudService.remove(attraction);
-			return "/WEB-INF/view/attraction/list.jsp";
+			return "/WEB-INF/view/attraction/deleteSuccess.jsp";
 		}catch(Exception e){
-			return "/WEB-INF/view/attraction/detail.jsp";
+			req.setAttribute("exception", e);
+			return "/WEB-INF/view/error.jsp";
 		}
 	}
 

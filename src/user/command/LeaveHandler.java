@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import auth.service.AuthUser;
 import mvc.command.CommandHandler;
@@ -50,6 +51,11 @@ public class LeaveHandler implements CommandHandler {
 		
 		try{
 			leaveService.leave(email, reqPassword);
+			HttpSession session = req.getSession(false);
+			if(session!=null){
+				session.invalidate();
+			}
+			res.sendRedirect(req.getContextPath()+"/index.jsp");
 			return "/WEB-INF/view/user/leaveSuccess.jsp";
 		}catch(UserNotFoundException e){
 			res.sendError(HttpServletResponse.SC_BAD_REQUEST);

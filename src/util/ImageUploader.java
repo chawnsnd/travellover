@@ -12,23 +12,20 @@ import attraction.model.Attraction;
 public class ImageUploader {
 	public static Attraction upload(Attraction attraction, HttpServletRequest req){
 		req.getParameterNames().toString();
-		//하드코딩 수정할것
 		String uploadPath = "C:\\dev\\travellover\\WebContent\\uploadImages";
-		
+		System.out.println(uploadPath);
 		String fileName = "";
 		String filePath = "";
-		int maxSize = 1024*1024;
+		int maxSize = 1024*1024*5;
 		String encoding = "UTF-8";
 		
 		try {
 			MultipartRequest multi = new MultipartRequest(req, uploadPath, maxSize, encoding, new DefaultFileRenamePolicy());
 			Enumeration files = multi.getFileNames();
-			while(files.hasMoreElements()) {
-				String file = (String)files.nextElement();
-				System.out.println(file);
-				fileName = multi.getFilesystemName(file);
-			}
-			filePath = uploadPath+fileName;
+			fileName = multi.getFilesystemName("image");
+			System.out.println(fileName);
+			filePath = "/uploadImages/"+fileName;
+			System.out.println(multi.getParameter("name"));
 			if(multi.getParameter("attraction_id")!=null && !multi.getParameter("attraction_id").isEmpty()) {
 				attraction.setAttractionId(Integer.parseInt(multi.getParameter("attraction_id")));
 			}
@@ -38,8 +35,8 @@ public class ImageUploader {
 			attraction.setPhone(phone);
 			attraction.setContent(multi.getParameter("content"));
 			attraction.setCategory(multi.getParameter("category"));
-			
 			attraction.setImage(filePath);
+			System.out.println(attraction.toString());
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
