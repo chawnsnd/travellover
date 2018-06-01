@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 import attraction.model.Attraction;
 import jdbc.JdbcUtil;
@@ -34,6 +36,37 @@ public class AttractionDao {
 						DateParser.toDate(rs.getTimestamp("regdate")));
 			}
 			return attraction;
+		} finally{
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+	public List<Attraction> list(Connection conn, String region, String category) throws SQLException{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Attraction> attractions = new ArrayList<>();
+		try{
+			pstmt = conn.prepareStatement(
+					"select * from attraction");
+//			pstmt.setString(1, "'"+category+"'");
+//			pstmt.setString(2, "'%"+region+"%'");
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				System.out.println("@");
+				Attraction attraction = new Attraction(
+						rs.getInt("attraction_id"),
+						rs.getString("name"),
+						rs.getString("address"),
+						rs.getString("phone"),
+						rs.getString("content"),
+						rs.getString("category"),
+						rs.getString("image"),
+						rs.getFloat("scope"),
+						rs.getInt("scope_count"),
+						DateParser.toDate(rs.getTimestamp("regdate")));
+				attractions.add(attraction);
+			}
+			return attractions;
 		} finally{
 			JdbcUtil.close(rs);
 			JdbcUtil.close(pstmt);

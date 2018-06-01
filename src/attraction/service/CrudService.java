@@ -3,6 +3,7 @@ package attraction.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
 
 import attraction.dao.AttractionDao;
 import attraction.model.Attraction;
@@ -42,6 +43,24 @@ public class CrudService {
 				throw new AttractionNotFoundException();
 			}
 			return attraction;
+		} catch(SQLException e){
+			JdbcUtil.rollback(conn);
+			throw new RuntimeException(e);
+		} finally{
+			JdbcUtil.close(conn);
+		}
+	}
+	
+	public List<Attraction> list(String region, String category){
+		Connection conn = null;
+		List<Attraction> attractions = null;
+		try{
+			conn=ConnectionProvider.getConnection();
+			attractions = attractionDao.list(conn, region, category);
+			if(attractions.isEmpty()) {
+				throw new AttractionNotFoundException();
+			}
+			return attractions;
 		} catch(SQLException e){
 			JdbcUtil.rollback(conn);
 			throw new RuntimeException(e);

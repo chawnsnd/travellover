@@ -1,32 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en">
-<script src="/lib/w3.js"></script>
+  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+  <html lang="en">
+  <script src="/lib/w3.js"></script>
+
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+      crossorigin="anonymous">
     <link href="/resources/css/layout.css" rel="stylesheet">
   </head>
 
   <body>
-	<!-- <include target="/main/header.html" /> -->
-    <!-- Navigation -->
-	<jsp:include page="/WEB-INF/view/main/header.jsp" />
-    <!-- Page Content -->
-    <div class="container-fluid">
-
-      <div class="row">
-
-        <!-- /.col-lg-3 -->
-
-       
-
+    <jsp:include page="/WEB-INF/view/main/header.jsp" />
+    <div class="main_container">
+      <div class="container-fluid">
+        <div class="row image_slider">
           <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel" style="text-align: center; margin: auto;">
             <ol class="carousel-indicators">
               <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -35,13 +27,13 @@
             </ol>
             <div class="carousel-inner" role="listbox">
               <div class="carousel-item active">
-              <img class="img-fluid"  src="/img/danyang.jpg" alt="First slide"  >
+                <img class="img-fluid" src="/img/danyang.jpg" alt="First slide">
               </div>
               <div class="carousel-item">
-                <img class="img-fluid" src="/img/jeju.jpg" alt="Second slide" >
+                <img class="img-fluid" src="/img/jeju.jpg" alt="Second slide">
               </div>
               <div class="carousel-item">
-                <img class="img-fluid" src="/img/pazu.jpg" alt="Third slide" >
+                <img class="img-fluid" src="/img/pazu.jpg" alt="Third slide">
               </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -53,151 +45,135 @@
               <span class="sr-only">Next</span>
             </a>
           </div>
-          
-     </div>
-     
-		<div class="col-lg" style="text-align: center;">
- 	 		<h5>테마별여행지</h5><br>
-    	</div> 
-       <div class="row align-items-start" style="text-align: center; margin: auto;">
-               
-            <div class=" col-md-3 mb-4">
-             
-                 
-              <div class="card h-100">
-                
-                <div class="card-body" >
-                  <h4 class="card-title">
-                   <button type="button" class="btn btn-link"><a href="/attraction/list.do">가볼만한곳</a></button>
-                  </h4>                  
-                  <p class="card-text">맛집, 쇼핑 , 숙박을 제외한 여행지</p>
-                </div>
-                </div>
-                </div>
-                
-                 <div class="col-md-3 mb-4">
-             
-                 
-              <div class="card h-100">
-                
-                <div class="card-body" >
-                  <h4 class="card-title">
-                   <button type="button" class="btn btn-link"><a href="/attraction/list.do">맛집</a></button>
-                  </h4>                  
-                  <p class="card-text">추천 맛집들 리스트</p>
-                </div>
-                </div>
-                </div>
-                
-                <div class=" col-md-3 mb-4">
-                <div class="card h-100">
-                  <div class="card-body">
-                  <h4 class="card-title">
-                    <button type="button" class="btn btn-link"><a href="/attraction/list.do">쇼핑</a></button>
-                  </h4>
-                  
-                  <p class="card-text">추천 쇼핑지 리스트</p>
-                </div>
-                 </div>
-                </div>
-                
-                <div class=" col-md-3 mb-4">                           
-                <div class="card h-100">
-                 <div class="card-body">
-                  <h4 class="card-title">
-                  <button type="button" class="btn btn-link"><a href="/attraction/list.do">숙박</a></button>
-                  </h4>
-                 
-                  <p class="card-text">추천 숙박 리스트</p>
-                </div>
-                 </div>
-                </div>
-                
-              </div>
-            
+        </div>
+        <div class="col-lg" style="text-align: center;">
+          <h5>테마별</h5>
+          <br>
+        </div>
+        <div class="categories">
+          <div class="category">
+            <a href="/attraction/list.do?category=가볼만한 곳&region=''">가볼만한곳</a>
+          </div>
+          <div class="category">
+            <a href="/attraction/list.do?category=맛집&region=''">맛집</a>
+          </div>
+          <div class="category">
+            <a href="/attraction/list.do?category=쇼핑&region=''">쇼핑</a>
 
-            
-               
-              </div>
-          
-            
-
-		
-		
-
-        
-        
-        
-       	<div class="col-lg" style="text-align: center;" >
-         <h5>지역별여행지</h5><br>               
-         </div>
-         
-         <div class="row align-items-center" style="text-align: center; margin: auto;">
-          
-            <div class="col-lg-4 col-md-6 mb-4">
-              <div class="card h-100">
-                
-                <div class="card-body">
-                  <h4 class="card-title">
-                    <button type="button" class="btn btn-link"><a href="/attraction/list.do">서울</a></button>
-                  </h4>
-                  
-                  <p class="card-text">우리나라의 수도 다이나믹 서울</p>
-                </div>
-              
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 mb-4">
-              <div class="card h-100">
-                
-                <div class="card-body">
-                  <h4 class="card-title">
-                    <button type="button" class="btn btn-link"><a href="/attraction/list.do">경기</a></button>
-                  </h4>
-                 
-                  <p class="card-text">다양한 여행테마가 있는 경기</p>
-                </div>
-                
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 mb-4">
-              <div class="card h-100">
-                
-                <div class="card-body">
-                  <h4 class="card-title">
-                    <button type="button" class="btn btn-link"><a href="/attraction/list.do">부산</a></button>
-                  </h4>
-                
-                  <p class="card-text">바다가 있는 아름다운 도시 부산</p>
-                </div>
-                
-              </div>
-            </div>
-
-        
-          <!-- /.row -->
-
-        
-        <!-- /.col-lg-9 -->
-
+          </div>
+          <div class="category">
+            <a href="/attraction/list.do?category=숙박&region=''">숙박</a>
+          </div>
+        </div>
       </div>
-      <!-- /.row -->
-
+      <div class="col-lg" style="text-align: center;">
+        <h5>지역별</h5>
+        <br>
+      </div>
+      <div class="regions">
+        <div class="region">
+          <a href="/attraction/list.do?region=서울&category=''">서울</a>
+        </div>
+        <div class="region">
+          <a href="/attraction/list.do?region=부산&category=''">부산</a>
+        </div>
+        <div class="region">
+          <a href="/attraction/list.do?region=대구&category=''">대구</a>
+        </div>
+        <div class="region">
+          <a href="/attraction/list.do?region=인천&category=''">인천</a>
+        </div>
+        <div class="region">
+          <a href="/attraction/list.do?region=광주&category=''">광주</a>
+        </div>
+        <div class="region">
+          <a href="/attraction/list.do?region=대전&category=''">대전</a>
+        </div>
+        <div class="region">
+          <a href="/attraction/list.do?region=울산&category=''">울산</a>
+        </div>
+        <div class="region">
+          <a href="/attraction/list.do?region=세종&category=''">세종</a>
+        </div>
+        <div class="region">
+          <a href="/attraction/list.do?region=경기도&category=''">경기</a>
+        </div>
+        <div class="region">
+          <a href="/attraction/list.do?region=강원도&category=''">강원</a>
+        </div>
+        <div class="region">
+          <a href="/attraction/list.do?region=충청북도&category=''">충북</a>
+        </div>
+        <div class="region">
+          <a href="/attraction/list.do?region=충청남도&category=''">충남</a>
+        </div>
+        <div class="region">
+          <a href="/attraction/list.do?region=전라북도&category=''">전북</a>
+        </div>
+        <div class="region">
+          <a href="/attraction/list.do?region=전라남도&category=''">전남</a>
+        </div>
+        <div class="region">
+          <a href="/attraction/list.do?region=경상북도&category=''">경북</a>
+        </div>
+        <div class="region">
+          <a href="/attraction/list.do?region=경상남도&category=''">경남</a>
+        </div>
+        <div class="region">
+          <a href="/attraction/list.do?region=제주&category=''">제주</a>
+        </div>
+      </div>
     </div>
-    <!-- /.container -->
 
-    <!-- Footer -->
+
+
     <jsp:include page="/WEB-INF/view/main/footer.html" />
- 
-    <!-- /.container -->
-    
-
-    <!-- Bootstrap core JavaScript -->
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+      crossorigin="anonymous"></script>
   </body>
+  <style>
+    .main_container {
+      padding: 50px 0 50px 0;
+      width: 1000px;
+      margin: auto;
+    }
 
-</html>
+    .guideline {
+      border: 1px solid red;
+    }
+
+    .region {
+      margin-left: 15px;
+      margin-right: 15px;
+      margin-bottom: 30px;
+      display: inline-block;
+      border: 1px solid #eaeaea;
+      width: 300px;
+      height: 150px;
+    }
+
+    .regions {
+      text-align: center;
+    }
+
+    .category {
+      margin-left: 15px;
+      margin-right: 15px;
+      display: inline-block;
+      border: 1px solid #eaeaea;
+      width: 205px;
+      height: 150px;
+      text-align: center;
+    }
+
+    .categories {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+  </style>
+
+  </html>
