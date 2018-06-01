@@ -16,20 +16,18 @@
 
     <body>
     	<div class="box">
-	    	<div class="title">Travellover</div>
+	    	<div class="title">Travellover</div><hr>
 	        <div class="form" id="login">
-	            <div>
-	                <h2>LOGIN</h2>
-	                <hr>
-	                <form action="/login.do" method="post">
-	                    <h3>이메일</h3>
-	                    <input type="email" name="email">
-	                    <h3>비밀번호</h3>
-	                    <input type="password" name="password">
-	                    <input type="submit" class="btn btn-primary" value="로그인">
-	                </form>
-	                <a href="/join.do">회원가입하러 가기</a>
-	            </div>
+                <form action="/login.do" method="post">
+                    <div>이메일</div>
+                    <input type="email" name="email" class="inputbox">
+                    <div>비밀번호</div>
+                    <input type="password" name="password" class="inputbox">
+                    <div>
+                    <input type="submit" class="btn btn-primary" value="로그인">
+                    <a href="/join.do">회원가입하러 가기</a>
+                    </div>
+                </form>
 	        </div>
         </div>
         <!-- Bootstrap core JavaScript -->
@@ -56,14 +54,14 @@
     		margin-bottom: 15px;
     	}
         .form {
-        	mairgin: auto;
-            height: 500px;
+        	display: inline-block;
+        	margin-top: 100px;
+        	margin: auto;
         }
-
-        .form div {
-            width: 80%;
-            margin: auto;
-        }
+		.inputbox{
+			width: 250px;
+			margin-bottom: 15px;
+		}
     </style>
 
     </html>
