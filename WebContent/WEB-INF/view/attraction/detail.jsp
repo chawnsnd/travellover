@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="u" tagdir="/WEB-INF/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,6 +30,7 @@
             <div>${attraction.category}</div>
             <div class="sub_title">평균별점</div>
             <span>${attraction.scope}</span><span>(${attraction.scopeCount}명 평가)</span>
+            <u:isAdmin>
             <div class="btns">
             <form method="get" action="/attraction/modify.do">
             	<input type="hidden" name="attraction_id" value="${attraction.attractionId}">
@@ -39,6 +41,7 @@
 	            <input type="submit" class="btn btn-danger" value="삭제">
             </form>
             </div>
+            </u:isAdmin>
         </div>
         <div class="content">
         	${attraction.content}

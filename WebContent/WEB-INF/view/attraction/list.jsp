@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="u" tagdir="/WEB-INF/tags" %>
   <!DOCTYPE html>
   <html lang="en">
 
@@ -23,11 +24,13 @@
             <div class="nav">
             </div>
           </div>
+          <u:isAdmin>
           <div style="text-align:right">
             <button type="submit" class="btn btn-default" style="text-align:center">
               <a href="/attraction/post.do">여행지등록</a>
             </button>
           </div>
+          </u:isAdmin>
         </div>
         <c:if test="${attractions.isEmpty() }">
         	<h3>리스트가 존재하지 않습니다.</h3>
