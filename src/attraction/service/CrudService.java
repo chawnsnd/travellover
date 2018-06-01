@@ -56,17 +56,13 @@ public class CrudService {
 		List<Attraction> attractions = null;
 		try{
 			conn=ConnectionProvider.getConnection();
-			if((region == null || region.isEmpty())&&(category == null || category.isEmpty())){
-				System.out.println("다 없는거");
+			if((region == null || region.isEmpty() || region.equals("all"))&&(category == null || category.isEmpty() || category.equals("all"))){
 				attractions = attractionDao.listAll(conn);
-			}else if(region == null || region.isEmpty()) {
-				System.out.println("카테고리만");
+			}else if(region == null || region.isEmpty() || region.equals("all")) {
 				attractions = attractionDao.listByCategory(conn, category);
-			}else if(category == null || category.isEmpty()) {
-				System.out.println("지역만");
+			}else if(category == null || category.isEmpty() || category.equals("all")) {
 				attractions = attractionDao.listByRegion(conn, region);
 			}else {
-				System.out.println("둘다");
 				attractions = attractionDao.listByRegionAndCategory(conn, region, category);
 			}
 			if(attractions.isEmpty()) {
