@@ -50,7 +50,7 @@ public class LeaveHandler implements CommandHandler {
 		
 		try{
 			leaveService.leave(email, reqPassword);
-			return "WEB-INF/view/user/leaveSuccess.jsp";
+			return "/WEB-INF/view/user/leaveSuccess.jsp";
 		}catch(UserNotFoundException e){
 			res.sendError(HttpServletResponse.SC_BAD_REQUEST);
 			return null;

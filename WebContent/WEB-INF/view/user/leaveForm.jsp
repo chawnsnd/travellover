@@ -13,7 +13,7 @@
 		<div class="title">-- 회원탈퇴 --</div>
 		<div class="form">
 			<form method="post" action="/user/leave.do">
-				<div style="margin-bottom: 20px;"><input type="password" placeholder="패스워드를 입력하세요"></div>
+				<div style="margin-bottom: 20px;"><input type="password" name="password" placeholder="패스워드를 입력하세요"></div>
 				<div style="margin-bottom: 20px;"><input type="submit" class="btn btn-primary" value="탈퇴하기"></div>
 			</form>
 		</div>
