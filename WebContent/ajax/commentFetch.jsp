@@ -1,3 +1,7 @@
+<%@page import="com.google.gson.Gson"%>
+<%@page import="comment.model.ResultComment"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="util.DateParser"%>
 <%@page import="jdbc.JdbcUtil"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.Connection"%>
@@ -6,24 +10,33 @@
 <%@page import="attraction.model.Attraction"%>
 <%@page import="comment.dao.CommentDao"%>
 <%@page import="jdbc.connection.ConnectionProvider"%>
-<%@page import="net.sf.json.JSONArray"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="UTF-8"%>
 <%
 	Connection conn	= null;
-	JSONArray result = null;
 	try{
 		conn = ConnectionProvider.getConnection();
 		CommentDao commentDao = new CommentDao();
 		Attraction attraction = new Attraction();
 		attraction.setAttractionId(Integer.parseInt(request.getParameter("attraction_id")));
 		List<Comment> comments = commentDao.selectByAttraction(conn, attraction);
-		result = JSONArray.fromObject(comments);
+		List<String> result = new ArrayList<>();
+		for(Comment comment : comments){
+			ResultComment resultComments = new ResultComment();
+			resultComments.setNickname(comment.getUser().getNickname());
+			resultComments.setContent(comment.getContent());
+			resultComments.setModDate(DateParser.toString(comment.getModDate()));
+			resultComments.setAttractionId(comment.getAttraction().getAttractionId());
+			resultComments.setCommentId(comment.getCommentId());
+			result.add(new Gson().toJson(resultComments));
+		}
+		String json = new Gson().toJson(result);
 %>
-	<%= result %>
+	<%= json %>
 <%
 	} catch(SQLException e){
 		JdbcUtil.rollback(conn);
+		System.out.println(e);
 	} finally{
 		JdbcUtil.close(conn);
 	}

@@ -29,7 +29,6 @@ public class ListHandler implements AjaxHandler{
 			attraction.setAttractionId(Integer.parseInt(req.getParameter("attraction_id")));
 			List<Comment> comments = commentDao.selectByAttraction(conn, attraction);
 			result = JSONArray.fromObject(comments);
-
 		} catch(SQLException e){
 			JdbcUtil.rollback(conn);
 		} finally{

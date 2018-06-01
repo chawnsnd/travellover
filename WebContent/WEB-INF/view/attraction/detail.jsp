@@ -52,19 +52,18 @@
           <div class="comment_form">
           </div>
           <div class="comments">
-            <table>
+            <table id="comments_table">
               <tr>
-                  <th colspan="3" width="870px;">
+                  <th colspan="3" width="130%;">
                   <textarea rows="3" id="comment_content" style="resize: none; width: 100%;" name="content"></textarea>
                   </th>
                   <th sytle="text-align: center;">
                   <button id="post_submit" class="btn" width="100%" height="100%">제출</button>
                   </th>
               </tr>
-              <!-- c:for -->
-              <div class="comments">
-          	</div>
-          	<!-- /c:for -->
+
+          </table>
+          <table id="append_comment">
           </table>
         </div>
       </div>
@@ -78,12 +77,12 @@
       <script src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=?????"></script>
       <script>
         $(document).ready(function () {
-        	console.log("수정121asdfdasf2");
+        	console.log("수정");
         	var address = $("#address").text();
         	
 			//map(address);
 
-/* 			fetchComment(post); */
+ 			fetchComment($("#attraction_id").text());
 			
 			$("#post_submit").click(function(){
 				var content = $("#comment_content").val();
@@ -103,11 +102,11 @@
 				data: param,
         		success: function(result){
          			fetchComment(param.attraction_id);
-        			$("#post_content").val("");
+        			$("#comment_content").val("");
 		   	 	},
 		   	 	error: function(e){
 		   	 		console.log(e);
-		   	 		$("#post_content").val("");
+		   	 		$("#comment_content").val("");
 		   	 	}
        		});
         }
@@ -118,13 +117,15 @@
 				url: "/ajax/commentFetch.jsp", 
 				data: param,
         		success: function(result){
-        			console.log(result);
-                	for(comment in comments){
-                		$("#comments").append(                
-            				"<tr>"+
-                            	"<td class='comment_nickname'>홍길동</td>"+
-                            	"<td class='comment_content'>좋아요!!</td>"+
-                            	"<td class='comment_moddate'>2018-05-20</div>"+
+         			comments = JSON.parse(result);
+         			$("#append_comment").html("");
+                	for(var i=0; i<comments.length; i++){
+                		comment = JSON.parse(comments[i]);
+                		$("#append_comment").append(                
+             				"<tr>"+
+                            	"<td class='comment_nickname'>"+comment.nickname+"</td>"+
+                            	"<td class='comment_content'>"+comment.content+"</td>"+
+                            	"<td class='comment_moddate'>"+comment.modDate+"</div>"+
             	          		"<td class='comment_btns'>"+
             	            		"<button class='btn btn-primary' href='#'>수정</button>"+
             	            		"<button class='btn btn-danger' href='#'>삭제</button>"+

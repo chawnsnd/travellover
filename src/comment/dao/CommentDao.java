@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import attraction.model.Attraction;
@@ -20,10 +21,10 @@ public class CommentDao {
 		try{
 			UserDao userDao =new UserDao();
 			pstmt = conn.prepareStatement(
-					"select * from comment where attraction_id = ?");
+					"select * from comment where attraction_id = ? order by comment_id desc");
 			pstmt.setInt(1,  attraction.getAttractionId());
 			rs = pstmt.executeQuery();
-			List<Comment> comments = null;
+			List<Comment> comments = new ArrayList<>();
 			while(rs.next()){
 				User user = userDao.selectByEmail(conn, rs.getString("user_email"));
 				Comment comment = new Comment(rs.getInt("comment_id"),
