@@ -21,6 +21,7 @@
     <div class="main_container">
     	<div class="nav">
     		<table>
+    		<form method="get" action="/attraction/list.do">
     		<tr>
     		<th>카테고리</th>
     		<td>
@@ -56,6 +57,7 @@
     			<label><input type="radio" name="region" value="제주">제주 </label>
     		</td>
     		</tr>
+    		</form>
     		</table>
     	</div>
         <u:isAdmin>

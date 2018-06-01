@@ -17,6 +17,7 @@ public class ListHandler implements CommandHandler{
 	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res){
+		
 		String region = req.getParameter("region");
 		String category = req.getParameter("category");
 		try {

@@ -41,15 +41,101 @@ public class AttractionDao {
 			JdbcUtil.close(pstmt);
 		}
 	}
-	public List<Attraction> list(Connection conn, String region, String category) throws SQLException{
+	public List<Attraction> listAll(Connection conn) throws SQLException{
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<Attraction> attractions = new ArrayList<>();
 		try{
 			pstmt = conn.prepareStatement(
 					"select * from attraction");
-//			pstmt.setString(1, "'"+category+"'");
-//			pstmt.setString(2, "'%"+region+"%'");
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				Attraction attraction = new Attraction(
+						rs.getInt("attraction_id"),
+						rs.getString("name"),
+						rs.getString("address"),
+						rs.getString("phone"),
+						rs.getString("content"),
+						rs.getString("category"),
+						rs.getString("image"),
+						rs.getFloat("scope"),
+						rs.getInt("scope_count"),
+						DateParser.toDate(rs.getTimestamp("regdate")));
+				attractions.add(attraction);
+			}
+			return attractions;
+		} finally{
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+	public List<Attraction> listByCategory(Connection conn, String category) throws SQLException{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Attraction> attractions = new ArrayList<>();
+		try{
+			pstmt = conn.prepareStatement(
+					"select * from attraction where category = ?");
+			pstmt.setString(1, category);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				Attraction attraction = new Attraction(
+						rs.getInt("attraction_id"),
+						rs.getString("name"),
+						rs.getString("address"),
+						rs.getString("phone"),
+						rs.getString("content"),
+						rs.getString("category"),
+						rs.getString("image"),
+						rs.getFloat("scope"),
+						rs.getInt("scope_count"),
+						DateParser.toDate(rs.getTimestamp("regdate")));
+				attractions.add(attraction);
+			}
+			return attractions;
+		} finally{
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+	public List<Attraction> listByRegion(Connection conn, String region) throws SQLException{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Attraction> attractions = new ArrayList<>();
+		try{
+			pstmt = conn.prepareStatement(
+					"select * from attraction where address like ?");
+			pstmt.setString(1, "%"+region+"%");
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				Attraction attraction = new Attraction(
+						rs.getInt("attraction_id"),
+						rs.getString("name"),
+						rs.getString("address"),
+						rs.getString("phone"),
+						rs.getString("content"),
+						rs.getString("category"),
+						rs.getString("image"),
+						rs.getFloat("scope"),
+						rs.getInt("scope_count"),
+						DateParser.toDate(rs.getTimestamp("regdate")));
+				attractions.add(attraction);
+			}
+			return attractions;
+		} finally{
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+	public List<Attraction> listByRegionAndCategory(Connection conn, String region, String category) throws SQLException{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Attraction> attractions = new ArrayList<>();
+		try{
+			pstmt = conn.prepareStatement(
+					"select * from attraction where category =? and address like ?");
+			pstmt.setString(1, category);
+			pstmt.setString(2, "%"+region+"%");
 			rs = pstmt.executeQuery();
 			while(rs.next()){
 				Attraction attraction = new Attraction(

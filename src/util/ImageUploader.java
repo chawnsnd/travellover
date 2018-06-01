@@ -23,9 +23,7 @@ public class ImageUploader {
 			MultipartRequest multi = new MultipartRequest(req, uploadPath, maxSize, encoding, new DefaultFileRenamePolicy());
 			Enumeration files = multi.getFileNames();
 			fileName = multi.getFilesystemName("image");
-			System.out.println(fileName);
 			filePath = "/uploadImages/"+fileName;
-			System.out.println(multi.getParameter("name"));
 			if(multi.getParameter("attraction_id")!=null && !multi.getParameter("attraction_id").isEmpty()) {
 				attraction.setAttractionId(Integer.parseInt(multi.getParameter("attraction_id")));
 			}
@@ -36,7 +34,6 @@ public class ImageUploader {
 			attraction.setContent(multi.getParameter("content"));
 			attraction.setCategory(multi.getParameter("category"));
 			attraction.setImage(filePath);
-			System.out.println(attraction.toString());
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
