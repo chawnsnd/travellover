@@ -62,9 +62,9 @@
         <filter-name>LoginCheckFilter</filter-name>
         <url-pattern>/user/changePwd.do</url-pattern>
         <url-pattern>/user/leave.do</url-pattern>
-        <url-pattern>/attraction/comment/modify.do</url-pattern>
-        <url-pattern>/attraction/comment/post.do</url-pattern>
-        <url-pattern>/attraction/comment/remove.do</url-pattern>
+        <url-pattern>/ajax/commentDelete.jsp</url-pattern>
+        <url-pattern>/ajax/commentFetch.jsp</url-pattern>
+        <url-pattern>/ajax/commentPost.jsp</url-pattern>
     </filter-mapping>
     
 </web-app>

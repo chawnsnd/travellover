@@ -18,21 +18,25 @@
 		conn = ConnectionProvider.getConnection();
 		commentDao= new CommentDao();
 
-		AuthUser authUser = (AuthUser)request.getSession().getAttribute("authUser");
-		if(authUser==null){
-			response.sendRedirect("/login.do");
+		HttpSession httpSession = request.getSession(false);
+		if(httpSession==null||httpSession.getAttribute("authUser")==null){
+%>
+<%="notLogin" %>
+<%
+		}else{
+			AuthUser authUser = (AuthUser)request.getSession().getAttribute("authUser");
+			User user = new User();
+			user.setEmail(authUser.getEmail());
+			user.setNickname(authUser.getNickname());
+			user.setStatus(authUser.getStatus());
+			Attraction attraction = new Attraction();
+			attraction.setAttractionId(Integer.parseInt(request.getParameter("attraction_id")));
+			Comment comment = new Comment();
+			comment.setAttraction(attraction);
+			comment.setContent(request.getParameter("content"));
+			comment.setUser(user);
+			commentDao.insert(conn, comment);
 		}
-		User user = new User();
-		user.setEmail(authUser.getEmail());
-		user.setNickname(authUser.getNickname());
-		user.setStatus(authUser.getStatus());
-		Attraction attraction = new Attraction();
-		attraction.setAttractionId(Integer.parseInt(request.getParameter("attraction_id")));
-		Comment comment = new Comment();
-		comment.setAttraction(attraction);
-		comment.setContent(request.getParameter("content"));
-		comment.setUser(user);
-		commentDao.insert(conn, comment);
 	} catch(SQLException e){
 		JdbcUtil.rollback(conn);
 	} finally{

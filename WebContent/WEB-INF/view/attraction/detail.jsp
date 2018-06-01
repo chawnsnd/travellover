@@ -118,6 +118,10 @@
 				url: "/ajax/commentPost.jsp", 
 				data: param,
         		success: function(result){
+        			console.log(result)
+        			if(result.match("notLogin")){
+        				location.replace("/login.do");
+        			}
          			fetchComment(param.attraction_id);
         			$("#comment_content").val("");
 		   	 	},
