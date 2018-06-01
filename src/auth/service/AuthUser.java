@@ -23,7 +23,10 @@ public class AuthUser {
 	public String getStatus() {
 		return status;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "AuthUser [email=" + email + ", nickname=" + nickname + ", status=" + status + "]";
+	}
 
 }

@@ -16,13 +16,13 @@
 
     <body>
         <jsp:include page="/WEB-INF/view/main/header.jsp" />
-        <div class="section2" id="login">
+        <div class="form" id="login">
             <div>
                 <h2>회원가입</h2>
                 <hr>
                 <form method="post" action="/join.do">
                     <h3>이메일</h3>
-                    <input type="text" name="email">
+                    <input type="email" name="email">
                     <h3>닉네임</h3>
                     <input type="text" name="nickname">
                     <h3>비밀번호</h3>
@@ -43,14 +43,14 @@
             crossorigin="anonymous"></script>
     </body>
     <style>
-        .section2 {
+        .form {
             height: 500px;
         }
 
-        .section2 div {
+        .form div {
             width: 30%;
             margin: auto;
-            margin-top: 200px;
+            margin-top: 100px;
         }
     </style>
 
