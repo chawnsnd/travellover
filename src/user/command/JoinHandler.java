@@ -50,7 +50,7 @@ public class JoinHandler implements CommandHandler{
 		
 		try{
 			joinService.join(joinReq);
-			return "WEB-INF/view/user/joinSuccess.jsp";
+			return "WEB-INF/view/user/joinSuccess.html";
 		}catch(DuplicateEmailException e){
 			errors.put("duplicateId", Boolean.TRUE);
 			return FORM_VIEW;

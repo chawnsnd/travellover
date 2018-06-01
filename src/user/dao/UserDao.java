@@ -62,11 +62,12 @@ public class UserDao {
 	
 	public void insert(Connection conn, User user) throws SQLException{
 		try(PreparedStatement pstmt=
-				conn.prepareStatement("insert into user values(?,?,?,?)")){
+				conn.prepareStatement("insert into user(email, nickname, password, status, regdate) values(?,?,?,?,?)")){
 			pstmt.setString(1, user.getEmail());
 			pstmt.setString(2, user.getNickname());
 			pstmt.setString(3, user.getPassword());
-			pstmt.setTimestamp(4, new Timestamp(user.getRegDate().getTime()));
+			pstmt.setString(4, user.getStatus());
+			pstmt.setTimestamp(5, new Timestamp(user.getRegDate().getTime()));
 			pstmt.executeUpdate();
 		}
 	}
