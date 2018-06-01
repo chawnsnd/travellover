@@ -22,7 +22,6 @@ public class ListHandler implements CommandHandler{
 		try {
 			List<Attraction> attractions = crudService.list(region, category);
 			req.setAttribute("attractions", attractions);
-			System.out.println(attractions.size());
 			return LIST_VIEW;
 		}catch(Exception e) {
 			return LIST_VIEW;

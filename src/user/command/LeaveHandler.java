@@ -14,7 +14,7 @@ import user.service.UserNotFoundException;
 
 public class LeaveHandler implements CommandHandler {
 
-	private static final String FORM_VIEW = "WEB-INF/view/user/leaveForm.jsp";
+	private static final String FORM_VIEW = "/WEB-INF/view/user/leaveForm.jsp";
 	private LeaveService leaveService = new LeaveService();
 	
 	@Override

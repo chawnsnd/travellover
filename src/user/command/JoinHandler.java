@@ -14,7 +14,7 @@ import mvc.command.CommandHandler;
 
 public class JoinHandler implements CommandHandler{
 	
-	private static final String FORM_VIEW = "WEB-INF/view/user/joinForm.jsp";
+	private static final String FORM_VIEW = "/WEB-INF/view/user/joinForm.jsp";
 	private JoinService joinService = new JoinService();
 	
 	@Override

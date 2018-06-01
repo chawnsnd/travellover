@@ -16,7 +16,7 @@ public class AuthUser {
 		return email;
 	}
 	
-	public String getNickName(){
+	public String getNickname(){
 		return nickname;
 	}
 

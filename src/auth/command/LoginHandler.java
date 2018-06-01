@@ -51,8 +51,6 @@ public class LoginHandler implements CommandHandler	{
 		try{
 			AuthUser user=loginService.login(email, password);
 			req.getSession().setAttribute("authUser", user);
-			AuthUser authUser = (AuthUser) req.getSession().getAttribute("authUser");
-			System.out.println(authUser.toString());
 			res.sendRedirect(req.getContextPath()+"/index.jsp");
 			return null;
 		} catch(LoginFailException e){

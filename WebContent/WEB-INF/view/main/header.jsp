@@ -29,7 +29,7 @@
             </u:notLogin>
             <u:isLogin>
             <li class="nav-item active">
-            	<a class="nav-link" href="/mypage.do">마이페이지</a>
+            	<a class="nav-link" href="/user/mypage.do">마이페이지</a>
            	</li>
            	<li class="nav-item active">
            		<a class="nav-link" href="/logout.do">로그아웃</a>

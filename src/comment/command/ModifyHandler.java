@@ -33,7 +33,7 @@ public class ModifyHandler implements AjaxHandler{
 			
 			User user = new User();
 			user.setEmail(authUser.getEmail());
-			user.setNickname(authUser.getNickName());
+			user.setNickname(authUser.getNickname());
 			user.setStatus(authUser.getStatus());
 			
 			Attraction attraction = new Attraction();

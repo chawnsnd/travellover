@@ -52,7 +52,6 @@ public class AttractionDao {
 //			pstmt.setString(2, "'%"+region+"%'");
 			rs = pstmt.executeQuery();
 			while(rs.next()){
-				System.out.println("@");
 				Attraction attraction = new Attraction(
 						rs.getInt("attraction_id"),
 						rs.getString("name"),
