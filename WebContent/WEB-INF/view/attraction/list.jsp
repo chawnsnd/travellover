@@ -19,35 +19,79 @@
   <body>
     <jsp:include page="/WEB-INF/view/main/header.jsp" />
     <div class="main_container">
-        <div class="col-lg-12" style="margin:auto;">
-          <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
-            <div class="nav">
-            </div>
-          </div>
-          <u:isAdmin>
-          <div style="text-align:right">
-            <button type="submit" class="btn btn-default" style="text-align:center">
-              <a href="/attraction/post.do">여행지등록</a>
-            </button>
-          </div>
-          </u:isAdmin>
+    	<div class="nav">
+    		<table>
+    		<tr>
+    		<th>카테고리</th>
+    		<td>
+    			<label><input type="radio" name="category" value="">전체</label>
+    			<label><input type="radio" name="category" value="가볼만한 곳">가볼만한 곳 </label>
+    			<label><input type="radio" name="category" value="맛집">맛집 </label>
+    			<label><input type="radio" name="category" value="쇼핑">쇼핑 </label>
+    			<label><input type="radio" name="category" value="숙박">숙박 </label>
+   			</td>
+   			<td rowspan="2" class="search">
+   				<input type="submit" class="btn" value="검색">
+   			</td>
+    		<tr>
+    		<th>지역</th>
+    		<td>
+    			<label><input type="radio" name="region" value="">전체 </label>
+    			<label><input type="radio" name="region" value="서울">서울 </label>
+    			<label><input type="radio" name="region" value="부산">부산 </label>
+    			<label><input type="radio" name="region" value="대구">대구 </label>
+    			<label><input type="radio" name="region" value="인천">인천 </label>
+    			<label><input type="radio" name="region" value="광주">광주 </label>
+    			<label><input type="radio" name="region" value="대전">대전 </label>
+    			<label><input type="radio" name="region" value="울산">울산 </label>
+    			<label><input type="radio" name="region" value="세종">세종 </label>
+    			<label><input type="radio" name="region" value="경기도">경기 </label>
+    			<label><input type="radio" name="region" value="강원도">강원 </label>
+    			<label><input type="radio" name="region" value="충청북도">충북 </label>
+    			<label><input type="radio" name="region" value="충청남도">충남 </label>
+    			<label><input type="radio" name="region" value="전라북도">전북 </label>
+    			<label><input type="radio" name="region" value="전라남도">전남 </label>
+    			<label><input type="radio" name="region" value="경상북도">경북 </label>
+    			<label><input type="radio" name="region" value="경상남도">경남 </label>
+    			<label><input type="radio" name="region" value="제주">제주 </label>
+    		</td>
+    		</tr>
+    		</table>
+    	</div>
+        <u:isAdmin>
+        <div style="text-align:right">
+          <button type="submit" class="btn btn-default" style="text-align:center">
+            <a href="/attraction/post.do">여행지등록</a>
+          </button>
         </div>
+        </u:isAdmin>
         <c:if test="${attractions.isEmpty() }">
         	<h3>리스트가 존재하지 않습니다.</h3>
         </c:if>
         <c:if test="${!attractions.isEmpty() }">
+        <div class="attractions">
         <c:forEach var="attraction" items="${attractions }">
-        <div class="attraction" style="margin:auto">
-           <img class="card-img-top" alt="${attraction.name }" src="${attraction.image }" style="width:220px; height:230px">
+        <div class="attraction">
+           <img class="img" alt="${attraction.name }" src="${attraction.image }" style="width:220px; height:230px">
            <hr>
-           <h4 class="card-title">
+           <h4 class="summary">
              <button type="button" class="btn btn-link">
                <a href="read.do?attraction_id=${attraction.attractionId }">${attraction.attractionId } :${attraction.name }</a>
              </button>
            </h4>
         </div>
         </c:forEach>
+        </div>
         </c:if>
+        <div class="pagination">
+        	<a class="page" href="">이전</a>
+        	<a class="page" href="">1</a>
+        	<a class="page" href="">2</a>
+        	<a class="page" href="">3</a>
+        	<a class="page" href="">4</a>
+        	<a class="page" href="">5</a>
+        	<a class="page" href="">다음</a>
+        </div>
     </div>
     <jsp:include page="/WEB-INF/view/main/footer.html" />
 
@@ -63,6 +107,35 @@
       padding: 50px 0 50px 0;
       width: 1000px;
       margin: auto;
+    }
+    .attractions{
+    	margin-top: 80px;
+    	margin-bottom: 80px;
+    }
+    table{
+    	border: 1px solid #eaeaea;
+    }
+    th{
+    	width: 100px;
+    	background-color: #eaeaea;
+    }
+    .attraction{
+    	margin: 15px;
+    	width: 210px;
+    	display:inline-block;
+    	border: 1px solid #eaeaea;
+    }
+    .search{
+    	background-color: #eaeaea;
+    }
+    .pagination{
+    	text-align: center;
+    	margin: auto;
+    }
+    .page{
+    	display: inline-block;
+    	margin-left: 10px;
+    	margin-right: 10px;
     }
   </style>
 

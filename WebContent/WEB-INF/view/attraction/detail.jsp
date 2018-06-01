@@ -51,13 +51,34 @@
         </div>
        	<h3>댓글</h3>
         <div class="comment">
-            <div class="comment_nickname" style="margin-right: 20px; font-weight: bold;">홍길동</div>
-            <div class="comment_content">좋아요!!</div>
-            <div class="comment_moddate">2018-05-20</div>
-            <div class="comment_btns">
-                <button class="btn btn-warning" href="#">답글</button>
-                <button class="btn btn-primary" href="#">수정</button>
-                <button class="btn btn-danger" href="#">삭제</button>
+        	<div class="comment_form">
+
+        	</div>
+        	<div class="comments">
+	        	<table>
+	        	<tr>
+		        	<form method="post" id="new_comment" action="/attraction/comment/post.do">
+		        	<th colspan="3">
+		        		<textarea rows="3" style="resize: none; width: 100%;" name="content"></textarea>
+		        		<input type="hidden" id="attraction_id" name="attraction_id" value="${attraction.attractionId }">
+	        		</th>
+	        		<th sytle="text-align: center;">
+	       				<input type="submit" style="display:inline-block; margin: auto;"value="제출">
+	       			</th>
+	       			</form>
+	        	</tr>
+	        	<!-- c:for -->
+	        	<tr>
+	        		<td class="comment_nickname">홍길동</td>
+	        		<td class="comment_content">좋아요!!</td>
+	        		<td class="comment_moddate">2018-05-20</div>
+	        		<td class="comment_btns">
+	        			<button class="btn btn-primary" href="#">수정</button>
+		                <button class="btn btn-danger" href="#">삭제</button>
+	        		</td>
+	        	</tr>
+	        	<!-- /c:for -->
+	        	</table>
             </div>
         </div>
     </div>
@@ -114,6 +135,19 @@
    	}
    	.map{
    		height: 300px;
+   	}
+   	.comment_nickname{
+   		width: 150px;
+   		font-weight: bold;
+   	}
+   	.comment_content{
+   		width: 520px;
+   	}
+   	.comment_moddate{
+   		width: 200px;
+   	}
+   	tr{
+   		border: 1px solid #eaeaea;
    	}
 </style>
 
