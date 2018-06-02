@@ -73,9 +73,14 @@ public class CommentDao {
 		}
 	}
 	public void modify(Connection conn, Comment comment) throws SQLException{
-		try(PreparedStatement pstmt = conn.prepareStatement("update comment set content = ? moddate = default(`moddate`) where comment_id = ?")) {
+		try(PreparedStatement pstmt = conn.prepareStatement("update comment set content = ?, moddate = ? where comment_id = ?")) {
 			pstmt.setString(1,  comment.getContent());
-			pstmt.setInt(2, comment.getCommentId());
+			pstmt.setTimestamp(2, new Timestamp(comment.getModDate().getTime()));
+			pstmt.setInt(3, comment.getCommentId());
+			pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
 		}
 	}
 	public void delete(Connection conn, Comment comment) throws SQLException{

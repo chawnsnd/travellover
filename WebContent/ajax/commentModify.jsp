@@ -20,6 +20,8 @@ try{
 	Comment comment = commentDao.selectById(conn, Integer.parseInt(request.getParameter("comment_id")));
 	if(authUser.getEmail().equals(comment.getUser().getEmail())){
 		comment.setContent(request.getParameter("content"));
+		comment.setModDate(new Date());
+		System.out.println(comment.toString());
 		commentDao.modify(conn, comment);
 	}else{
 %>

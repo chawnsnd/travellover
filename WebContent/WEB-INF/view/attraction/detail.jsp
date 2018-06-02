@@ -114,33 +114,31 @@
           };
           modifyComment(param);
         })
-
         $("#report").click(function () {
-          $.ajax({
-
-            accepts: { 'json': 'application/vnd.tosslab.jandi-v2+json' },
-            contentType: "application/json",
-            dataType: 'json',
-            type: "POST",
-            url: "https://wh.jandi.com/connect-api/webhook/15352057/a9f4c3c8bec28bcf1dbcd1ede7f50884",
-            data: {
-              body: "새로운 답글 신고가 있습니다. [[내용보기]](http://www.dankookie.com/community/${landId}#${replyId})",
-              connectColor: '#FAC11B',
-              connectInfo: [
-                { title: '신고자', description: "a" },
-                { title: '글쓴이', description: "b" },
-                { title: '내용', description: "c" }
-              ]
-            },
-            success: function () {
-              alert("신고가 완료되었습니다.");
-            },
-            error: function (request, status, error) {
-              alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
-            }
-          })
+          var formData = {
+                  body: '[[PizzaHouse]](http://url_to_text) You have a new Pizza order.', //Body text (Required)
+                  connectColor: '#FAC11B', //Hex code color of attachment bar
+                  connectInfo: [{
+                      title: 'Topping', //1st attachment area title
+                      description: 'Pepperoni' //1st attachment description
+                  },
+                      {
+                          title: 'Location', //2nd attachment area title
+                          description: 'Empire State Building, 5th Ave, New York', //2nd attachment description
+                          imageUrl: 'http://url_to_text' //Image URL
+                      }]
+              }
+          var options = {
+        	        url: "https://wh.jandi.com/connect-api/webhook/15352057/ca484a8a5e183cb01316dc7b0ec76db3",
+        	        headers: {
+        	            "Content-type": "application/json",
+        	            "Accept": "application/vnd.tosslab.jandi-v2+json"
+        	        },
+        	        form: formData,
+        	        type: "post"
+        	    };
+          $.ajax(options);
         })
-
         $("#post_submit").click(function () {
           var content = $("#comment_content").val();
           var post = {
