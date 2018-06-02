@@ -1,3 +1,5 @@
+<%@page import="util.Pagination"%>
+<%@page import="attraction.model.PagingAttractions"%>
 <%@page import="com.google.gson.Gson"%>
 <%@page import="comment.model.ResultComment"%>
 <%@page import="java.util.ArrayList"%>
@@ -10,7 +12,7 @@
 <%@page import="attraction.model.Attraction"%>
 <%@page import="comment.dao.CommentDao"%>
 <%@page import="jdbc.connection.ConnectionProvider"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	Connection conn	= null;
@@ -31,6 +33,7 @@
 			result.add(new Gson().toJson(resultComments));
 		}
 		String json = new Gson().toJson(result);
+		HttpSession httpSession = request.getSession(false);
 %>
 	<%= json %>
 <%

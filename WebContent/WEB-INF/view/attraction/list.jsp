@@ -158,21 +158,21 @@
 			$("#us").attr("checked", "checked");
 		}else if(getQuery("region")=="세종"){
 			$("#sj").attr("checked", "checked");
-		}else if(getQuery("region")=="경기도"){
+		}else if(getQuery("region")=="경기"){
 			$("#gg").attr("checked", "checked");
-		}else if(getQuery("region")=="강원도"){
+		}else if(getQuery("region")=="강원"){
 			$("#gw").attr("checked", "checked");
-		}else if(getQuery("region")=="충청북도"){
+		}else if(getQuery("region")=="충북"){
 			$("#cb").attr("checked", "checked");
-		}else if(getQuery("region")=="충청남도"){
+		}else if(getQuery("region")=="충남"){
 			$("#cn").attr("checked", "checked");
-		}else if(getQuery("region")=="전라북도"){
+		}else if(getQuery("region")=="전북"){
 			$("#jb").attr("checked", "checked");
-		}else if(getQuery("region")=="전라남도"){
+		}else if(getQuery("region")=="전남"){
 			$("#jn").attr("checked", "checked");
-		}else if(getQuery("region")=="경상북도"){
+		}else if(getQuery("region")=="경북"){
 			$("#gb").attr("checked", "checked");
-		}else if(getQuery("region")=="경상남도"){
+		}else if(getQuery("region")=="경남"){
 			$("#gn").attr("checked", "checked");
 		}else if(getQuery("region")=="제주"){
 			$("#jj").attr("checked", "checked");

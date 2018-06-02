@@ -17,8 +17,12 @@
 
     <body>
       <jsp:include page="/WEB-INF/view/main/header.jsp" />
+      
       <div class="main_container">
         <div id="attraction_id" style="display:none;">${attraction.attractionId}</div>
+        <u:isLogin>
+      	<div id="nickname" style="display:none;">${authUser.nickname }</div>
+      	</u:isLogin>
         <div class="left">
           <div class="img_container">
             <img src="${attraction.image }" class="img">
@@ -82,34 +86,35 @@
       <script src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=yqd0Sy4FLFowJZP_eLcV&submodules=geocoder"></script>
       <script>
         $(document).ready(function () {
-        	console.log("수정dd");
-        	var address = $("#address").text();
-        	address = address.replace(/\n/g, " ").replace(/\r/g, " ");
 			map(address);
  			fetchComment($("#attraction_id").text());
+			
         })
+        $(document).on("click", "#delete_comment", function(){
+        		var commentId = $(this).attr("commentid")
+				var param = {
+        			"comment_id": commentId,
+        			'attraction_id': $("#attraction_id").text()
+   				};
+				deleteComment(param);
+		});
         $("#report").click(function(){
         	$.ajax({
-        		beforeSend: function(xhr){
-                    xhr.setRequestHeader("Content-Type","application/json");
-                    xhr.setRequestHeader("Accept","application/vnd.tosslab.jandi-v2+json");
-            	},
+        		
+            	accepts: {'json': 'application/vnd.tosslab.jandi-v2+json'},
+            	contentType: "application/json",
+            	dataType: 'json',
             	type: "POST",
 				url: "https://wh.jandi.com/connect-api/webhook/15352057/a9f4c3c8bec28bcf1dbcd1ede7f50884", 
             	data: {
-            		"body" : "[[PizzaHouse]](http://url_to_text) You have a new Pizza order.",
-            		"connectColor" : "#FAC11B",
-            		"connectInfo" : [{
-            		"title" : "Topping",
-            		"description" : "Pepperoni"
-            		},
-            		{
-            		"title": "Location",
-            		"description": "Empire State Building, 5th Ave, New York",
-            		"imageUrl": "http://url_to_text"
-            		}]
-           		},
-           		json: true,
+                    body: "새로운 답글 신고가 있습니다. [[내용보기]](http://www.dankookie.com/community/${landId}#${replyId})",
+                    connectColor: '#FAC11B',
+                    connectInfo: [
+                        { title: '신고자', description: "a" },
+                        { title: '글쓴이', description: "b" },
+                        { title: '내용', description: "c" }
+                    ]
+                },
            		success: function(){
            			alert("신고가 완료되었습니다.");
            		},
@@ -125,11 +130,9 @@
 						'attraction_id': $("#attraction_id").text(),
 						'content': content
 				};
-				postLand(post);
+				postComment(post);
 			})
-  			$('#delete_comment').click(function(){
-/* 				console.log($(this).attr("commentid")); */
-			})
+
 			$('#modify_comment').click(function(){
 				$(this).after(              
 					"<tr>"+
@@ -143,7 +146,7 @@
 		            "</tr>"
             	)
 			})
-        var postLand = function(param){
+        var postComment = function(param){
         	$.ajax({
         		type: "post",
 				url: "/ajax/commentPost.jsp", 
@@ -162,6 +165,25 @@
 		   	 	}
        		});
         }
+        var deleteComment = function(param){
+        	$.ajax({
+        		type: "post",
+				url: "/ajax/commentDelete.jsp", 
+				data: param,
+        		success: function(result){
+        			console.log(result)
+        			if(result.match("notUser")){
+        				alert("작성자가 아닙니다.");
+        			}
+         			fetchComment(param.attraction_id);
+        			alert("삭제되었습니다.")
+		   	 	},
+		   	 	error: function(e){
+		   	 		console.log(e);
+		   	 		alert("삭제에 실패하였습니다.")
+		   	 	}
+       		});
+        }
          var fetchComment = function(attractionId){
         	var param= {'attraction_id': attractionId};
         	$.ajax({
@@ -173,17 +195,30 @@
          			$("#append_comment").html("");
                 	for(var i=0; i<comments.length; i++){
                 		comment = JSON.parse(comments[i]);
-                		$("#append_comment").append(                
-             				"<tr>"+
-                            	"<td class='comment_nickname'>"+comment.nickname+"</td>"+
-                            	"<td class='comment_content'>"+comment.content+"</td>"+
-                            	"<td class='comment_moddate'>"+comment.modDate+"</div>"+
-            	          		"<td class='comment_btns'>"+
-            	            		"<button class='btn btn-primary' commentid='"+comment.commentId+"' id='modify_comment'>수정</button>"+
-            	            		"<button class='btn btn-danger' commentid='"+comment.commentId+"' id='delete_comment'>삭제</button>"+
-            	          		"</td>"+
-                      		"</tr>"
-           				);
+                		if(comment.nickname == $("#nickname").text()){
+	                		$("#append_comment").append(                
+	             				"<tr>"+
+	                            	"<td class='comment_nickname'>"+comment.nickname+"</td>"+
+	                            	"<td class='comment_content'>"+comment.content+"</td>"+
+	                            	"<td class='comment_moddate'>"+comment.modDate+"</div>"+
+	            	          		"<td class='comment_btns'>"+
+	            	            		"<button class='btn btn-primary' commentid='"+comment.commentId+"' id='modify_comment'>수정</button>"+
+	            	            		"<button class='btn btn-warning' commentid='"+comment.commentId+"' id='delete_comment'>삭제</button>"+
+	            	          		"</td>"+
+	                      		"</tr>"
+	           				);
+                		}else{
+                			$("#append_comment").append(                
+    	             				"<tr>"+
+    	                            	"<td class='comment_nickname'>"+comment.nickname+"</td>"+
+    	                            	"<td class='comment_content'>"+comment.content+"</td>"+
+    	                            	"<td class='comment_moddate'>"+comment.modDate+"</div>"+
+    	            	          		"<td class='comment_btns'>"+
+    	            	            		"<button class='btn btn-danger' style='width: 100%;'commentid='"+comment.commentId+"' id='delete_comment'>신고</button>"+
+    	            	          		"</td>"+
+    	                      		"</tr>"
+   	           				);
+                		}
                 	}
 		   	 	},
 		   	 	error: function(e){
@@ -191,21 +226,9 @@
 		   	 	}
        		});
         }
-         var deleteComment = function(attractionId){
-        	 var param= {'attraction_id': attractionId};
-         	$.ajax({
-        		type: "post",
-				url: "/ajax/commentDelete.jsp", 
-				data: param,
-        		success: function(result){
-         			fetchComment(param.attraction_id);
-		   	 	},
-		   	 	error: function(e){
-		   	 		console.log(e);
-		   	 	}
-       		});
-         }
-         var map = function(address) {
+         var map = function() {
+       	 	var address = $("#address").text();
+       		address = address.replace(/\n/g, " ").replace(/\r/g, " ");
           var mapDiv = document.getElementById('map');
           var map = new naver.maps.Map(mapDiv);
           var myaddress = address; // 도로명 주소나 지번 주소만 가능 (건물명 불가!!!!)

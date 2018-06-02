@@ -12,7 +12,7 @@ import util.ImageUploader;
 public class ModifyHandler implements CommandHandler{
 	
 	private static final String FORM_VIEW = "/WEB-INF/view/attraction/modifyForm.jsp";
-	private static final String LIST_VIEW = "/WEB-INF/view/attraction/list.jsp";
+	private static final String LIST_VIEW = "/WEB-INF/view/attraction/list.jsp?page=1";
 	private CrudService crudService = new CrudService();
 	
 	@Override

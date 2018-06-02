@@ -51,7 +51,7 @@
           <br>
         </div>
         <div class="categories">
-          <div class="category">
+          <div class="category gb">
             <a href="/attraction/list.do?category=가볼만한 곳&page=1">가볼만한곳</a>
           </div>
           <div class="category">
@@ -96,28 +96,28 @@
           <a href="/attraction/list.do?region=세종&page=1">세종</a>
         </div>
         <div class="region">
-          <a href="/attraction/list.do?region=경기도&page=1">경기</a>
+          <a href="/attraction/list.do?region=경기&page=1">경기</a>
         </div>
         <div class="region">
-          <a href="/attraction/list.do?region=강원도&page=1">강원</a>
+          <a href="/attraction/list.do?region=강원&page=1">강원</a>
         </div>
         <div class="region">
-          <a href="/attraction/list.do?region=충청북도&page=1">충북</a>
+          <a href="/attraction/list.do?region=충북&page=1">충북</a>
         </div>
         <div class="region">
-          <a href="/attraction/list.do?region=충청남도&page=1">충남</a>
+          <a href="/attraction/list.do?region=충남&page=1">충남</a>
         </div>
         <div class="region">
-          <a href="/attraction/list.do?region=전라북도&page=1">전북</a>
+          <a href="/attraction/list.do?region=전북&page=1">전북</a>
         </div>
         <div class="region">
-          <a href="/attraction/list.do?region=전라남도&page=1">전남</a>
+          <a href="/attraction/list.do?region=전남&page=1">전남</a>
         </div>
         <div class="region">
-          <a href="/attraction/list.do?region=경상북도&page=1">경북</a>
+          <a href="/attraction/list.do?region=경북&page=1">경북</a>
         </div>
         <div class="region">
-          <a href="/attraction/list.do?region=경상남도&page=1">경남</a>
+          <a href="/attraction/list.do?region=경남&page=1">경남</a>
         </div>
         <div class="region">
           <a href="/attraction/list.do?region=제주&page=1">제주</a>
@@ -173,6 +173,9 @@
     .categories {
       text-align: center;
       margin-bottom: 50px;
+    }
+    .gb{
+    	background-image: url('C:\dev\travellover\WebContent\img\dankook.jpg');
     }
   </style>
 

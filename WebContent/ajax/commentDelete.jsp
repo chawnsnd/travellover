@@ -17,20 +17,15 @@ try{
 	commentDao = new CommentDao();
 
 	AuthUser authUser = (AuthUser)request.getSession().getAttribute("authUser");
+	Comment comment = commentDao.selectById(conn, Integer.parseInt(request.getParameter("comment_id")));
+	if(authUser.getEmail().equals(comment.getUser().getEmail())){
+		commentDao.delete(conn, comment);
+	}else{
+%>
+<%="notUser" %>
+<%
+	}
 	
-	User user = new User();
-	user.setEmail(authUser.getEmail());
-	user.setNickname(authUser.getNickname());
-	user.setStatus(authUser.getStatus());
-	
-	Attraction attraction = new Attraction();
-	attraction.setAttractionId(Integer.parseInt(request.getParameter("attraction_id")));
-	Comment comment = new Comment();
-	comment.setAttraction(attraction);
-	comment.setContent(request.getParameter("content"));
-	comment.setUser(user);
-	
-	commentDao.delete(conn, comment);;
 	
 } catch(SQLException e){
 	JdbcUtil.rollback(conn);

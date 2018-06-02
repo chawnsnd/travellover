@@ -12,7 +12,7 @@ import sun.util.logging.resources.logging;
 public class ReadHandler implements CommandHandler{
 	
 	
-	private static final String LIST_VIEW = "/WEB-INF/view/attraction/list.jsp";
+	private static final String LIST_VIEW = "/WEB-INF/view/attraction/list.jsp?page=1";
 	
 	private CrudService crudService = new CrudService();
 	

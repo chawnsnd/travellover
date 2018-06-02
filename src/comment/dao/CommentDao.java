@@ -41,6 +41,28 @@ public class CommentDao {
 			JdbcUtil.close(pstmt);
 		}
 	}
+	public Comment selectById(Connection conn, int id) throws SQLException{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Comment comment = null;
+		try{
+			UserDao userDao =new UserDao();
+			pstmt = conn.prepareStatement(
+					"select * from comment where comment_id = ?");
+			pstmt.setInt(1,  id);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				User user = userDao.selectByEmail(conn, rs.getString("user_email"));
+				comment = new Comment();
+				comment.setCommentId(rs.getInt("comment_id"));
+				comment.setUser(user);
+			}
+			return comment;
+		} finally{
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
 	public void insert(Connection conn, Comment comment) throws SQLException{
 		try(PreparedStatement pstmt = conn.prepareStatement("insert into comment(attraction_id, user_email, content) value (?, ?, ?)")) {
 			pstmt.setInt(1,  comment.getAttraction().getAttractionId());
@@ -57,8 +79,8 @@ public class CommentDao {
 		}
 	}
 	public void delete(Connection conn, Comment comment) throws SQLException{
-		try(PreparedStatement pstmt = conn.prepareStatement("delete from comment where attraction_id = ?")) {
-			pstmt.setInt(1, comment.getAttraction().getAttractionId());
+		try(PreparedStatement pstmt = conn.prepareStatement("delete from comment where comment_id = ?")) {
+			pstmt.setInt(1, comment.getCommentId());
 			pstmt.executeUpdate();
 		}
 	}
