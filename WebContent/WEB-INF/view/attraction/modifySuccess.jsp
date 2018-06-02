@@ -7,7 +7,20 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div class="notice">
 여행지가 수정되었습니다.
 <a href="/attraction/list.do?page=1">여행지목록보기</a>
+</div>
 </body>
+<style>
+.notice{
+	border: 5px solid #eaeaea;
+	margin: auto;
+	margin-top: 250px;
+	width:  500px;
+	height:  300px;
+	text-align:  center;
+	line-height: 290px;
+}
+</style>
 </html>

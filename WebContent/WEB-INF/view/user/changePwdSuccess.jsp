@@ -7,7 +7,20 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div class="notice">
 비밀번호 변경에 성공하였습니다!
 <a href="/index.jsp">홈으로 가기</a>
+</div>
 </body>
+<style>
+.notice{
+	border: 5px solid #eaeaea;
+	margin: auto;
+	margin-top: 250px;
+	width:  500px;
+	height:  300px;
+	text-align:  center;
+	line-height: 290px;
+}
+</style>
 </html>
