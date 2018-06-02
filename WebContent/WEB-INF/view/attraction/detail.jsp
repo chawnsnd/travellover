@@ -31,13 +31,12 @@
         <div class="right">
           <h1>${attraction.name}</h1>
           <div id="address">${attraction.address}</div>
+          <div class="metadata">
           <div class="sub_title">TEL</div>
           <div>${attraction.phone}</div>
           <div class="sub_title">카테고리</div>
           <div>${attraction.category}</div>
-          <div class="sub_title">평균별점</div>
-          <span>${attraction.scope}</span>
-          <span>(${attraction.scopeCount}명 평가)</span>
+          </div>
           <div class="btns">
             <u:isAdmin>
               <form method="get" action="/attraction/modify.do">
@@ -49,10 +48,10 @@
                 <input type="submit" class="btn btn-warning" value="삭제">
               </form>
             </u:isAdmin>
-            <button class="btn btn-danger" id="report">신고</button>
+            	<button class="btn btn-danger" id="report">신고</button>
           </div>
         </div>
-        <div class="content">
+        <div class="content" id="content">
           ${attraction.content}
         </div>
         <div class="map" id="map">
@@ -63,7 +62,7 @@
           </div>
           <div class="comments">
             <table id="comments_table">
-              <tr>
+              <tr class="no_border">
                 <th colspan="3" width="130%;">
                   <textarea rows="3" id="comment_content" style="resize: none; width: 100%;" name="content"></textarea>
                 </th>
@@ -86,6 +85,8 @@
       <script src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=yqd0Sy4FLFowJZP_eLcV&submodules=geocoder"></script>
       <script>
         $(document).ready(function () {
+        	var content = $.trim($("#content").text());
+        	$("#content").text(content);
           map(address);
           fetchComment($("#attraction_id").text());
 
@@ -115,7 +116,7 @@
           modifyComment(param);
         })
         $("#report").click(function () {
-          var formData = {
+/*           var formData = {
                   body: '[[PizzaHouse]](http://url_to_text) You have a new Pizza order.', //Body text (Required)
                   connectColor: '#FAC11B', //Hex code color of attachment bar
                   connectInfo: [{
@@ -137,7 +138,11 @@
         	        form: formData,
         	        type: "post"
         	    };
-          $.ajax(options);
+          $.ajax(options); */
+          alert("신고 기능은 준비중입니다.");
+        })
+        $(document).on("click", "#report_comment", function(){
+        	alert("신고 기능은 준비중입니다.");
         })
         $("#post_submit").click(function () {
           var content = $("#comment_content").val();
@@ -218,7 +223,7 @@
                 comment = JSON.parse(comments[i]);
                 if (comment.nickname == $("#nickname").text()) {
                   $("#append_comment").append(
-                    "<tr>" +
+                    "<tr class='border'>" +
                     "<td class='comment_nickname'>" + comment.nickname + "</td>" +
                     "<td class='comment_content' id='comment_content'>" + comment.content + "</td>" +
                     "<td class='comment_moddate'>" + comment.modDate + "</div>" +
@@ -230,12 +235,12 @@
                   );
                 } else {
                   $("#append_comment").append(
-                    "<tr>" +
+                    "<tr class='border'>" +
                     "<td class='comment_nickname'>" + comment.nickname + "</td>" +
                     "<td class='comment_content'>" + comment.content + "</td>" +
                     "<td class='comment_moddate'>" + comment.modDate + "</div>" +
                     "<td class='comment_btns'>" +
-                    "<button class='btn btn-danger' style='width: 100%;'commentid='" + comment.commentId + "' id='delete_comment'>신고</button>" +
+                    "<button class='btn btn-danger' style='width: 100%;'commentid='" + comment.commentId + "' id='report_comment'>신고</button>" +
                     "</td>" +
                     "</tr>"
                   );
@@ -311,6 +316,7 @@
         background-color: #eaeaea;
         margin: 20px 0 20px 0;
         border-radius: 10px;
+        white-space: pre-line;
       }
 
       .img {
@@ -330,6 +336,8 @@
 
       .sub_title {
         font-weight: bold;
+        font-size: 20px;
+        margin-top: 15px;
       }
 
       .map {
@@ -346,15 +354,27 @@
       }
 
       .comment_content {
-        width: 520px;
+        width: 531px;
       }
 
       .comment_moddate {
         width: 200px;
       }
 
-      tr {
+      tr[class="border"] {
         border: 1px solid #eaeaea;
+      }
+      .btns>*{
+      	margin-top: 120px; 
+      	float: right;
+      	display: inline-block;
+      	margin-left: 10px;
+      }
+      table{
+      	width: 100%;
+      }
+      .metadata{
+      	margin-top: 50px;
       }
     </style>
 

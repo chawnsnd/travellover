@@ -18,7 +18,12 @@ try{
 	commentDao = new CommentDao();
 	AuthUser authUser = (AuthUser)request.getSession().getAttribute("authUser");
 	Comment comment = commentDao.selectById(conn, Integer.parseInt(request.getParameter("comment_id")));
-	if(authUser.getEmail().equals(comment.getUser().getEmail())){
+	HttpSession httpSession = request.getSession(false);
+	if(httpSession==null||httpSession.getAttribute("authUser")==null){
+%>
+<%="notLogin" %>
+<%
+	}else if(authUser.getEmail().equals(comment.getUser().getEmail())){
 		comment.setContent(request.getParameter("content"));
 		comment.setModDate(new Date());
 		System.out.println(comment.toString());

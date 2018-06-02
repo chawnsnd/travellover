@@ -16,18 +16,20 @@ try{
 	System.out.println(request.getParameter("comment_id"));
 	conn = ConnectionProvider.getConnection();
 	commentDao = new CommentDao();
-
+	HttpSession httpSession = request.getSession(false);
 	AuthUser authUser = (AuthUser)request.getSession().getAttribute("authUser");
 	Comment comment = commentDao.selectById(conn, Integer.parseInt(request.getParameter("comment_id")));
-	if(authUser.getEmail().equals(comment.getUser().getEmail())){
+	if(httpSession==null||httpSession.getAttribute("authUser")==null){
+%>
+<%="notLogin" %>
+<%
+	}else if(authUser.getEmail().equals(comment.getUser().getEmail())){
 		commentDao.delete(conn, comment);
 	}else{
 %>
 <%="notUser" %>
 <%
 	}
-	
-	
 } catch(SQLException e){
 	JdbcUtil.rollback(conn);
 } finally{

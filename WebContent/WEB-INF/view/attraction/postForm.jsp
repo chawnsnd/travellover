@@ -191,6 +191,7 @@
       background-color: grey;
       width: 400px;
       height: 400px;
+      line-height: 400px;
     }
   </style>
 
