@@ -44,14 +44,14 @@
     			<label><input type="radio" name="region" id="dj" value="대전">대전 </label>
     			<label><input type="radio" name="region" id="us" value="울산">울산 </label>
     			<label><input type="radio" name="region" id="sj" value="세종">세종 </label>
-    			<label><input type="radio" name="region" id="gg" value="경기도">경기 </label>
-    			<label><input type="radio" name="region" id="gw" value="강원도">강원 </label>
-    			<label><input type="radio" name="region" id="cb" value="충청북도">충북 </label>
-    			<label><input type="radio" name="region" id="cn" value="충청남도">충남 </label>
-    			<label><input type="radio" name="region" id="jb" value="전라북도">전북 </label>
-    			<label><input type="radio" name="region" id="jn" value="전라남도">전남 </label>
-    			<label><input type="radio" name="region" id="gb" value="경상북도">경북 </label>
-    			<label><input type="radio" name="region" id="gn" value="경상남도">경남 </label>
+    			<label><input type="radio" name="region" id="gg" value="경기">경기 </label>
+    			<label><input type="radio" name="region" id="gw" value="강원">강원 </label>
+    			<label><input type="radio" name="region" id="cb" value="충북">충북 </label>
+    			<label><input type="radio" name="region" id="cn" value="충남">충남 </label>
+    			<label><input type="radio" name="region" id="jb" value="전북">전북 </label>
+    			<label><input type="radio" name="region" id="jn" value="전남">전남 </label>
+    			<label><input type="radio" name="region" id="gb" value="경북">경북 </label>
+    			<label><input type="radio" name="region" id="gn" value="경남">경남 </label>
     			<label><input type="radio" name="region" id="jj" value="제주">제주 </label>
     		</td>
     		</tr>

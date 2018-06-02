@@ -25,7 +25,7 @@
               <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
               <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
             </ol>
-            <div class="carousel-inner" role="listbox">
+            <div class="carousel-inner img_container" role="listbox">
               <div class="carousel-item active">
                 <img class="img-fluid" src="/img/danyang.jpg" alt="First slide">
               </div>
@@ -51,18 +51,17 @@
           <br>
         </div>
         <div class="categories">
-          <div class="category gb">
-            <a href="/attraction/list.do?category=가볼만한 곳&page=1">가볼만한곳</a>
+          <div class="category" onclick="location.href='/attraction/list.do?category=가볼만한 곳&page=1'">
+            <div class="name">가볼만한 곳</div>
           </div>
-          <div class="category">
-            <a href="/attraction/list.do?category=맛집&page=1">맛집</a>
+          <div class="category" onclick="location.href='/attraction/list.do?category=맛집&page=1'">
+            <div class="name">맛집</div>
           </div>
-          <div class="category">
-            <a href="/attraction/list.do?category=쇼핑&page=1">쇼핑</a>
-
+          <div class="category" onclick="location.href='/attraction/list.do?category=쇼핑&page=1'">
+            <div class="name">쇼핑</div>
           </div>
-          <div class="category">
-            <a href="/attraction/list.do?category=숙박&page=1">숙박</a>
+          <div class="category" onclick="location.href='/attraction/list.do?category=숙박&page=1'">
+            <div class="name">숙박</div>
           </div>
         </div>
       </div>
@@ -71,62 +70,59 @@
         <br>
       </div>
       <div class="regions">
-        <div class="region">
-          <a href="/attraction/list.do?region=서울&page=1">서울</a>
+        <div class="region" onclick="location.href='/attraction/list.do?region=서울&page=1'">
+          <div class="name">서울</div>
         </div>
-        <div class="region">
-          <a href="/attraction/list.do?region=부산&page=1">부산</a>
+        <div class="region" onclick="location.href='/attraction/list.do?region=부산&page=1'">
+          <div class="name">부산</div>
         </div>
-        <div class="region">
-          <a href="/attraction/list.do?region=대구&page=1">대구</a>
+        <div class="region" onclick="location.href='/attraction/list.do?region=대구&page=1'">
+          <div class="name">대구</div>
         </div>
-        <div class="region">
-          <a href="/attraction/list.do?region=인천&page=1">인천</a>
+        <div class="region" onclick="location.href='/attraction/list.do?region=인천&page=1'">
+          <div class="name">인천</div>
         </div>
-        <div class="region">
-          <a href="/attraction/list.do?region=광주&page=1">광주</a>
+        <div class="region" onclick="location.href='/attraction/list.do?region=광주&page=1'">
+          <div class="name">광주</div>
         </div>
-        <div class="region">
-          <a href="/attraction/list.do?region=대전&page=1">대전</a>
+        <div class="region" onclick="location.href='/attraction/list.do?region=대전&page=1'">
+          <div class="name">대전</div>
         </div>
-        <div class="region">
-          <a href="/attraction/list.do?region=울산&page=1">울산</a>
+        <div class="region" onclick="location.href='/attraction/list.do?region=울산&page=1'">
+          <div class="name">울산</div>
         </div>
-        <div class="region">
-          <a href="/attraction/list.do?region=세종&page=1">세종</a>
+        <div class="region" onclick="location.href='/attraction/list.do?region=세종&page=1'">
+          <div class="name">세종</div>
         </div>
-        <div class="region">
-          <a href="/attraction/list.do?region=경기&page=1">경기</a>
+        <div class="region" onclick="location.href='/attraction/list.do?region=경기&page=1'">
+          <div class="name">경기</div>
         </div>
-        <div class="region">
-          <a href="/attraction/list.do?region=강원&page=1">강원</a>
+        <div class="region" onclick="location.href='/attraction/list.do?region=강원&page=1'">
+          <div class="name">강원</div>
         </div>
-        <div class="region">
-          <a href="/attraction/list.do?region=충북&page=1">충북</a>
+        <div class="region" onclick="location.href='/attraction/list.do?region=충북&page=1'">
+          <div class="name">충북</div>
         </div>
-        <div class="region">
-          <a href="/attraction/list.do?region=충남&page=1">충남</a>
+        <div class="region" onclick="location.href='/attraction/list.do?region=충남&page=1'">
+          <div class="name">충남</div>
         </div>
-        <div class="region">
-          <a href="/attraction/list.do?region=전북&page=1">전북</a>
+        <div class="region" onclick="location.href='/attraction/list.do?region=전북&page=1'">
+          <div class="name">전북</div>
         </div>
-        <div class="region">
-          <a href="/attraction/list.do?region=전남&page=1">전남</a>
+        <div class="region" onclick="location.href='/attraction/list.do?region=전남&page=1'">
+          <div class="name">전남</div>
         </div>
-        <div class="region">
-          <a href="/attraction/list.do?region=경북&page=1">경북</a>
+        <div class="region" onclick="location.href='/attraction/list.do?region=경북&page=1'">
+          <div class="name">경북</div>
         </div>
-        <div class="region">
-          <a href="/attraction/list.do?region=경남&page=1">경남</a>
+        <div class="region" onclick="location.href='/attraction/list.do?region=경남&page=1'">
+          <div class="name">경남</div>
         </div>
-        <div class="region">
-          <a href="/attraction/list.do?region=제주&page=1">제주</a>
+        <div class="region" onclick="location.href='/attraction/list.do?region=제준&page=1'">
+          <div class="name">제주</div>
         </div>
       </div>
     </div>
-
-
-
     <jsp:include page="/WEB-INF/view/main/footer.html" />
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
       crossorigin="anonymous"></script>
@@ -141,7 +137,6 @@
       width: 1000px;
       margin: auto;
     }
-
     .guideline {
       border: 1px solid red;
     }
@@ -154,12 +149,19 @@
       border: 1px solid #eaeaea;
       width: 300px;
       height: 150px;
+      line-height: 150px;
+      font-size: 25px;
+      position: relative;
     }
+    .region:hover{
+  		box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.19);
+  		font-size: 30px;
+  		cursor: pointer
+	}
 
     .regions {
       text-align: center;
     }
-
     .category {
       margin-left: 15px;
       margin-right: 15px;
@@ -167,15 +169,24 @@
       border: 1px solid #eaeaea;
       width: 205px;
       height: 150px;
+      line-height: 150px;
       text-align: center;
+      border-radius: 5px;
+      font-size: 25px;
     }
+    .category:hover{
+  		box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.19);
+  		font-size: 30px;
+  		cursor: pointer
+	}
+	.name{
+		display:inline-block;
+		margin: auto;
+	}
 
     .categories {
       text-align: center;
       margin-bottom: 50px;
-    }
-    .gb{
-    	background-image: url('C:\dev\travellover\WebContent\img\dankook.jpg');
     }
   </style>
 

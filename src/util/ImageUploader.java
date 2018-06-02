@@ -12,7 +12,7 @@ import attraction.model.Attraction;
 public class ImageUploader {
 	public static Attraction upload(Attraction attraction, HttpServletRequest req){
 		req.getParameterNames().toString();
-		String uploadPath = "C:\\dev\\travellover\\WebContent\\uploadImages";
+		String uploadPath = req.getServletContext().getRealPath("uploadImages");
 		System.out.println(uploadPath);
 		String fileName = "";
 		String filePath = "";

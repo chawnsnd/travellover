@@ -8,6 +8,6 @@
 </head>
 <body>
 여행지가 수정되었습니다.
-<a href="/attraction/list.do">여행지목록보기</a>
+<a href="/attraction/list.do?page=1">여행지목록보기</a>
 </body>
 </html>
