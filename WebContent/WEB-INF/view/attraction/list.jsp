@@ -72,11 +72,11 @@
         <c:otherwise>
         <div class="attractions">
         <c:forEach var="attraction" items="${attractions }">
-        <div class="attraction" id="attraction">
+        <div class="attraction" id="attraction" onclick="location.href='/attraction/read.do?attraction_id=${attraction.attractionId }'">
            <img class="img" src="${attraction.image }" style="width:200px; height:200px;">
            <hr>
            <h5 class="summary">
-               <a id="a" href="read.do?attraction_id=${attraction.attractionId }">${attraction.name }</a>
+               <div class="attraction_name">${attraction.name }</a>
            </h5>
         </div>
         </c:forEach>
@@ -203,6 +203,10 @@
     	display:inline-block;
     	border: 1px solid #eaeaea;
     }
+    .attraction:hover{
+  		box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.19);
+  		cursor: pointer
+	}
     .search{
     	background-color: #eaeaea;
     }
