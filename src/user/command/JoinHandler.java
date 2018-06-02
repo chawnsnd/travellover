@@ -47,7 +47,6 @@ public class JoinHandler implements CommandHandler{
 		if(!errors.isEmpty()){
 			return FORM_VIEW;
 		}
-		
 		try{
 			joinService.join(joinReq);
 			return "WEB-INF/view/user/joinSuccess.html";

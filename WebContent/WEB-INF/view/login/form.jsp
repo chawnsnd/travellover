@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <!DOCTYPE html>
     <html lang="en">
 
@@ -18,11 +19,13 @@
     	<div class="box">
 	    	<div class="title">Travellover</div><hr>
 	        <div class="form" id="login">
+	        
                 <form action="/login.do" method="post">
                     <div>이메일</div>
                     <input type="email" name="email" class="inputbox">
                     <div>비밀번호</div>
                     <input type="password" name="password" class="inputbox">
+                    <c:if test="${errors.idOrPwNotMatch }"><div>아이디와 암호가 일치하지 않습니다.</div></c:if>
                     <div>
                     <input type="submit" class="btn btn-primary" value="로그인">
                     <a href="/join.do">회원가입하러 가기</a>
