@@ -6,8 +6,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import attraction.model.Attraction;
+import attraction.model.PagingAttractions;
 import attraction.service.CrudService;
 import mvc.command.CommandHandler;
+import util.Pagination;
 
 public class ListHandler implements CommandHandler{
 	
@@ -20,9 +22,12 @@ public class ListHandler implements CommandHandler{
 		
 		String region = req.getParameter("region");
 		String category = req.getParameter("category");
+		String stringPage = req.getParameter("page");
+		int page = Integer.parseInt(req.getParameter("page"));
 		try {
-			List<Attraction> attractions = crudService.list(region, category);
-			req.setAttribute("attractions", attractions);
+			PagingAttractions pagingAttractions = crudService.list(region, category, page);
+			req.setAttribute("attractions", pagingAttractions.getAttractions());
+			req.setAttribute("pagination", pagingAttractions.getPagination());
 			return LIST_VIEW;
 		}catch(Exception e) {
 			return LIST_VIEW;

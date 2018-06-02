@@ -11,8 +11,27 @@ import java.util.List;
 import attraction.model.Attraction;
 import jdbc.JdbcUtil;
 import util.DateParser;
+import util.Pagination;
 
 public class AttractionDao {
+	
+	public int totalAttraction(Connection conn) throws SQLException{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			int rowCnt = 0;
+			pstmt = conn.prepareStatement("select * from attraction");
+			rs = pstmt.executeQuery();
+	        while(rs.next()) {
+	        	rowCnt++;
+	        }
+			return rowCnt;
+		}finally{
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+	
 	public Attraction selectById(Connection conn, int attractionId) throws SQLException{
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -41,13 +60,15 @@ public class AttractionDao {
 			JdbcUtil.close(pstmt);
 		}
 	}
-	public List<Attraction> listAll(Connection conn) throws SQLException{
+	public List<Attraction> listAll(Connection conn, Pagination pagination) throws SQLException{
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<Attraction> attractions = new ArrayList<>();
 		try{
 			pstmt = conn.prepareStatement(
-					"select * from attraction");
+					"select * from attraction order by attraction_id desc limit ?,?");
+			pstmt.setInt(1, (pagination.getPage()-1)*pagination.getCountList());
+			pstmt.setInt(2, pagination.getCountList());
 			rs = pstmt.executeQuery();
 			while(rs.next()){
 				Attraction attraction = new Attraction(
@@ -69,14 +90,16 @@ public class AttractionDao {
 			JdbcUtil.close(pstmt);
 		}
 	}
-	public List<Attraction> listByCategory(Connection conn, String category) throws SQLException{
+	public List<Attraction> listByCategory(Connection conn, String category, Pagination pagination) throws SQLException{
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<Attraction> attractions = new ArrayList<>();
 		try{
 			pstmt = conn.prepareStatement(
-					"select * from attraction where category = ?");
+					"select * from attraction where category = ? order by attraction_id desc limit ?,? ");
 			pstmt.setString(1, category);
+			pstmt.setInt(2, (pagination.getPage()-1)*pagination.getCountList());
+			pstmt.setInt(3, pagination.getCountList());
 			rs = pstmt.executeQuery();
 			while(rs.next()){
 				Attraction attraction = new Attraction(
@@ -98,14 +121,16 @@ public class AttractionDao {
 			JdbcUtil.close(pstmt);
 		}
 	}
-	public List<Attraction> listByRegion(Connection conn, String region) throws SQLException{
+	public List<Attraction> listByRegion(Connection conn, String region, Pagination pagination) throws SQLException{
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<Attraction> attractions = new ArrayList<>();
 		try{
 			pstmt = conn.prepareStatement(
-					"select * from attraction where address like ?");
+					"select * from attraction where address like ? order by attraction_id desc limit ?,?");
 			pstmt.setString(1, "%"+region+"%");
+			pstmt.setInt(2, (pagination.getPage()-1)*pagination.getCountList());
+			pstmt.setInt(3, pagination.getCountList());
 			rs = pstmt.executeQuery();
 			while(rs.next()){
 				Attraction attraction = new Attraction(
@@ -127,15 +152,17 @@ public class AttractionDao {
 			JdbcUtil.close(pstmt);
 		}
 	}
-	public List<Attraction> listByRegionAndCategory(Connection conn, String region, String category) throws SQLException{
+	public List<Attraction> listByRegionAndCategory(Connection conn, String region, String category, Pagination pagination) throws SQLException{
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<Attraction> attractions = new ArrayList<>();
 		try{
 			pstmt = conn.prepareStatement(
-					"select * from attraction where category =? and address like ?");
+					"select * from attraction where category =? and address like ? order by attraction_id desc limit ?,? ");
 			pstmt.setString(1, category);
 			pstmt.setString(2, "%"+region+"%");
+			pstmt.setInt(3, (pagination.getPage()-1)*pagination.getCountList());
+			pstmt.setInt(4, pagination.getCountList());
 			rs = pstmt.executeQuery();
 			while(rs.next()){
 				Attraction attraction = new Attraction(

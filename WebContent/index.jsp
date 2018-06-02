@@ -52,17 +52,17 @@
         </div>
         <div class="categories">
           <div class="category">
-            <a href="/attraction/list.do?category=가볼만한 곳">가볼만한곳</a>
+            <a href="/attraction/list.do?category=가볼만한 곳&page=1">가볼만한곳</a>
           </div>
           <div class="category">
-            <a href="/attraction/list.do?category=맛집">맛집</a>
+            <a href="/attraction/list.do?category=맛집&page=1">맛집</a>
           </div>
           <div class="category">
-            <a href="/attraction/list.do?category=쇼핑">쇼핑</a>
+            <a href="/attraction/list.do?category=쇼핑&page=1">쇼핑</a>
 
           </div>
           <div class="category">
-            <a href="/attraction/list.do?category=숙박">숙박</a>
+            <a href="/attraction/list.do?category=숙박&page=1">숙박</a>
           </div>
         </div>
       </div>
@@ -72,55 +72,55 @@
       </div>
       <div class="regions">
         <div class="region">
-          <a href="/attraction/list.do?region=서울">서울</a>
+          <a href="/attraction/list.do?region=서울&page=1">서울</a>
         </div>
         <div class="region">
-          <a href="/attraction/list.do?region=부산">부산</a>
+          <a href="/attraction/list.do?region=부산&page=1">부산</a>
         </div>
         <div class="region">
-          <a href="/attraction/list.do?region=대구">대구</a>
+          <a href="/attraction/list.do?region=대구&page=1">대구</a>
         </div>
         <div class="region">
-          <a href="/attraction/list.do?region=인천">인천</a>
+          <a href="/attraction/list.do?region=인천&page=1">인천</a>
         </div>
         <div class="region">
-          <a href="/attraction/list.do?region=광주">광주</a>
+          <a href="/attraction/list.do?region=광주&page=1">광주</a>
         </div>
         <div class="region">
-          <a href="/attraction/list.do?region=대전">대전</a>
+          <a href="/attraction/list.do?region=대전&page=1">대전</a>
         </div>
         <div class="region">
-          <a href="/attraction/list.do?region=울산">울산</a>
+          <a href="/attraction/list.do?region=울산&page=1">울산</a>
         </div>
         <div class="region">
-          <a href="/attraction/list.do?region=세종">세종</a>
+          <a href="/attraction/list.do?region=세종&page=1">세종</a>
         </div>
         <div class="region">
-          <a href="/attraction/list.do?region=경기도">경기</a>
+          <a href="/attraction/list.do?region=경기도&page=1">경기</a>
         </div>
         <div class="region">
-          <a href="/attraction/list.do?region=강원도">강원</a>
+          <a href="/attraction/list.do?region=강원도&page=1">강원</a>
         </div>
         <div class="region">
-          <a href="/attraction/list.do?region=충청북도">충북</a>
+          <a href="/attraction/list.do?region=충청북도&page=1">충북</a>
         </div>
         <div class="region">
-          <a href="/attraction/list.do?region=충청남도">충남</a>
+          <a href="/attraction/list.do?region=충청남도&page=1">충남</a>
         </div>
         <div class="region">
-          <a href="/attraction/list.do?region=전라북도">전북</a>
+          <a href="/attraction/list.do?region=전라북도&page=1">전북</a>
         </div>
         <div class="region">
-          <a href="/attraction/list.do?region=전라남도">전남</a>
+          <a href="/attraction/list.do?region=전라남도&page=1">전남</a>
         </div>
         <div class="region">
-          <a href="/attraction/list.do?region=경상북도">경북</a>
+          <a href="/attraction/list.do?region=경상북도&page=1">경북</a>
         </div>
         <div class="region">
-          <a href="/attraction/list.do?region=경상남도">경남</a>
+          <a href="/attraction/list.do?region=경상남도&page=1">경남</a>
         </div>
         <div class="region">
-          <a href="/attraction/list.do?region=제주">제주</a>
+          <a href="/attraction/list.do?region=제주&page=1">제주</a>
         </div>
       </div>
     </div>

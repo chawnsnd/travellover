@@ -7,8 +7,10 @@ import java.util.List;
 
 import attraction.dao.AttractionDao;
 import attraction.model.Attraction;
+import attraction.model.PagingAttractions;
 import jdbc.JdbcUtil;
 import jdbc.connection.ConnectionProvider;
+import util.Pagination;
 
 public class CrudService {
 	
@@ -51,26 +53,35 @@ public class CrudService {
 		}
 	}
 	
-	public List<Attraction> list(String region, String category){
+	public PagingAttractions list(String region, String category, int page){
+		
 		Connection conn = null;
 		List<Attraction> attractions = null;
+		PagingAttractions pagingAttractions = new PagingAttractions();
 		try{
 			conn=ConnectionProvider.getConnection();
+			int totalCount = attractionDao.totalAttraction(conn);
+			Pagination pagination = new Pagination(page, 8, 5, totalCount);
 			if((region == null || region.isEmpty() || region.equals("all"))&&(category == null || category.isEmpty() || category.equals("all"))){
-				attractions = attractionDao.listAll(conn);
+				attractions = attractionDao.listAll(conn, pagination);
 			}else if(region == null || region.isEmpty() || region.equals("all")) {
-				attractions = attractionDao.listByCategory(conn, category);
+				attractions = attractionDao.listByCategory(conn, category, pagination);
 			}else if(category == null || category.isEmpty() || category.equals("all")) {
-				attractions = attractionDao.listByRegion(conn, region);
+				attractions = attractionDao.listByRegion(conn, region, pagination);
 			}else {
-				attractions = attractionDao.listByRegionAndCategory(conn, region, category);
+				attractions = attractionDao.listByRegionAndCategory(conn, region, category, pagination);
 			}
 			if(attractions.isEmpty()) {
 				throw new AttractionNotFoundException();
 			}
-			return attractions;
+			pagingAttractions.setAttractions(attractions);
+			pagingAttractions.setPagination(pagination);
+			return pagingAttractions;
 		} catch(SQLException e){
 			JdbcUtil.rollback(conn);
+			throw new RuntimeException(e);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
 			throw new RuntimeException(e);
 		} finally{
 			JdbcUtil.close(conn);

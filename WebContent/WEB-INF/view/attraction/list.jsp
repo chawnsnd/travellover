@@ -22,6 +22,7 @@
     	<div class="nav">
     		<table>
     		<form method="get" action="/attraction/list.do">
+    		<input type="hidden" name="page" value="1">
     		<tr>
     		<th>카테고리</th>
     		<td>
@@ -67,10 +68,11 @@
           </button>
         </div>
         </u:isAdmin>
-        <c:if test="${attractions.isEmpty() }">
-        	<h3>리스트가 존재하지 않습니다.</h3>
-        </c:if>
-        <c:if test="${!attractions.isEmpty() }">
+        <c:choose>
+        <c:when test="${attractions.isEmpty()==null}">
+        	<div class="no_list">리스트가 존재하지 않습니다.</div>
+        </c:when>
+        <c:otherwise>
         <div class="attractions">
         <c:forEach var="attraction" items="${attractions }">
         <div class="attraction">
@@ -84,15 +86,33 @@
         </div>
         </c:forEach>
         </div>
-        </c:if>
+        </c:otherwise>
+        </c:choose>
+        <div class="pagination_box">
         <div class="pagination">
-        	<a class="page" href="">이전</a>
-        	<a class="page" href="">1</a>
-        	<a class="page" href="">2</a>
-        	<a class="page" href="">3</a>
-        	<a class="page" href="">4</a>
-        	<a class="page" href="">5</a>
-        	<a class="page" href="">다음</a>
+        	<c:if test="${pagination.start }">
+        	<a class="page" href="/attraction/list.do?page=1&region=${region }&catetory=${category}">처음</a>
+        	</c:if>
+        	<c:if test="${pagination.prev }">
+        	<a class="page" href="/attraction/list.do?page=${pagination.page - 1}&region=${region }&catetory=${category}">이전</a>
+        	</c:if>
+          	<c:forEach var="page" begin="${pagination.startPage }" end="${pagination.endPage }" step="1">
+          	 <c:choose>
+          		<c:when test="${pagination.page==page}">
+          		<b>${page }</b>
+          		</c:when>
+          		<c:otherwise>
+        		<a class="page" href="/attraction/list.do?page=${page}&region=${region }&catetory=${category}">${page }</a>
+        		</c:otherwise>
+       		</c:choose>
+        	</c:forEach> 
+        	<c:if test="${pagination.next }">
+        	<a class="page" href="/attraction/list.do?page=${pagination.page + 1}&region=${region }&catetory=${category}">다음</a>
+        	</c:if>
+        	<c:if test="${pagination.end }">
+        	<a class="page" href="/attraction/list.do?page=${paginantion.totalPage }&region=${region }&catetory=${category}">끝</a>
+        	</c:if>
+        </div>
         </div>
     </div>
     <jsp:include page="/WEB-INF/view/main/footer.html" />
@@ -193,6 +213,25 @@
     	display: inline-block;
     	margin-left: 10px;
     	margin-right: 10px;
+    }
+    .no_list{
+    	text-align: center;
+    	font-size: 30px;
+    	font-weight: bold;
+    	margin: 200px;
+    }
+    .pagination{
+    	display: inline-block;
+    	margin: auto;
+    	border : 1px solid #eaeaea;
+    	padding: 0 5px 0 5px;
+    	font-size: 20px;
+    }
+    .guideline{
+    	border: 1px solid red;
+    }
+    .pagination_box{
+    	text-align: center;
     }
   </style>
 

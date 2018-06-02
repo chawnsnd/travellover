@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="/attraction/list.do">여행지</a>
+              <a class="nav-link" href="/attraction/list.do?page=1">여행지</a>
             </li>
             <u:notLogin>
             <li class="nav-item active">
