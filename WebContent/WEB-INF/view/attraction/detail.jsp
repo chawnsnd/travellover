@@ -34,18 +34,19 @@
           <div class="sub_title">평균별점</div>
           <span>${attraction.scope}</span>
           <span>(${attraction.scopeCount}명 평가)</span>
-          <u:isAdmin>
             <div class="btns">
+            <u:isAdmin>
               <form method="get" action="/attraction/modify.do">
                 <input type="hidden" name="attraction_id" value="${attraction.attractionId}">
                 <input type="submit" class="btn btn-primary" value="수정">
               </form>
               <form method="get" action="/attraction/remove.do">
                 <input type="hidden" name="attraction_id" value="${attraction.attractionId}">
-                <input type="submit" class="btn btn-danger" value="삭제">
+                <input type="submit" class="btn btn-warning" value="삭제">
               </form>
+            </u:isAdmin>
+            <button class="btn btn-danger" id="report">신고</button>
             </div>
-          </u:isAdmin>
         </div>
         <div class="content">
           ${attraction.content}
@@ -78,14 +79,46 @@
         crossorigin="anonymous"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
-      <script src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=?????"></script>
+      <script src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=yqd0Sy4FLFowJZP_eLcV&submodules=geocoder"></script>
       <script>
         $(document).ready(function () {
         	console.log("수정dd");
         	var address = $("#address").text();
-			//map(address);
+        	address = address.replace(/\n/g, " ").replace(/\r/g, " ");
+			map(address);
  			fetchComment($("#attraction_id").text());
         })
+        $("#report").click(function(){
+        	$.ajax({
+        		beforeSend: function(xhr){
+                    xhr.setRequestHeader("Content-Type","application/json");
+                    xhr.setRequestHeader("Accept","application/vnd.tosslab.jandi-v2+json");
+            	},
+            	type: "POST",
+				url: "https://wh.jandi.com/connect-api/webhook/15352057/a9f4c3c8bec28bcf1dbcd1ede7f50884", 
+            	data: {
+            		"body" : "[[PizzaHouse]](http://url_to_text) You have a new Pizza order.",
+            		"connectColor" : "#FAC11B",
+            		"connectInfo" : [{
+            		"title" : "Topping",
+            		"description" : "Pepperoni"
+            		},
+            		{
+            		"title": "Location",
+            		"description": "Empire State Building, 5th Ave, New York",
+            		"imageUrl": "http://url_to_text"
+            		}]
+           		},
+           		json: true,
+           		success: function(){
+           			alert("신고가 완료되었습니다.");
+           		},
+           		error:function(request,status,error){
+           	        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+       	       }
+        	})	
+        })
+        
 			$("#post_submit").click(function(){
 				var content = $("#comment_content").val();
 				var post = {
@@ -95,8 +128,6 @@
 				postLand(post);
 			})
   			$('#delete_comment').click(function(){
-				console.log("af");
-				alert("adsf");
 /* 				console.log($(this).attr("commentid")); */
 			})
 			$('#modify_comment').click(function(){
@@ -174,7 +205,7 @@
 		   	 	}
        		});
          }
-        /* var map = function(address) {
+         var map = function(address) {
           var mapDiv = document.getElementById('map');
           var map = new naver.maps.Map(mapDiv);
           var myaddress = address; // 도로명 주소나 지번 주소만 가능 (건물명 불가!!!!)
@@ -186,7 +217,6 @@
               return alert(myaddress + "의 검색 결과가 없거나 기타 네트워크 에러");
             }
             var result = response.result;
-            console.log(result.items[0].point.x,result.items[0].point.y);
             var myaddr = new naver.maps.Point(
               result.items[0].point.x,
               result.items[0].point.y
@@ -208,7 +238,7 @@
                 '<h4> [네이버 개발자센터]</h4><a href="https://developers.naver.com" target="_blank"><img src="https://developers.naver.com/inc/devcenter/images/nd_img.png"></a>'
             });
           });
-        } */
+        } 
       </script>
     </body>
     <style>

@@ -21,7 +21,7 @@
     <div class="main_container">
     	<div class="nav">
     		<table>
-    		<form method="get" action="/attraction/list.do">
+    		<form id="form" method="get" action="/attraction/list.do">
     		<input type="hidden" name="page" value="1">
     		<tr>
     		<th>카테고리</th>
@@ -31,9 +31,6 @@
     			<label><input type="radio" name="category" id="restaurant" value="맛집">맛집 </label>
     			<label><input type="radio" name="category" id="shopping" value="쇼핑">쇼핑 </label>
     			<label><input type="radio" name="category" id="hotel" value="숙박">숙박 </label>
-   			</td>
-   			<td rowspan="2" class="search">
-   				<input type="submit" class="btn" value="검색">
    			</td>
     		<tr>
     		<th>지역</th>
@@ -75,14 +72,12 @@
         <c:otherwise>
         <div class="attractions">
         <c:forEach var="attraction" items="${attractions }">
-        <div class="attraction">
-           <img class="img" src="${attraction.image }" style="width:220px; height:230px;">
+        <div class="attraction" id="attraction">
+           <img class="img" src="${attraction.image }" style="width:200px; height:200px;">
            <hr>
-           <h4 class="summary">
-             <button type="button" class="btn btn-link">
-               <a href="read.do?attraction_id=${attraction.attractionId }">${attraction.attractionId } :${attraction.name }</a>
-             </button>
-           </h4>
+           <h5 class="summary">
+               <a id="a" href="read.do?attraction_id=${attraction.attractionId }">${attraction.name }</a>
+           </h5>
         </div>
         </c:forEach>
         </div>
@@ -130,6 +125,12 @@
         return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
 	$(document).ready(function(){
+		$('input[type="radio"]').click(function(){
+			$('#form').submit();
+		})
+		$('#attraction').click(function(){
+			$(this).find('#a').click();
+		})
 		$("#allc").attr("checked", "checked");
 		$("#allr").attr("checked", "checked");
 		if(getQuery("category")=="가볼만한 곳"||getQuery("category")=="가볼만한+곳"){
@@ -186,7 +187,7 @@
       margin: auto;
     }
     .attractions{
-    	margin-top: 80px;
+    	margin-top: 50px;
     	margin-bottom: 80px;
     }
     table{
