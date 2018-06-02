@@ -98,6 +98,23 @@
    				};
 				deleteComment(param);
 		});
+        $(document).on("click", "#modify_btn", function(){
+        	var commentId = $(this).attr("commentid")
+    		$(this).parents("td").parents("tr").children("#comment_content").html("<textarea rows='3' id='modify_content' style='resize: none; width: 100%;' name='content'></textarea>");
+    		$(this).parents("td").html("<button class='btn btn-primary' style='width: 100%;' commentid='"+commentId+"' id='modify_submit'>수정하기</button>");
+		});
+        $(document).on("click", "#modify_submit", function(){
+        	var commentId = $(this).attr("commentid")
+        	var content = $("#modify_content").val();
+        	var attractionId = $("#attraction_id").text()
+    		var param = {
+    			"comment_id": commentId,
+    			"content": content,
+    			'attraction_id': $("#attraction_id").text()
+				};
+        	modifyComment(param);
+        })
+        
         $("#report").click(function(){
         	$.ajax({
         		
@@ -133,19 +150,6 @@
 				postComment(post);
 			})
 
-			$('#modify_comment').click(function(){
-				$(this).after(              
-					"<tr>"+
-		                "<th colspan='3'>"+
-		                "<textarea rows='3' id='modify_content' style='resize: none; width: 100%;' name='content'></textarea>"+
-		                "</th>"+
-		                "<th sytle='text-align: center;'>"+
-		                "<input type='hidden' value='"+$(this).attr("commentid")+"'>"+
-		                "<button id='modify_submit' class='btn' width='100%' height='100%'>제출</button>"+
-		                "</th>"+
-		            "</tr>"
-            	)
-			})
         var postComment = function(param){
         	$.ajax({
         		type: "post",
@@ -162,6 +166,25 @@
 		   	 	error: function(e){
 		   	 		console.log(e);
 		   	 		$("#comment_content").val("");
+		   	 	}
+       		});
+        }
+        var modifyComment = function(param){
+        	$.ajax({
+        		type: "post",
+				url: "/ajax/commentModify.jsp", 
+				data: param,
+        		success: function(result){
+        			console.log(result)
+        			if(result.match("notUser")){
+        				alert("작성자가 아닙니다.");
+        			}
+         			fetchComment(param.attraction_id);
+        			alert("수정되었습니다.")
+		   	 	},
+		   	 	error: function(e){
+		   	 		console.log(e);
+		   	 		alert("수정에 실패하였습니다.")
 		   	 	}
        		});
         }
@@ -199,10 +222,10 @@
 	                		$("#append_comment").append(                
 	             				"<tr>"+
 	                            	"<td class='comment_nickname'>"+comment.nickname+"</td>"+
-	                            	"<td class='comment_content'>"+comment.content+"</td>"+
+	                            	"<td class='comment_content' id='comment_content'>"+comment.content+"</td>"+
 	                            	"<td class='comment_moddate'>"+comment.modDate+"</div>"+
 	            	          		"<td class='comment_btns'>"+
-	            	            		"<button class='btn btn-primary' commentid='"+comment.commentId+"' id='modify_comment'>수정</button>"+
+	            	            		"<button class='btn btn-primary' commentid='"+comment.commentId+"' id='modify_btn'>수정</button>"+
 	            	            		"<button class='btn btn-warning' commentid='"+comment.commentId+"' id='delete_comment'>삭제</button>"+
 	            	          		"</td>"+
 	                      		"</tr>"

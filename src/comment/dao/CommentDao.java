@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,10 +73,9 @@ public class CommentDao {
 		}
 	}
 	public void modify(Connection conn, Comment comment) throws SQLException{
-		try(PreparedStatement pstmt = conn.prepareStatement("update comment set content = ? where attraction_id = ?")) {
+		try(PreparedStatement pstmt = conn.prepareStatement("update comment set content = ? moddate = default(`moddate`) where comment_id = ?")) {
 			pstmt.setString(1,  comment.getContent());
-			pstmt.setInt(2, comment.getAttraction().getAttractionId());
-			pstmt.executeUpdate();
+			pstmt.setInt(2, comment.getCommentId());
 		}
 	}
 	public void delete(Connection conn, Comment comment) throws SQLException{

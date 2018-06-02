@@ -1,3 +1,4 @@
+<%@page import="java.util.Date"%>
 <%@page import="jdbc.JdbcUtil"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="jdbc.connection.ConnectionProvider"%>
@@ -13,14 +14,13 @@
 	Connection conn = null;
 	CommentDao commentDao = null;
 try{
-	System.out.println(request.getParameter("comment_id"));
 	conn = ConnectionProvider.getConnection();
 	commentDao = new CommentDao();
-
 	AuthUser authUser = (AuthUser)request.getSession().getAttribute("authUser");
 	Comment comment = commentDao.selectById(conn, Integer.parseInt(request.getParameter("comment_id")));
 	if(authUser.getEmail().equals(comment.getUser().getEmail())){
-		commentDao.delete(conn, comment);
+		comment.setContent(request.getParameter("content"));
+		commentDao.modify(conn, comment);
 	}else{
 %>
 <%="notUser" %>
@@ -29,6 +29,7 @@ try{
 	
 	
 } catch(SQLException e){
+	System.out.println(e.getMessage());
 	JdbcUtil.rollback(conn);
 } finally{
 	JdbcUtil.close(conn);
