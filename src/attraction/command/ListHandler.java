@@ -22,10 +22,11 @@ public class ListHandler implements CommandHandler{
 		
 		String region = req.getParameter("region");
 		String category = req.getParameter("category");
-		String stringPage = req.getParameter("page");
+		String search = req.getParameter("search");
 		int page = Integer.parseInt(req.getParameter("page"));
+		
 		try {
-			PagingAttractions pagingAttractions = crudService.list(region, category, page);
+			PagingAttractions pagingAttractions = crudService.list(region, category, page, search);
 			req.setAttribute("attractions", pagingAttractions.getAttractions());
 			req.setAttribute("pagination", pagingAttractions.getPagination());
 			return LIST_VIEW;

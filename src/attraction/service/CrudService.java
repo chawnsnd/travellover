@@ -53,7 +53,7 @@ public class CrudService {
 		}
 	}
 	
-	public PagingAttractions list(String region, String category, int page){
+	public PagingAttractions list(String region, String category, int page, String search){
 		
 		Connection conn = null;
 		List<Attraction> attractions = null;
@@ -62,14 +62,26 @@ public class CrudService {
 			conn=ConnectionProvider.getConnection();
 			int totalCount = attractionDao.totalAttraction(conn);
 			Pagination pagination = new Pagination(page, 8, 5, totalCount);
-			if((region == null || region.isEmpty() || region.equals("all"))&&(category == null || category.isEmpty() || category.equals("all"))){
-				attractions = attractionDao.listAll(conn, pagination);
-			}else if(region == null || region.isEmpty() || region.equals("all")) {
-				attractions = attractionDao.listByCategory(conn, category, pagination);
-			}else if(category == null || category.isEmpty() || category.equals("all")) {
-				attractions = attractionDao.listByRegion(conn, region, pagination);
+			if(search == null || search.isEmpty()) {
+				if((region == null || region.isEmpty() || region.equals("all"))&&(category == null || category.isEmpty() || category.equals("all"))){
+					attractions = attractionDao.listAll(conn, pagination);
+				}else if(region == null || region.isEmpty() || region.equals("all")) {
+					attractions = attractionDao.listByCategory(conn, category, pagination);
+				}else if(category == null || category.isEmpty() || category.equals("all")) {
+					attractions = attractionDao.listByRegion(conn, region, pagination);
+				}else {
+					attractions = attractionDao.listByRegionAndCategory(conn, region, category, pagination);
+				}
 			}else {
-				attractions = attractionDao.listByRegionAndCategory(conn, region, category, pagination);
+				if((region == null || region.isEmpty() || region.equals("all"))&&(category == null || category.isEmpty() || category.equals("all"))){
+					attractions = attractionDao.listAllBySearch(conn, pagination, search);
+				}else if(region == null || region.isEmpty() || region.equals("all")) {
+					attractions = attractionDao.listByCategoryBySearch(conn, category, pagination, search);
+				}else if(category == null || category.isEmpty() || category.equals("all")) {
+					attractions = attractionDao.listByRegionBySearch(conn, region, pagination, search);
+				}else {
+					attractions = attractionDao.listByRegionAndCategoryBySearch(conn, region, category, pagination, search);
+				}
 			}
 			if(attractions.isEmpty()) {
 				throw new AttractionNotFoundException();

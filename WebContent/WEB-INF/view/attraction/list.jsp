@@ -14,15 +14,21 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
       crossorigin="anonymous">
     <link href="/resources/css/layout.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
   </head>
 
   <body>
     <jsp:include page="/WEB-INF/view/main/header.jsp" />
+    </div>
     <div class="main_container">
     	<div class="nav">
+    	<form id="form" method="get" action="/attraction/list.do">
+            <div class="search_box">
+            <input class="search_input" id="search_text" name="search" type="text" placeholder="검색어를 입력하세요" />
+                <i class="fas fa-search" id="search_button"></i>
+            </div>
     		<table>
-    		<form id="form" method="get" action="/attraction/list.do">
-    		<input type="hidden" name="page" value="1">
+   			<input type="hidden" name="page" value="1">
     		<tr>
     		<th>카테고리</th>
     		<td>
@@ -65,6 +71,9 @@
           </button>
         </div>
         </u:isAdmin>
+        <div class="query">
+        	<h5 id="search_info"></h5>
+        </div>
         <c:choose>
         <c:when test="${attractions.isEmpty()==null}">
         	<div class="no_list">리스트가 존재하지 않습니다.</div>
@@ -122,72 +131,117 @@
         name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
         var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
             results = regex.exec(location.search);
-        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+       	return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
 	$(document).ready(function(){
+		var category = getQuery("category");
+		var region = getQuery("region");
+		var search = getQuery("search");
+		
+		$("#search_button").click(function(){
+    	  var search_text = $("#search_text").val();
+    	  $('#form').submit();
+      })
+      $("#search_text").keyup(function(e){
+    	  var search_text = $("#search_text").val();
+    	  if(e.keyCode==13) $('#form').submit();
+      })
+		
 		$('input[type="radio"]').click(function(){
 			$('#form').submit();
 		})
+		
 		$('#attraction').click(function(){
 			$(this).find('#a').click();
 		})
-		$("#allc").attr("checked", "checked");
-		$("#allr").attr("checked", "checked");
-		if(getQuery("category")=="가볼만한 곳"||getQuery("category")=="가볼만한+곳"){
+		
+		$("#search_text").val(search);
+		if(search!="") $("#search_info").text(search+"에 대한 검색 결과");
+		
+		if(category=="가볼만한 곳"||category=="가볼만한+곳"){
 			$("#to_visit").attr("checked", "checked");
-		}else if(getQuery("category")=="맛집"){
+		}else if(category=="맛집"){
 			$("#restaurant").attr("checked", "checked");
-		}else if(getQuery("category")=="쇼핑"){
+		}else if(category=="쇼핑"){
 			$("#shopping").attr("checked", "checked");
-		}else if(getQuery("category")=="숙박"){
+		}else if(category=="숙박"){
 			$("#hotel").attr("checked", "checked");
+		}else{
+			$("#allc").attr("checked", "checked");
 		}
-		if(getQuery("region")=="서울"){
+		if(region=="서울"){
 			$("#so").attr("checked", "checked");
-		}else if(getQuery("region")=="부산"){
+		}else if(region=="부산"){
 			$("#bs").attr("checked", "checked");
-		}else if(getQuery("region")=="대구"){
+		}else if(region=="대구"){
 			$("#dg").attr("checked", "checked");
-		}else if(getQuery("region")=="인천"){
+		}else if(region=="인천"){
 			$("#ic").attr("checked", "checked");
-		}else if(getQuery("region")=="광주"){
+		}else if(region=="광주"){
 			$("#gj").attr("checked", "checked");
-		}else if(getQuery("region")=="대전"){
+		}else if(region=="대전"){
 			$("#dj").attr("checked", "checked");
-		}else if(getQuery("region")=="울산"){
+		}else if(region=="울산"){
 			$("#us").attr("checked", "checked");
-		}else if(getQuery("region")=="세종"){
+		}else if(region=="세종"){
 			$("#sj").attr("checked", "checked");
-		}else if(getQuery("region")=="경기"){
+		}else if(region=="경기"){
 			$("#gg").attr("checked", "checked");
-		}else if(getQuery("region")=="강원"){
+		}else if(region=="강원"){
 			$("#gw").attr("checked", "checked");
-		}else if(getQuery("region")=="충북"){
+		}else if(region=="충북"){
 			$("#cb").attr("checked", "checked");
-		}else if(getQuery("region")=="충남"){
+		}else if(region=="충남"){
 			$("#cn").attr("checked", "checked");
-		}else if(getQuery("region")=="전북"){
+		}else if(region=="전북"){
 			$("#jb").attr("checked", "checked");
-		}else if(getQuery("region")=="전남"){
+		}else if(region=="전남"){
 			$("#jn").attr("checked", "checked");
-		}else if(getQuery("region")=="경북"){
+		}else if(region=="경북"){
 			$("#gb").attr("checked", "checked");
-		}else if(getQuery("region")=="경남"){
+		}else if(region=="경남"){
 			$("#gn").attr("checked", "checked");
-		}else if(getQuery("region")=="제주"){
+		}else if(region=="제주"){
 			$("#jj").attr("checked", "checked");
+		}else{
+			$("#allr").attr("checked", "checked");
 		}
 	})
     </script>
   </body>
   <style>
+    .search_box{
+    width: 100%;
+    height: 60px;
+    border: 5px solid orange;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .search_input{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border:none;border-right:0px; border-top:0px; border-left:0px; border-bottom:0px;
+    outline: none;
+    padding-left: 15px;
+    font-size: 20px;
+  }
+  .fa-search{
+    font-size: 20px;
+    top: 50%;
+    right: 2%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    cursor: pointer;
+  }
     .main_container {
       padding: 50px 0 50px 0;
       width: 1000px;
       margin: auto;
     }
     .attractions{
-    	margin-top: 50px;
+    	margin-top: 10px;
     	margin-bottom: 80px;
     }
     table{
@@ -237,6 +291,9 @@
     }
     .pagination_box{
     	text-align: center;
+    }
+    .query{
+        margin-top: 30px;
     }
   </style>
 

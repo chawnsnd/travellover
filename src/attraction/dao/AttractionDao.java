@@ -60,6 +60,7 @@ public class AttractionDao {
 			JdbcUtil.close(pstmt);
 		}
 	}
+	
 	public List<Attraction> listAll(Connection conn, Pagination pagination) throws SQLException{
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -184,6 +185,140 @@ public class AttractionDao {
 			JdbcUtil.close(pstmt);
 		}
 	}
+	
+	public List<Attraction> listAllBySearch(Connection conn, Pagination pagination, String search) throws SQLException{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Attraction> attractions = new ArrayList<>();
+		try{
+			pstmt = conn.prepareStatement(
+					"select * from attraction where name like ? or content like ? order by attraction_id desc limit ?,?");
+			pstmt.setString(1, "%"+search+"%");
+			pstmt.setString(2, "%"+search+"%");
+			pstmt.setInt(3, (pagination.getPage()-1)*pagination.getCountList());
+			pstmt.setInt(4, pagination.getCountList());
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				Attraction attraction = new Attraction(
+						rs.getInt("attraction_id"),
+						rs.getString("name"),
+						rs.getString("address"),
+						rs.getString("phone"),
+						rs.getString("content"),
+						rs.getString("category"),
+						rs.getString("image"),
+						rs.getFloat("scope"),
+						rs.getInt("scope_count"),
+						DateParser.toDate(rs.getTimestamp("regdate")));
+				attractions.add(attraction);
+			}
+			return attractions;
+		} finally{
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+	public List<Attraction> listByCategoryBySearch(Connection conn, String category, Pagination pagination, String search) throws SQLException{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Attraction> attractions = new ArrayList<>();
+		try{
+			pstmt = conn.prepareStatement(
+					"select * from attraction where category = ? and (name like ? or content like ?) order by attraction_id desc limit ?,? ");
+			pstmt.setString(1, category);
+			pstmt.setString(2, "%"+search+"%");
+			pstmt.setString(3, "%"+search+"%");
+			pstmt.setInt(4, (pagination.getPage()-1)*pagination.getCountList());
+			pstmt.setInt(5, pagination.getCountList());
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				Attraction attraction = new Attraction(
+						rs.getInt("attraction_id"),
+						rs.getString("name"),
+						rs.getString("address"),
+						rs.getString("phone"),
+						rs.getString("content"),
+						rs.getString("category"),
+						rs.getString("image"),
+						rs.getFloat("scope"),
+						rs.getInt("scope_count"),
+						DateParser.toDate(rs.getTimestamp("regdate")));
+				attractions.add(attraction);
+			}
+			return attractions;
+		} finally{
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+	public List<Attraction> listByRegionBySearch(Connection conn, String region, Pagination pagination, String search) throws SQLException{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Attraction> attractions = new ArrayList<>();
+		try{
+			pstmt = conn.prepareStatement(
+					"select * from attraction where address like ? and (name like ? or content like ?) order by attraction_id desc limit ?,?");
+			pstmt.setString(1, "%"+region+"%");
+			pstmt.setString(2, "%"+search+"%");
+			pstmt.setString(3, "%"+search+"%");
+			pstmt.setInt(4, (pagination.getPage()-1)*pagination.getCountList());
+			pstmt.setInt(5, pagination.getCountList());
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				Attraction attraction = new Attraction(
+						rs.getInt("attraction_id"),
+						rs.getString("name"),
+						rs.getString("address"),
+						rs.getString("phone"),
+						rs.getString("content"),
+						rs.getString("category"),
+						rs.getString("image"),
+						rs.getFloat("scope"),
+						rs.getInt("scope_count"),
+						DateParser.toDate(rs.getTimestamp("regdate")));
+				attractions.add(attraction);
+			}
+			return attractions;
+		} finally{
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+	public List<Attraction> listByRegionAndCategoryBySearch(Connection conn, String region, String category, Pagination pagination, String search) throws SQLException{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Attraction> attractions = new ArrayList<>();
+		try{
+			pstmt = conn.prepareStatement(
+					"select * from attraction where category =? and address like ? and (name like ? or content like ?) order by attraction_id desc limit ?,? ");
+			pstmt.setString(1, category);
+			pstmt.setString(2, "%"+region+"%");
+			pstmt.setString(3, "%"+search+"%");
+			pstmt.setString(4, "%"+search+"%");
+			pstmt.setInt(5, (pagination.getPage()-1)*pagination.getCountList());
+			pstmt.setInt(6, pagination.getCountList());
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				Attraction attraction = new Attraction(
+						rs.getInt("attraction_id"),
+						rs.getString("name"),
+						rs.getString("address"),
+						rs.getString("phone"),
+						rs.getString("content"),
+						rs.getString("category"),
+						rs.getString("image"),
+						rs.getFloat("scope"),
+						rs.getInt("scope_count"),
+						DateParser.toDate(rs.getTimestamp("regdate")));
+				attractions.add(attraction);
+			}
+			return attractions;
+		} finally{
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+
 	
 	public void insert(Connection conn, Attraction attraction) throws SQLException{
 		try(PreparedStatement pstmt=

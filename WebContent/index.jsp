@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+  <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
   <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
   <html lang="en">
@@ -12,45 +12,22 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
       crossorigin="anonymous">
     <link href="/resources/css/layout.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
   </head>
 
   <body>
     <jsp:include page="/WEB-INF/view/main/header.jsp" />
+    <div class="top">
+    	<div class="main_title">Travellover</div>
+    	<img class="main_image" src="/img/main.jpg" width="100%"/>
+    	<div class="search_box">
+    		<input id="search_text" class="search_input" type="text" placeholder="검색어를 입력하세요" />
+        <i class="fas fa-search" id="search_button"></i>
+    	</div>
+    </div>
     <div class="main_container">
-      <div class="container-fluid">
-        <div class="row image_slider">
-          <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel" style="text-align: center; margin: auto;">
-            <ol class="carousel-indicators">
-              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner img_container" role="listbox">
-              <div class="carousel-item active">
-                <img class="img-fluid" src="/img/danyang.jpg" alt="First slide">
-              </div>
-              <div class="carousel-item">
-                <img class="img-fluid" src="/img/jeju.jpg" alt="Second slide">
-              </div>
-              <div class="carousel-item">
-                <img class="img-fluid" src="/img/pazu.jpg" alt="Third slide">
-              </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
-            </a>
-          </div>
-        </div>
-        <div class="col-lg" style="text-align: center;">
-          <h5>테마별</h5>
-          <br>
-        </div>
         <div class="categories">
+          <div class="sub_title">카테고리</div><hr>
           <div class="category" onclick="location.href='/attraction/list.do?category=가볼만한 곳&page=1'">
             <div class="name">가볼만한 곳</div>
           </div>
@@ -64,12 +41,36 @@
             <div class="name">숙박</div>
           </div>
         </div>
-      </div>
-      <div class="col-lg" style="text-align: center;">
-        <h5>지역별</h5>
-        <br>
+      <div class="slider">
+        <div class="sub_title">관리자 추천</div><hr>
+        <div class="image_slider">
+          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="text-align: center; margin: auto;">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner img_container" role="listbox">
+              <div class="carousel-item active">
+                <img class="img-fluid" src="/img/1.jpg" alt="First slide">
+              </div>
+              <div class="carousel-item">
+                <img class="img-fluid" src="/img/2.jpg" alt="Second slide">
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+        </div>
       </div>
       <div class="regions">
+        <div class="sub_title">지역</div><hr>
         <div class="region" onclick="location.href='/attraction/list.do?region=서울&page=1'">
           <div class="name">서울</div>
         </div>
@@ -130,8 +131,67 @@
       crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
       crossorigin="anonymous"></script>
+      <script>
+      $("#search_button").click(function(){
+    	  var search_text = $("#search_text").val();
+    	  location.href = "/attraction/list.do?page=1&search="+search_text;
+      })
+      $("#search_text").keyup(function(e){
+    	  var search_text = $("#search_text").val();
+    	  if(e.keyCode==13) location.href = "/attraction/list.do?page=1&search="+search_text;
+      })
+      </script>
   </body>
   <style>
+  .top{
+  	position: relative;
+    background-color: rgba( 255, 255, 255, 0.7 );
+  }
+  .search_box{
+  	position: absolute;
+  	top: 70%;
+  	left: 50%;
+  	transform: translate(-50%, -50%);
+  	width: 900px;
+  	height: 60px;
+  	border: 5px solid orange;	
+  }
+  .sub_title{
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 5px;
+  }
+  .search_input{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border:none;border-right:0px; border-top:0px; border-left:0px; border-bottom:0px;
+    outline: none;
+    padding-left: 15px;
+    font-size: 20px;
+  }
+  .fa-search{
+    font-size: 20px;
+    top: 50%;
+    right: 2%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    cursor: pointer;
+  }
+  .main_title{
+    opacity: none;
+    filter: none;
+  	font-size: 50px;
+  	position: absolute;
+  	color: white;
+  	top: 40%;
+  	left: 50%;
+  	transform: translate(-50%, -50%);
+  	font-weight: bold;
+  	text-shadow:  0 0 10px black;
+	-moz-text-shadow: 0 0 10px black;
+	-webkit-text-shadow: 0 0 10px black;
+  }
     .main_container {
       padding: 50px 0 50px 0;
       width: 1000px;
@@ -144,7 +204,7 @@
     .region {
       margin-left: 15px;
       margin-right: 15px;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       display: inline-block;
       border: 1px solid #eaeaea;
       width: 300px;
@@ -155,12 +215,14 @@
     }
     .region:hover{
   		box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.19);
-  		font-size: 30px;
-  		cursor: pointer
+  		font-size: 35px;
+  		
+      background-color : #eaeaea;
 	}
 
     .regions {
       text-align: center;
+      cursor: pointer;
     }
     .category {
       margin-left: 15px;
@@ -173,11 +235,13 @@
       text-align: center;
       border-radius: 5px;
       font-size: 25px;
+      cursor: pointer;
     }
     .category:hover{
   		box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.19);
-  		font-size: 30px;
-  		cursor: pointer
+  		font-size: 35px;
+  		
+      background-color : #eaeaea;
 	}
 	.name{
 		display:inline-block;
@@ -186,7 +250,7 @@
 
     .categories {
       text-align: center;
-      margin-bottom: 50px;
+      margin-bottom: 20px;
     }
   </style>
 
