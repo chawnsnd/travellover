@@ -29,7 +29,7 @@
           </div>
         </div>
         <div class="right">
-          <h1>${attraction.name}</h1>
+          <h1 id="attraction_name">${attraction.name}</h1>
           <div id="address">${attraction.address}</div>
           <div class="metadata">
           <div class="sub_title">TEL</div>
@@ -116,33 +116,88 @@
           modifyComment(param);
         })
         $("#report").click(function () {
-/*           var formData = {
-                  body: '[[PizzaHouse]](http://url_to_text) You have a new Pizza order.', //Body text (Required)
-                  connectColor: '#FAC11B', //Hex code color of attachment bar
-                  connectInfo: [{
-                      title: 'Topping', //1st attachment area title
-                      description: 'Pepperoni' //1st attachment description
-                  },
-                      {
-                          title: 'Location', //2nd attachment area title
-                          description: 'Empire State Building, 5th Ave, New York', //2nd attachment description
-                          imageUrl: 'http://url_to_text' //Image URL
-                      }]
-              }
-          var options = {
-        	        url: "https://wh.jandi.com/connect-api/webhook/15352057/ca484a8a5e183cb01316dc7b0ec76db3",
-        	        headers: {
-        	            "Content-type": "application/json",
-        	            "Accept": "application/vnd.tosslab.jandi-v2+json"
-        	        },
-        	        form: formData,
-        	        type: "post"
-        	    };
-          $.ajax(options); */
-          alert("신고 기능은 준비중입니다.");
+        	var attraction_name = $("#attraction_name").text();
+        	var nickname = $("#nickname").text();
+        	if(nickname == ""){
+        		nickname = "익명";
+        	}
+        	var attraction_id = $("#attraction_id").text();
+
+          $.ajax({
+        	  type: "post",
+              url: "https://wh.jandi.com/connect-api/webhook/15352057/ca484a8a5e183cb01316dc7b0ec76db3",
+              data: JSON.stringify({
+        		  "body" : "여행지에 대한 새로운 신고가 있습니다. [[내용보기]]("+location.href+")",
+        		  "connectColor" : "#FAC11B",
+        		  "connectInfo" : [{
+        		  "title" : "[번호] 여행지 이름",
+        		  "description" : "["+attraction_id+"] "+attraction_name
+        		  },
+        		  {
+        		  "title": "신고자",
+        		  "description": nickname
+        		  }
+        		  ]
+       		  }),
+       		  headers: {
+       			Accept: 'application/vnd.tosslab.jandi-v2+json',
+       			'Content-Type': 'application/json'
+       			
+       		  },
+       		  success: function(result){
+       			  alert("신고가 완료되었습니다.")
+       		  },
+       		  error: function(e){
+       			  alert("신고에 실패하였습니다.")
+       		  }
+          });
         })
         $(document).on("click", "#report_comment", function(){
-        	alert("신고 기능은 준비중입니다.");
+            	var attraction_name = $("#attraction_name").text();
+            	var nickname = $("#nickname").text();
+            	var author = $(this).parents("td").parents("tr").children("#comment_nickname").text();
+            	var comment_content = $(this).parents("td").parents("tr").children("#comment_content").text();
+            	console.log(author, comment_content, "asfds");
+            	if(nickname == ""){
+            		nickname = "익명";
+            	}
+            	var attraction_id = $("#attraction_id").text();
+
+              $.ajax({
+            	  type: "post",
+                  url: "https://wh.jandi.com/connect-api/webhook/15352057/ca484a8a5e183cb01316dc7b0ec76db3",
+                  data: JSON.stringify({
+            		  "body" : "댓글에 대한 새로운 신고가 있습니다. [[내용보기]]("+location.href+")",
+            		  "connectColor" : "#FAC11B",
+            		  "connectInfo" : [{
+            		  "title" : "댓글 작성자",
+            		  "description" : author
+            		  },
+            		  {"title" : "댓글 내용",
+               		  	"description" : comment_content
+               		  },
+            		  {
+            		  "title" : "[번호] 여행지 이름",
+            		  "description" : "["+attraction_id+"] "+attraction_name
+            		  },
+            		  {
+            		  "title": "신고자",
+            		  "description": nickname
+            		  }
+            		  ]
+           		  }),
+           		  headers: {
+           			Accept: 'application/vnd.tosslab.jandi-v2+json',
+           			'Content-Type': 'application/json'
+           			
+           		  },
+           		  success: function(result){
+           			  alert("신고가 완료되었습니다.")
+           		  },
+           		  error: function(e){
+           			  alert("신고에 실패하였습니다.")
+           		  }
+              });
         })
         $("#post_submit").click(function () {
           var content = $("#comment_content").val();
@@ -224,7 +279,7 @@
                 if (comment.nickname == $("#nickname").text()) {
                   $("#append_comment").append(
                     "<tr class='border'>" +
-                    "<td class='comment_nickname'>" + comment.nickname + "</td>" +
+                    "<td class='comment_nickname' id='comment_nickname'>" + comment.nickname + "</td>" +
                     "<td class='comment_content' id='comment_content'>" + comment.content + "</td>" +
                     "<td class='comment_moddate'>" + comment.modDate + "</div>" +
                     "<td class='comment_btns'>" +
@@ -236,8 +291,8 @@
                 } else {
                   $("#append_comment").append(
                     "<tr class='border'>" +
-                    "<td class='comment_nickname'>" + comment.nickname + "</td>" +
-                    "<td class='comment_content'>" + comment.content + "</td>" +
+                    "<td class='comment_nickname' id='comment_nickname'>" + comment.nickname + "</td>" +
+                    "<td class='comment_content' id='comment_content'>" + comment.content + "</td>" +
                     "<td class='comment_moddate'>" + comment.modDate + "</div>" +
                     "<td class='comment_btns'>" +
                     "<button class='btn btn-danger' style='width: 100%;'commentid='" + comment.commentId + "' id='report_comment'>신고</button>" +
