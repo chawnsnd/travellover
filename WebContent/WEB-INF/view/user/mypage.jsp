@@ -1,22 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Insert title here</title>
 </head>
+
 <body>
-<jsp:include page="/WEB-INF/view/main/header.jsp" />
-<div class="main_container">
-	<div class="hello">
-	${authUser.getNickname() }´Ô ¹Ý°©½À´Ï´Ù.
-	</div>
-	<a href="/user/changePwd.do">ºñ¹Ð¹øÈ£ º¯°æÇÏ±â</a>
-	<a href="/user/leave.do">È¸¿øÅ»ÅðÇÏ±â</a>
-	
-</div>
-<jsp:include page="/WEB-INF/view/main/footer.html" />
+  <jsp:include page="/WEB-INF/view/main/header.jsp" />
+  <div class="main_container">
+    <div class="hello">
+      ${authUser.getNickname() }ë‹˜ ë°˜ê°‘ìŠµë‹ˆë‹¤..
+    </div>
+    <a href="/user/changePwd.do">ë¹„ë°€ë²ˆí˜¸ ë³€ê²½í•˜ê¸°</a>
+    <a href="/user/leave.do">íšŒì› íƒˆí‡´í•˜ê¸°/a>
+
+  </div>
+  <jsp:include page="/WEB-INF/view/main/footer.html" />
 </body>
 <style>
   .main_container {
@@ -24,19 +26,24 @@
     width: 1000px;
     margin: auto;
   }
-  .hello{
-  	margin-top: 50px;
-  	font-weight: bold;
-  	font-size: 30px;
+
+  .hello {
+    margin-top: 50px;
+    font-weight: bold;
+    font-size: 30px;
   }
-  .main{
-  	margin-top: 50px;
+
+  .main {
+    margin-top: 50px;
   }
-  .title{
-  	font-size: 25px;
+
+  .title {
+    font-size: 25px;
   }
-  .domain{
-  	margin-bottom: 30px;
+
+  .domain {
+    margin-bottom: 30px;
   }
 </style>
+
 </html>

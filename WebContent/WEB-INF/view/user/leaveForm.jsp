@@ -1,45 +1,56 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Insert title here</title>
 </head>
+
 <body>
-<jsp:include page="/WEB-INF/view/main/header.jsp" />
-<div class="main_container">
-	<div class="domain">	
-		<div class="title">-- È¸¿øÅ»Åğ --</div>
-		<div class="form">
-			<form method="post" action="/user/leave.do">
-				<div style="margin-bottom: 20px;"><input type="password" name="password" placeholder="ÆĞ½º¿öµå¸¦ ÀÔ·ÂÇÏ¼¼¿ä"></div>
-				<div style="margin-bottom: 20px;"><input type="submit" class="btn btn-primary" value="Å»ÅğÇÏ±â"></div>
-			</form>
+	<jsp:include page="/WEB-INF/view/main/header.jsp" />
+	<div class="main_container">
+		<div class="domain">
+			<div class="title">íšŒì›íƒˆí‡´</div>
+			<div class="form">
+				<form method="post" action="/user/leave.do">
+					<div style="margin-bottom: 20px;">
+						<input type="password" name="password" placeholder="ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”">
+					</div>
+					<div style="margin-bottom: 20px;">
+						<input type="submit" class="btn btn-primary" value="íƒˆí‡´í•˜ê¸°">
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
-</div>
-<jsp:include page="/WEB-INF/view/main/footer.html" />
+	<jsp:include page="/WEB-INF/view/main/footer.html" />
 </body>
 <style>
-  .main_container {
-    padding: 50px 0 50px 0;
-    width: 1000px;
-    margin: auto;
-  }
-  .hello{
-  	margin-top: 50px;
-  	font-weight: bold;
-  	font-size: 30px;
-  }
-  .main{
-  	margin-top: 50px;
-  }
-  .title{
-  	font-size: 25px;
-  }
-  .domain{
-  	margin-bottom: 30px;
-  }
+	.main_container {
+		padding: 50px 0 50px 0;
+		width: 1000px;
+		margin: auto;
+	}
+
+	.hello {
+		margin-top: 50px;
+		font-weight: bold;
+		font-size: 30px;
+	}
+
+	.main {
+		margin-top: 50px;
+	}
+
+	.title {
+		font-size: 25px;
+	}
+
+	.domain {
+		margin-bottom: 30px;
+	}
 </style>
+
 </html>
