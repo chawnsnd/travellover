@@ -10,8 +10,8 @@
 
 <body>
 	<div class="notice">
-		ì—¬í–‰ì§€ê°€ ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤.
-		<a href="/attraction/list.do?page=1">ì—¬í–‰ì§€ëª©ë¡ë³´ê¸°</a>
+		¿©ÇàÁö°¡ µî·ÏµÇ¾ú½À´Ï´Ù.
+		<a href="/attraction/list.do?page=1">¸ÞÀÎÆäÀÌÁö °¡±â</a>
 	</div>
 </body>
 <style>

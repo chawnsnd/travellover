@@ -54,19 +54,19 @@
             <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
           </ol>
           <div class="carousel-inner img_container" role="listbox">
-            <div class="carousel-item active">
+            <div class="carousel-item active" onclick="location.href='/attraction/read.do?attraction_id=4'">
               <img class="img-fluid" src="/img/1.jpg" alt="First slide">
             </div>
-            <div class="carousel-item">
+            <div class="carousel-item" onclick="location.href='/attraction/read.do?attraction_id=7'">
               <img class="img-fluid" src="/img/2.jpg" alt="Second slide">
             </div>
-            <div class="carousel-item">
+            <div class="carousel-item" onclick="location.href='/attraction/read.do?attraction_id=1'">
               <img class="img-fluid" src="/img/3.jpg" alt="Second slide">
             </div>
-            <div class="carousel-item">
+            <div class="carousel-item" onclick="location.href='/attraction/read.do?attraction_id=10'">
               <img class="img-fluid" src="/img/4.jpg" alt="Second slide">
             </div>
-            <div class="carousel-item">
+            <div class="carousel-item" onclick="location.href='/attraction/read.do?attraction_id=18'">
               <img class="img-fluid" src="/img/5.jpg" alt="Second slide">
             </div>
           </div>
@@ -282,6 +282,9 @@
   .categories {
     text-align: center;
     margin-bottom: 20px;
+  }
+  .carousel-item{
+  	cursor: pointer;
   }
 </style>
 

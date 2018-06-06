@@ -60,32 +60,37 @@ public class CrudService {
 		PagingAttractions pagingAttractions = new PagingAttractions();
 		try{
 			conn=ConnectionProvider.getConnection();
-			int totalCount = attractionDao.totalAttraction(conn);
-			Pagination pagination = new Pagination(page, 8, 5, totalCount);
+			Pagination pagination = new Pagination(page, 8, 5);
 			if(search == null || search.isEmpty()) {
 				if((region == null || region.isEmpty() || region.equals("all"))&&(category == null || category.isEmpty() || category.equals("all"))){
+					pagination.setTotalCount(attractionDao.CountAll(conn, pagination));
 					attractions = attractionDao.listAll(conn, pagination);
 				}else if(region == null || region.isEmpty() || region.equals("all")) {
+					pagination.setTotalCount(attractionDao.CountByCategory(conn, category, pagination));
 					attractions = attractionDao.listByCategory(conn, category, pagination);
 				}else if(category == null || category.isEmpty() || category.equals("all")) {
+					pagination.setTotalCount(attractionDao.CountByRegion(conn, region, pagination));
 					attractions = attractionDao.listByRegion(conn, region, pagination);
 				}else {
+					pagination.setTotalCount(attractionDao.CountByRegionAndCategory(conn, region, category, pagination));
 					attractions = attractionDao.listByRegionAndCategory(conn, region, category, pagination);
 				}
 			}else {
 				if((region == null || region.isEmpty() || region.equals("all"))&&(category == null || category.isEmpty() || category.equals("all"))){
+					pagination.setTotalCount(attractionDao.CountAllBySearch(conn, pagination, search));
 					attractions = attractionDao.listAllBySearch(conn, pagination, search);
 				}else if(region == null || region.isEmpty() || region.equals("all")) {
+					pagination.setTotalCount(attractionDao.CountByCategoryBySearch(conn, category, pagination, search));
 					attractions = attractionDao.listByCategoryBySearch(conn, category, pagination, search);
 				}else if(category == null || category.isEmpty() || category.equals("all")) {
+					pagination.setTotalCount(attractionDao.CountByRegionBySearch(conn, region, pagination, search));
 					attractions = attractionDao.listByRegionBySearch(conn, region, pagination, search);
 				}else {
+					pagination.setTotalCount(attractionDao.CountByRegionAndCategoryBySearch(conn, region, category, pagination, search));
 					attractions = attractionDao.listByRegionAndCategoryBySearch(conn, region, category, pagination, search);
 				}
 			}
-			if(attractions.isEmpty()) {
-				throw new AttractionNotFoundException();
-			}
+			pagination.setPaging();
 			pagingAttractions.setAttractions(attractions);
 			pagingAttractions.setPagination(pagination);
 			return pagingAttractions;

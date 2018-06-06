@@ -16,7 +16,7 @@ public class ImageUploader {
 		System.out.println(uploadPath);
 		String fileName = "";
 		String filePath = "";
-		int maxSize = 1024*1024*5;
+		int maxSize = 1024*1024*10;
 		String encoding = "UTF-8";
 		
 		try {

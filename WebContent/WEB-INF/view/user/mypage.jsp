@@ -15,7 +15,7 @@
       ${authUser.getNickname() }님 반갑습니다..
     </div>
     <a href="/user/changePwd.do">비밀번호 변경하기</a>
-    <a href="/user/leave.do">회원 탈퇴하기/a>
+    <a href="/user/leave.do">회원 탈퇴하기</a>
 
   </div>
   <jsp:include page="/WEB-INF/view/main/footer.html" />

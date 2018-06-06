@@ -100,7 +100,7 @@
 			<h5 id="search_info"></h5>
 		</div>
 		<c:choose>
-			<c:when test="${attractions.isEmpty()==null}">
+			<c:when test="${attractions.isEmpty()}">
 				<div class="no_list">리스트가 존재하지 않습니다.</div>
 			</c:when>
 			<c:otherwise>
@@ -131,7 +131,7 @@
 							<b>${page }</b>
 						</c:when>
 						<c:otherwise>
-							<a class="page" href="/attraction/list.do?page=${page}&region=${region }&catetory=${category}">${page }</a>
+							<a class="page" id="page" href="/attraction/list.do?page=${page}">${page }</a>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
@@ -162,7 +162,9 @@
 				var category = getQuery("category");
 				var region = getQuery("region");
 				var search = getQuery("search");
-
+				var page = $("#page").attr('href');
+				var newPage = page+"&region="+region+"&category="+category+"&search="+search;
+				$("#page").attr('href', newPage);
 				$("#search_button").click(function () {
 					var search_text = $("#search_text").val();
 					$('#form').submit();

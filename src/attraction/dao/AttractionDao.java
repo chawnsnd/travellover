@@ -319,6 +319,160 @@ public class AttractionDao {
 		}
 	}
 
+	public int CountAll(Connection conn, Pagination pagination) throws SQLException{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		try{
+			pstmt = conn.prepareStatement(
+					"select * from attraction");
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				count++;
+			}
+			return count;
+		} finally{
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+	public int CountByCategory(Connection conn, String category, Pagination pagination) throws SQLException{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		try{
+			pstmt = conn.prepareStatement(
+					"select * from attraction where category = ?");
+			pstmt.setString(1, category);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				count++;
+			}
+			return count;
+		} finally{
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+	public int CountByRegion(Connection conn, String region, Pagination pagination) throws SQLException{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		try{
+			pstmt = conn.prepareStatement(
+					"select * from attraction where address like ?");
+			pstmt.setString(1, "%"+region+"%");
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				count++;
+			}
+			return count;
+		} finally{
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+	public int CountByRegionAndCategory(Connection conn, String region, String category, Pagination pagination) throws SQLException{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		try{
+			pstmt = conn.prepareStatement(
+					"select * from attraction where category =? and address like ?");
+			pstmt.setString(1, category);
+			pstmt.setString(2, "%"+region+"%");
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				count++;
+			}
+			return count;
+		} finally{
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+	
+	public int CountAllBySearch(Connection conn, Pagination pagination, String search) throws SQLException{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		try{
+			pstmt = conn.prepareStatement(
+					"select * from attraction where name like ? or content like ?");
+			pstmt.setString(1, "%"+search+"%");
+			pstmt.setString(2, "%"+search+"%");
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				count++;
+			}
+			return count;
+		} finally{
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+	public int CountByCategoryBySearch(Connection conn, String category, Pagination pagination, String search) throws SQLException{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		try{
+			pstmt = conn.prepareStatement(
+					"select * from attraction where category = ? and (name like ? or content like ?)");
+			pstmt.setString(1, category);
+			pstmt.setString(2, "%"+search+"%");
+			pstmt.setString(3, "%"+search+"%");
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				count++;
+			}
+			return count;
+		} finally{
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+	public int CountByRegionBySearch(Connection conn, String region, Pagination pagination, String search) throws SQLException{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		try{
+			pstmt = conn.prepareStatement(
+					"select * from attraction where address like ? and (name like ? or content like ?)");
+			pstmt.setString(1, "%"+region+"%");
+			pstmt.setString(2, "%"+search+"%");
+			pstmt.setString(3, "%"+search+"%");
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				count++;
+			}
+			return count;
+		} finally{
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+	public int CountByRegionAndCategoryBySearch(Connection conn, String region, String category, Pagination pagination, String search) throws SQLException{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		try{
+			pstmt = conn.prepareStatement(
+					"select * from attraction where category =? and address like ? and (name like ? or content like ?)");
+			pstmt.setString(1, category);
+			pstmt.setString(2, "%"+region+"%");
+			pstmt.setString(3, "%"+search+"%");
+			pstmt.setString(4, "%"+search+"%");
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				count++;
+			}
+			return count;
+		} finally{
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+
 	
 	public void insert(Connection conn, Attraction attraction) throws SQLException{
 		try(PreparedStatement pstmt=

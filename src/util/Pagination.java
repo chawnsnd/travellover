@@ -13,11 +13,17 @@ public class Pagination {
 	private Boolean prev;
 	private Boolean next;
 	
-	public Pagination(int page, int countList, int countPage, int totalCount) {
+	public Pagination(int page, int countList, int countPage) {
 		this.page = page;
 		this.countList = countList;
-		this.countPage = countPage;
+		this.countPage = countPage;	
+	}
+
+	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
+	}
+
+	public void setPaging() {
 		this.totalPage = totalCount / countList;
 		
 		if (totalCount % countList > 0) {
@@ -44,7 +50,7 @@ public class Pagination {
 			this.next = true;
 		}
 	}
-
+	
 	public int getPage() {
 		return page;
 	}
