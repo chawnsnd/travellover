@@ -13,11 +13,11 @@ public class ImageUploader {
 	public static Attraction upload(Attraction attraction, HttpServletRequest req){
 		req.getParameterNames().toString();
 		String uploadPath = req.getServletContext().getRealPath("uploadImages");
-		System.out.println(uploadPath);
 		String fileName = "";
 		String filePath = "";
 		int maxSize = 1024*1024*10;
 		String encoding = "UTF-8";
+		
 		
 		try {
 			MultipartRequest multi = new MultipartRequest(req, uploadPath, maxSize, encoding, new DefaultFileRenamePolicy());

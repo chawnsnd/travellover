@@ -32,6 +32,7 @@ public class PostHandler implements CommandHandler{
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res){
 		Attraction newAttraction = new Attraction();
 		Attraction attraction = ImageUploader.upload(newAttraction, req);
+		System.out.println("asdf?");
 		try{
 			crudService.post(attraction);
 			req.setAttribute("attraction", attraction);
