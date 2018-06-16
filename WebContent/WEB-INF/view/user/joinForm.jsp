@@ -54,7 +54,7 @@
 		$("#email").on('keyup focusout', function () {
 			var param = { 'email': $("#email").val() }
 			console.log(param);
-			//아작스통신해서 중복인지 아닌지 가져옴
+			//에이젝스통신해서 중복인지 아닌지 가져옴
 			$.ajax({
 				url: '/ajax/emailCheck.jsp',
 				data: param,

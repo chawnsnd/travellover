@@ -6,7 +6,7 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Insert title here</title>
+	<title>Travellover</title>
 </head>
 
 <body>
@@ -14,7 +14,7 @@
 	<div class="main_container">
 		<div class="main">
 			<div class="domain">
-				<div class="title">-- 비밀번호 변경 --</div>
+				<div class="title">비밀번호 변경</div>
 				<div class="form">
 					<form method="post" action="/user/changePwd.do">
 						<div style="margin-bottom: 20px;">

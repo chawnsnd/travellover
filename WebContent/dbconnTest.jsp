@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>연결 테스트</title>
+<title>Travellover</title>
 </head>
 <body>
 <%
