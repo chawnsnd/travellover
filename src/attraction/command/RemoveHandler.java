@@ -10,6 +10,9 @@ import mvc.command.CommandHandler;
 
 public class RemoveHandler implements CommandHandler{
 	
+	private static final String SUCCESS_VIEW = "/WEB-INF/view/attraction/deleteSuccess.jsp";
+	private static final String ERROR_VIEW = "/WEB-INF/view/error.jsp";
+	
 	private CrudService crudService = new CrudService();
 	
 	@Override
@@ -18,10 +21,10 @@ public class RemoveHandler implements CommandHandler{
 		attraction.setAttractionId(Integer.parseInt(req.getParameter("attraction_id")));
 		try{
 			crudService.remove(attraction);
-			return "/WEB-INF/view/attraction/deleteSuccess.jsp";
+			return SUCCESS_VIEW;
 		}catch(Exception e){
 			req.setAttribute("exception", e);
-			return "/WEB-INF/view/error.jsp";
+			return ERROR_VIEW;
 		}
 	}
 

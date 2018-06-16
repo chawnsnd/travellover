@@ -12,7 +12,8 @@ import util.ImageUploader;
 public class ModifyHandler implements CommandHandler{
 	
 	private static final String FORM_VIEW = "/WEB-INF/view/attraction/modifyForm.jsp";
-	private static final String LIST_VIEW = "/WEB-INF/view/attraction/list.jsp?page=1";
+	private static final String SUCCESS_VIEW = "/WEB-INF/view/attraction/modifySuccess.jsp";
+	private static final String ERROR_VIEW = "/WEB-INF/view/error.jsp";
 	private CrudService crudService = new CrudService();
 	
 	@Override
@@ -36,19 +37,19 @@ public class ModifyHandler implements CommandHandler{
 			req.setAttribute("phone", phone);
 			return FORM_VIEW;
 		}catch(Exception e){
-			return LIST_VIEW;
+			req.setAttribute("exception", e);
+			return ERROR_VIEW;
 		}
 	}
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res){
 		Attraction attraction = ImageUploader.upload(new Attraction(), req);
-		System.out.println(attraction.toString());
 		try{
 			crudService.modify(attraction);
 			req.setAttribute("attraction", attraction);
-			return "/WEB-INF/view/attraction/modifySuccess.jsp";
+			return SUCCESS_VIEW;
 		}catch(Exception e){
 			req.setAttribute("exception", e);
-			return "/WEB-INF/view/error.jsp";
+			return ERROR_VIEW;
 		}
 	}
 

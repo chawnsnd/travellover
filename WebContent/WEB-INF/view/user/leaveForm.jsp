@@ -11,7 +11,7 @@
 <body>
 	<jsp:include page="/WEB-INF/view/main/header.jsp" />
 	<div class="main_container">
-		<div class="domain">
+		<div class="main">
 			<div class="title">회원탈퇴</div>
 			<div class="form">
 				<form method="post" action="/user/leave.do">
@@ -42,14 +42,11 @@
 
 	.main {
 		margin-top: 50px;
+		margin-bottom: 30px;
 	}
 
 	.title {
 		font-size: 25px;
-	}
-
-	.domain {
-		margin-bottom: 30px;
 	}
 </style>
 

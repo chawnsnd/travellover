@@ -43,12 +43,6 @@
 		margin: auto;
 	}
 
-	.hello {
-		margin-top: 50px;
-		font-weight: bold;
-		font-size: 30px;
-	}
-
 	.main {
 		margin-top: 50px;
 	}

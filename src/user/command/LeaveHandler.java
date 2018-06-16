@@ -16,6 +16,8 @@ import user.service.UserNotFoundException;
 public class LeaveHandler implements CommandHandler {
 
 	private static final String FORM_VIEW = "/WEB-INF/view/user/leaveForm.jsp";
+	private static final String SUCCESS_VIEW = "/WEB-INF/view/user/leaveSuccess.jsp";
+	
 	private LeaveService leaveService = new LeaveService();
 	
 	@Override
@@ -55,8 +57,7 @@ public class LeaveHandler implements CommandHandler {
 			if(session!=null){
 				session.invalidate();
 			}
-			res.sendRedirect(req.getContextPath()+"/index.jsp");
-			return "/WEB-INF/view/user/leaveSuccess.jsp";
+			return SUCCESS_VIEW;
 		}catch(UserNotFoundException e){
 			res.sendError(HttpServletResponse.SC_BAD_REQUEST);
 			return null;
